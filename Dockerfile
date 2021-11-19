@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM alpine:3.14
+FROM alpine:3.15
 
 LABEL maintainer="Franklin <2730246+devsecfranklin@users.noreply.github.com>" \
       org.opencontainers.image.source="https://github.com/devsecfranklin/model-html"
