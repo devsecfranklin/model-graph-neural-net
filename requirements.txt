@@ -1,0 +1,6 @@
+graphviz
+python-terraform
+tensorflow
+networkx
+matplotlib
+python-terraform
