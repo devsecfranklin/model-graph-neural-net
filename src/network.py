@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt  # this is for making the graph
 import networkx as nx
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from python_terraform import Terraform
+import numpy as np
 
 
 def collect_digraph_from_terraform():
@@ -58,19 +59,26 @@ def main():
     print(nx.clustering(DG))  # cluster list
 
     # Adjacency Matrix
-    numpy_recarray = nx.to_numpy_matrix(DG)  # graph adjacency matrix as a NumPy matrix.
-    am = nx.adjacency_matrix(DG)  # requires scipy module
+    A = nx.adjacency_matrix(DG)  # requires scipy module
     # print(am)
-    print(am.todense())
-    am.setdiag(am.diagonal() * 2)
-    print(am.todense())
+    print(A.todense())
+    A.setdiag(A.diagonal() * 2)
+    print(A.todense())
 
     # Incidence Matrix
-    im = nx.incidence_matrix(DG)
-    print(im.todense())
+    I = nx.incidence_matrix(DG)
+    print(I.todense())
 
-    # Laplacian Matrix
-    # lm = nx.laplacian_matrix(DG)
+    # Degree Matrix
+
+    # Laplacian Matrix (L = D - A)
+    # L = nx.laplacian_matrix(DG)
+
+    # Goofing around with numpy
+    numpy_recarray = nx.to_numpy_matrix(DG)  # graph adjacency matrix as a NumPy matrix.
+    AA = np.matrix(numpy_recarray)
+    X = np.matrix([[i, -i] for i in range(AA.shape[0])], dtype=float)
+    print(A * X)  # apply propagation rule
 
 
 if __name__ == "__main__":
