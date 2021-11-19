@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM alpine:3.14
+FROM alpine:3.15
 
 LABEL maintainer="Franklin <2730246+devsecfranklin@users.noreply.github.com>" \
       org.opencontainers.image.source="https://github.com/devsecfranklin/model-html"
@@ -19,5 +19,6 @@ RUN set -ex; \
     apk add --no-cache ${MAIN_PKGS}; \
     python3 -m ensurepip; \
     rm -r /usr/lib/python*/ensurepip; \
-    pip3 --no-cache-dir install --upgrade pip setuptools wheel
+    pip3 --no-cache-dir install --upgrade pip setuptools wheel; \
+    python3 -m pip install -r requirements.txt
    
