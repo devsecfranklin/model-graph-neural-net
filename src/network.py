@@ -15,28 +15,37 @@ def collect_digraph_from_terraform():
     t = Terraform()
     return_code,  stdout, stderr = t.graph(capture_output=True)  # returns str
 
+    if stderr:
+        print(stderr) # we could automatically run the init at this point? 
+        exit(1)
+
     return stdout
 
 
 def write_dot_file(tf_output):
     """Write the dot file to local filesystem."""
-    text_file = open("graph.dot", "w")  # could name file based on tf
-    text_file.write(tf_output)
-    text_file.close()
-
+    try:
+        text_file = open("graph.dot", "w")  # could name file based on tf
+        text_file.write(tf_output)
+        text_file.close()
+    except Exception as e:
+        print ("There was some error writing the graph dot file", e)
 
 def main():
     """Testing Deep Learning with Graph Neural Networks."""
     tf_output = collect_digraph_from_terraform()  # get digraph from tf plan
+    
     write_dot_file(tf_output)  # write the terraform digraph to a dot file
     gv = pgv.AGraph(
         "graph.dot", strict=False, directed=True
     )  # convert dot file to pygraphviz format
     G = nx.DiGraph(gv)  # Networkx can accept the pygraphviz dot formay
-    nx.list(G.nodes(data=True))
+
+
+    #nx.list(G.nodes(data=True))
 
     nx.draw(G, with_labels=True)
-    plt.savefig("graph.png")
+    plt.savefig("graph.png") # use matplotlib to make a nice PNG
 
 
 if __name__ == "__main__":
