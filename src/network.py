@@ -1,8 +1,9 @@
 """Deep Learning GNN testing."""
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  # this is for making the graph
 import networkx as nx
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from python_terraform import Terraform
+import numpy as np
 
 
 def collect_digraph_from_terraform():
@@ -13,39 +14,71 @@ def collect_digraph_from_terraform():
     # terraform graph | dot -Tsvg -o graph.svg
     """
     t = Terraform()
-    return_code,  stdout, stderr = t.graph(capture_output=True)  # returns str
+    return_code, stdout, stderr = t.graph(capture_output=True)  # returns str
 
     if stderr:
-        print(stderr) # we could automatically run the init at this point? 
+        print(stderr)  # we could automatically run the init at this point?
         exit(1)
 
     return stdout
 
 
-def write_dot_file(tf_output):
-    """Write the dot file to local filesystem."""
+def generate_dot(tf_output):
+    """Write the dot file to local filesystem.
+    Return a pygraphviz object
+    """
     try:
         text_file = open("graph.dot", "w")  # could name file based on tf
         text_file.write(tf_output)
         text_file.close()
     except Exception as e:
-        print ("There was some error writing the graph dot file", e)
+        print("There was some error writing the graph dot file", e)
+
+    gv = pgv.AGraph(
+        "graph.dot", strict=False, directed=True
+    )  # convert dot file to pygraphviz format
+
+    return gv
+
 
 def main():
     """Testing Deep Learning with Graph Neural Networks."""
     tf_output = collect_digraph_from_terraform()  # get digraph from tf plan
-    
-    write_dot_file(tf_output)  # write the terraform digraph to a dot file
-    gv = pgv.AGraph(
-        "graph.dot", strict=False, directed=True
-    )  # convert dot file to pygraphviz format
-    G = nx.DiGraph(gv)  # Networkx can accept the pygraphviz dot formay
 
+    gv = generate_dot(tf_output)  # write the terraform digraph to a dot file
+    gv.draw("graph.png", format="png", prog="dot")  # optional PNG output
 
-    #nx.list(G.nodes(data=True))
+    DG = nx.DiGraph(
+        gv, name="Franklin"
+    )  # Networkx can accept the pygraphviz dot format
 
-    nx.draw(G, with_labels=True)
-    plt.savefig("graph.png") # use matplotlib to make a nice PNG
+    nodelist = list(DG.nodes(data=True))
+
+    # print(nodelist)
+    print(sorted(d for n, d in DG.degree()))  # sorted list
+    print(nx.clustering(DG))  # cluster list
+
+    # Adjacency Matrix
+    A = nx.adjacency_matrix(DG)  # requires scipy module
+    # print(am)
+    print(A.todense())
+    A.setdiag(A.diagonal() * 2)
+    print(A.todense())
+
+    # Incidence Matrix
+    I = nx.incidence_matrix(DG)
+    print(I.todense())
+
+    # Degree Matrix
+
+    # Laplacian Matrix (L = D - A)
+    # L = nx.laplacian_matrix(DG)
+
+    # Goofing around with numpy
+    numpy_recarray = nx.to_numpy_matrix(DG)  # graph adjacency matrix as a NumPy matrix.
+    AA = np.matrix(numpy_recarray)
+    X = np.matrix([[i, -i] for i in range(AA.shape[0])], dtype=float)
+    print(A * X)  # apply propagation rule
 
 
 if __name__ == "__main__":
