@@ -57,7 +57,7 @@ def main():
     # print(nodelist)
     print(sorted(d for n, d in DG.degree()))  # sorted list
     print(nx.clustering(DG))  # cluster list
-
+    exit(0)
     # Adjacency Matrix
     A = nx.adjacency_matrix(DG)  # requires scipy module
     # print(am)
