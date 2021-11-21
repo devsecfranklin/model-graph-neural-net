@@ -37,24 +37,37 @@ Terraform HCL to a directed graph representation is trivial thanks to Graphviz a
 \justifying
 \begin{figure}[H]
 	\includegraphics[width=12cm]{graph.png}
-	\caption{DOT output from Terraform Files}
-	\label{design}
+	\caption{DOT output from Terraform Files as a pygraph}
+	\label{pygraph}
 \end{figure}
-
-
-\section{\label{sec:preparation}Preparing Data}
 
 \justifying
 Once our Terraform files have been output as a directed graph, we need to bring it in to Python so we can
 perform operations on it. To run Terraform commands in an automated fashion, \href{https://pypi.org/project/python-terraform/}{the python-terraform module}
 is used.
 
-\subsection{\label{sec:adjacency}The Adjacency Matrix}
+\justifying
+Directed graphs are ingested into Python as an object using the networkx module. Now we are ready to
+perform operations on the digraph, displayed in the following figure.
 
 \justifying
-Directed graphs are ingested into Python as an object using the networkx module. This module also provides
+\begin{figure}[H]
+    \includegraphics[width=12cm]{graph3.png}
+    \caption{Directed graph ingested by networx}
+    \label{digraph}
+\end{figure}
+
+Note that new numerical labels are displayed in place of the original labels, which are
+stored in the node objects in case we need them later.
+
+\subsection{\label{sec:adjacency}The Adjacency Matrix}
+
+This module also provides
 an easy means of converting our graph into an adjacency matrix, which is a mathematical representation of
 our graph. The nodes are represented in a columnar format known as a matrix.
+
+
+features
 
 
 \clearpage
