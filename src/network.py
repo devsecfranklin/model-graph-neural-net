@@ -52,34 +52,42 @@ def main():
         gv, name="Franklin"
     )  # Networkx can accept the pygraphviz dot format
 
+    # Nodes
     nodelist = list(DG.nodes(data=True))
-
     # print(nodelist)
-    print(sorted(d for n, d in DG.degree()))  # sorted list
-    print(nx.clustering(DG))  # cluster list
-    exit(0)
+    #print(sorted(d for n, d in DG.degree()))  # sorted list
+    #print(nx.clustering(DG))  # cluster list
+    print("Number of nodes: ", DG.number_of_nodes())
+    print("Number of edges: ", DG.number_of_edges())
+    
+    # Relabel Graph
+    DG = nx.convert_node_labels_to_integers(DG, first_label=0, label_attribute='orig_label')
+    nx.draw(DG,with_labels=True,node_color='#4bbefd')
+    plt.savefig("graph3.png")
+    # plt.show() # use this in Jupyter
+
     # Adjacency Matrix
     A = nx.adjacency_matrix(DG)  # requires scipy module
     # print(am)
-    print(A.todense())
-    A.setdiag(A.diagonal() * 2)
-    print(A.todense())
+    #print(A.todense())
+    #A.setdiag(A.diagonal() * 2)
+    print("+++++ Adjacency Matrix ++++\n", A)
+    print("+++++ Dense Adj Matrix +++++\n", A.todense())
 
     # Incidence Matrix
     I = nx.incidence_matrix(DG)
-    print(I.todense())
+    print("+++++ Incidence Matrix +++++\n", I)
+    print("+++++ Dense Incidence Matrix +++++\n", I.todense())
 
     # Degree Matrix
 
     # Laplacian Matrix (L = D - A)
     # L = nx.laplacian_matrix(DG)
 
-    # Goofing around with numpy
     numpy_recarray = nx.to_numpy_matrix(DG)  # graph adjacency matrix as a NumPy matrix.
     AA = np.matrix(numpy_recarray)
     X = np.matrix([[i, -i] for i in range(AA.shape[0])], dtype=float)
     print(A * X)  # apply propagation rule
-
 
 if __name__ == "__main__":
     main()
