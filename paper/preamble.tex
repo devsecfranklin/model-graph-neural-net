@@ -1,0 +1,92 @@
+\documentclass{article}
+\usepackage{blindtext}
+
+%%% FONTS %%%
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+%\usepackage{tgpagella} % set the document font to TeX Gyre Pagella
+%\usepackage{tgbonum} % set the document font to TeX Gyre Bonum
+%\usepackage{fontawesome5} % The Creative Commons icons
+
+%%% DRAFT watermark %%%
+\usepackage{draftwatermark}
+\SetWatermarkText{DRAFT}
+\SetWatermarkScale{5.1}
+\SetWatermarkLightness{0.8}
+
+\usepackage{xcolor} % \textcolor{red}{text} will be red for notes
+\definecolor{lightgray}{gray}{0.6}
+\definecolor{medgray}{gray}{0.4}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	urlcolor= blue,
+	citecolor=blue,
+	linkcolor= blue,
+	%bookmarks=true,
+	%bookmarksopen=false,
+}
+
+% Code to add paragraph numbers and titles
+\newif\ifptitle
+\newif\ifpnumber
+\newcounter{para}
+\newcommand\ptitle[1]{\par\refstepcounter{para}
+	{\ifpnumber{\noindent\textcolor{lightgray}{\textbf{\thepara}}\indent}\fi}
+	{\ifptitle{\textbf{[{#1}]}}\fi}}
+\ptitletrue  % comment this line to hide paragraph titles
+\pnumbertrue  % comment this line to hide paragraph numbers
+
+% for inserting images in line
+\usepackage{graphicx}
+\graphicspath{ {code/} }
+
+%\usepackage[verbose]{wrapfig} % wrap text around image
+
+\definecolor{myblue}{HTML}{4285F4} % color table cells
+
+\usepackage[tablegrid]{vhistory} % version history package
+
+
+% Allows to rewrite the same title in the supplement
+\newcommand{\mytitle}{Deep Learning Analysis and Optimization of Security Infrastructure}
+\usepackage{authblk}
+\usepackage{comment} % allows block comments
+
+\usepackage{ragged2e} % use flush and justify for text blocks
+\usepackage{csquotes} % use \displayquote{} in the doc
+
+%%% GRAPHICS  AND CODE BLOCKS %%%
+\usepackage[listings, minted]{tcolorbox}
+\usepackage{xcolor,colortbl}
+\definecolor{myblue}{RGB}{0,163,243}
+\definecolor{mygrey}{RGB}{128,128,128}
+\definecolor{whitesmoke}{RGB}{245,245,245}
+\newtcolorbox[auto counter, number within=section]{mybox}[2][]{
+	colbacktitle=mygrey,
+	colback=whitesmoke,
+	title={#2},
+	fonttitle=\ttfamily\small,
+	fontupper=\sffamily\small,
+	halign=flush left,
+	rounded corners
+}
+
+% Headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\mytitle}
+\lfoot{\tiny{November 20, 2021}}
+\rfoot{\tiny{version: \vhCurrentVersion}}
+
+\usepackage{glossaries}
+	\makeglossaries
+
+\newacronym{GitOps}{GitOps}{Implementing  version control, collaboration, compliance, and CI/CD tooling for infrastructure automation}
+
+\newcommand*{\myglossaryindent}{0.65cm}
+\newcommand*{\myglsdescwidth}{10cm}
+

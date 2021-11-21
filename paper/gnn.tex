@@ -1,0 +1,81 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+
+\include{preamble}
+
+\begin{document}
+\vspace{2mm}
+\include{title}
+\vspace{2mm}
+\section{\label{sec:Introduction}\mytitle}
+
+\justifying
+The Terraform software made by Hashicorp is typically used as a means of automating network infrastructure
+deployments. Our teams produce Terraform modules and code frequently.
+
+\section{\label{sec:Graph}About Graph Neural Networks}
+
+\justifying
+While an in depth explanation of graph theory is beyond the scope of this paper, some background
+will be provided here to make the paper accessible to a wider audience. A collection of related references
+will be included at the end of this paper for those who may be interested.
+
+\section{\label{sec:collection}Gathering Data}
+
+\justifying
+Once a Terraform code base has been initialized, the user has the option to generate a directed graph of the infrastructure. Consider the following declaration of a Cloud Function for Google Cloud.
+
+\begin{mybox}{\thetcbcounter: Terraform Declaration Example}
+    \lstinputlisting{code/main.tf}
+\end{mybox}
+
+
+\justifying
+\href{https://graphviz.org/}{Graphviz is open source graph visualization software}. Graph visualization is a way of representing
+structural information as diagrams of abstract graphs and networks. DOT is a language used to describe graphs. Conversion of
+Terraform HCL to a directed graph representation is trivial thanks to Graphviz and Dot.
+
+\justifying
+\begin{figure}[H]
+	\includegraphics[width=12cm]{graph.png}
+	\caption{DOT output from Terraform Files as a pygraph}
+	\label{pygraph}
+\end{figure}
+
+\justifying
+Once our Terraform files have been output as a directed graph, we need to bring it in to Python so we can
+perform operations on it. To run Terraform commands in an automated fashion, \href{https://pypi.org/project/python-terraform/}{the python-terraform module}
+is used.
+
+\justifying
+Directed graphs are ingested into Python as an object using the networkx module. Now we are ready to
+perform operations on the digraph, displayed in the following figure.
+
+\justifying
+\begin{figure}[H]
+    \includegraphics[width=12cm]{graph3.png}
+    \caption{Directed graph ingested by networx}
+    \label{digraph}
+\end{figure}
+
+Note that new numerical labels are displayed in place of the original labels, which are
+stored in the node objects in case we need them later.
+
+\subsection{\label{sec:adjacency}The Adjacency Matrix}
+
+This module also provides
+an easy means of converting our graph into an adjacency matrix, which is a mathematical representation of
+our graph. The nodes are represented in a columnar format known as a matrix.
+
+
+features
+
+
+\clearpage
+\begin{versionhistory}
+	\vhEntry{v0.1}{Nov. 20th, 2021}{Franklin Diaz}{Initial Draft}
+\end{versionhistory}
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{mybib.bib}
+
+\end{document}
