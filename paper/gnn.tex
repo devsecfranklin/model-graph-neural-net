@@ -6,18 +6,19 @@
 \vspace{2mm}
 \include{title}
 \vspace{2mm}
-\section{\label{sec:Introduction}\mytitle}
 
-\justifying
-The Terraform software made by Hashicorp is typically used as a means of automating network infrastructure
-deployments. Our teams produce Terraform modules and code frequently.
-
-\section{\label{sec:Graph}About Graph Neural Networks}
+\section{\label{sec:Graph}About Deep Learning/Graph Neural Networks}
 
 \justifying
 While an in depth explanation of graph theory is beyond the scope of this paper, some background
 will be provided here to make the paper accessible to a wider audience. A collection of related references
 will be included at the end of this paper for those who may be interested.
+
+\begin{figure}[H]
+    \includegraphics[width=12cm]{rodrigo1-768x332.png}
+    \caption{From \href{https://www.ibm.com/blogs/systems/ai-machine-learning-and-deep-learning-whats-the-difference/}{AI, machine learning and deep learning: What’s the difference?} by Rodrigo Ceron.}
+    \label{aimldl}
+\end{figure}
 
 \section{\label{sec:collection}Gathering Data}
 
@@ -28,7 +29,6 @@ Once a Terraform code base has been initialized, the user has the option to gene
     \lstinputlisting{code/main.tf}
 \end{mybox}
 
-
 \justifying
 \href{https://graphviz.org/}{Graphviz is open source graph visualization software}. Graph visualization is a way of representing
 structural information as diagrams of abstract graphs and networks. DOT is a language used to describe graphs. Conversion of
@@ -37,7 +37,7 @@ Terraform HCL to a directed graph representation is trivial thanks to Graphviz a
 \justifying
 \begin{figure}[H]
 	\includegraphics[width=12cm]{graph.png}
-	\caption{DOT output from Terraform Files as a pygraph}
+	\caption{DOT output from Terraform Files as a digraph}
 	\label{pygraph}
 \end{figure}
 
@@ -48,26 +48,30 @@ is used.
 
 \justifying
 Directed graphs are ingested into Python as an object using the networkx module. Now we are ready to
-perform operations on the digraph, displayed in the following figure.
+perform operations on the digraph, displayed in figure \ref{digraph}.
 
 \justifying
 \begin{figure}[H]
     \includegraphics[width=12cm]{graph3.png}
-    \caption{Directed graph ingested by networx}
+    \caption{Directed graph as ingested by Networx}
     \label{digraph}
 \end{figure}
 
-Note that new numerical labels are displayed in place of the original labels, which are
-stored in the node objects in case we need them later.
+\justifying
+Note that new numerical labels are displayed in place of the original labels. These original labels are
+stored in the node objects in case we need them later. The root node of the adjacency matrix is labeled
+as the 0th element in the graph. Also of note is that the graphs displayed in figure \ref{pygraph} and figure \ref{digraph} can be described as \href{https://en.wikipedia.org/wiki/Graph\_isomorphism}{isomorphic}.
 
 \subsection{\label{sec:adjacency}The Adjacency Matrix}
 
-This module also provides
-an easy means of converting our graph into an adjacency matrix, which is a mathematical representation of
-our graph. The nodes are represented in a columnar format known as a matrix.
+The adjacency matrix is a mathematical representation of our graph. The nodes are represented in a
+columnar format known as a matrix. Continuing with our previous example, the representation of our
+
+\subsection{\label{sec:embedding}Node Embedding}
+
+Assigning weights and features to the edges of the graph.
 
 
-features
 
 
 \clearpage
