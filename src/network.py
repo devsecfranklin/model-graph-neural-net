@@ -1,6 +1,7 @@
 """Deep Learning GNN testing."""
 import matplotlib.pyplot as plt  # this is for making the graph
 import networkx as nx
+import pandas as pd
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from python_terraform import Terraform
 import numpy as np
@@ -55,14 +56,19 @@ def main():
     # Nodes
     nodelist = list(DG.nodes(data=True))
     # print(nodelist)
-    #print(sorted(d for n, d in DG.degree()))  # sorted list
+    print("+++++ Sorted nodelist +++++\n", sorted(d for n, d in DG.degree()))  # sorted list
     #print(nx.clustering(DG))  # cluster list
     print("Number of nodes: ", DG.number_of_nodes())
     print("Number of edges: ", DG.number_of_edges())
     
+    # convert nx digraph to pandas dataframe
+    #df = nx.to_pandas_dataframe(DG)
+    df = pd.DataFrame.from_dict(dict(DG.nodes(data=True)), orient='index')
+    print("+++++ Pandas Dataframe Values +++++\n", df.values)
+
     # Relabel Graph
-    DG = nx.convert_node_labels_to_integers(DG, first_label=0, label_attribute='orig_label')
-    nx.draw(DG,with_labels=True,node_color='#4bbefd')
+    DG = nx.convert_node_labels_to_integers(DG, first_label=0, ordering='default', label_attribute='orig_label')
+    nx.draw(DG, with_labels=True, node_color='#4bbefd')
     plt.savefig("graph3.png")
     # plt.show() # use this in Jupyter
 

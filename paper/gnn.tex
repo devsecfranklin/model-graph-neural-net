@@ -37,7 +37,7 @@ Terraform HCL to a directed graph representation is trivial thanks to Graphviz a
 \justifying
 \begin{figure}[H]
 	\includegraphics[width=12cm]{graph.png}
-	\caption{DOT output from Terraform Files as a pygraph}
+	\caption{DOT output from Terraform Files as a digraph}
 	\label{pygraph}
 \end{figure}
 
@@ -48,17 +48,18 @@ is used.
 
 \justifying
 Directed graphs are ingested into Python as an object using the networkx module. Now we are ready to
-perform operations on the digraph, displayed in the following figure.
+perform operations on the digraph, displayed in figure \ref{digraph}.
 
 \justifying
 \begin{figure}[H]
     \includegraphics[width=12cm]{graph3.png}
-    \caption{Directed graph ingested by networx}
+    \caption{Directed graph as ingested by Networx}
     \label{digraph}
 \end{figure}
 
-Note that new numerical labels are displayed in place of the original labels, which are
-stored in the node objects in case we need them later.
+Note that new numerical labels are displayed in place of the original labels. These original labels are
+stored in the node objects in case we need them later. The root node of the adjacency matrix
+is labeled as the 0th element in the graph.
 
 \subsection{\label{sec:adjacency}The Adjacency Matrix}
 
