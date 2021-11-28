@@ -1,3 +1,4 @@
+% !TeX document-id = {ca5670f8-72da-4ebb-a93c-3dafd3d2591c}
 % !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
 
 \include{preamble}
@@ -7,32 +8,109 @@
 \include{title}
 \vspace{2mm}
 
-\section{\label{sec:Graph}About Deep Learning/Graph Neural Networks}
+\section{\label{sec:intro}Introduction}
+
+\justifying
+A cursory consideration of the technology we are using to define and deploy network infrastructure
+reveals a declarative use of graphing as a descriptive language and in a definitive manner. Given this inherent
+use of graphs, and a seemingly meteoric rise in the availability of Artificial Intelligence research and tooling, it feels
+like a logical next step to transform these designs into a computationally suitable format. The use of Python, open 
+source modules, and the proliferation of scholarly papers and tutorials is a powerful combination indeed. As the common
+refrain goes, gathering and making data suitable for analysis may be the largest challenge facing the would-be data
+scientist.
+\vspace{2mm}
+
+\justifying
+With these ideas in mind, this paper describes attempts to realize improvements in security and efficiency related to 
+automated deployment of network infrastructure by bringing powerful technology to bear on their source. Capturing attempts
+to understand what's possible and find the edges of the problem space while learning new things is the true goal of this
+work. Usable, useful or even interesting results are a happy accident. Using AI to uncover inferences, and realizing there are more, better questions we can be asking is a mindset we can only cultivate by an undertaking like the one this paper describes.
+\vspace{2mm}
+
+\justifying
+Where possible, code samples and screenshots of resultant execution are provided in an attempt to make the material
+accessible to a greater number of readers. Studying and working in what is considered a sub-field of artificial
+intelligence reveals a limited number of folks engaging in these methodologies. Mass market books on the field of 
+artificial intelligence are typically targeted towards helping folks get started in machine learning. While these books
+are very interesting and educational, they don't get us far enough down the path of AI to help us with what seem to be
+niche problems in deep learning (see figure \ref{aimldl}).
+\vspace{2mm}
+
+What graph neural network layering can we discover that will lead to useful features of the nodes?
+  Node classification for making predictions about the nodes.
+  Predictions on edges and their features.
+  Learning shared functions about nodes and edges to make predictions. 
+Is the regularity of security infrastructure (or perhaps certain sub-graphs) enough to realize solutions to inductive problems?
+
+\justifying
+Finally, the mathematics that underpin this effort, although off-putting for some, must be recognized and understood by
+folks wishing to have questions answered with artificial intelligence. There is elegance and even beauty in this math.
+\vspace{2mm}
+
+\begin{displayquote}
+	\emph{No human investigation can be called real science if it cannot be demonstrated mathematically.}
+	- Leonardo Da Vinci
+\end{displayquote}
+
+\clearpage
+\section{\label{sec:primer}A Very Brief Primer on Graphing and AI}
 
 \justifying
 While an in depth explanation of graph theory is beyond the scope of this paper, some background
 will be provided here to make the paper accessible to a wider audience. A collection of related references
 will be included at the end of this paper for those who may be interested.
 
-\begin{figure}[H]
-    \includegraphics[width=12cm]{rodrigo1-768x332.png}
-    \caption{From \href{https://www.ibm.com/blogs/systems/ai-machine-learning-and-deep-learning-whats-the-difference/}{AI, machine learning and deep learning: What’s the difference?} by Rodrigo Ceron.}
-    \label{aimldl}
-\end{figure}
-
-\section{\label{sec:collection}Gathering Data}
+\subsection{\label{sec:Graph}About Graphs}
 
 \justifying
-Once a Terraform code base has been initialized, the user has the option to generate a directed graph of the infrastructure. Consider the following declaration of a Cloud Function for Google Cloud.
+Use of the term graph in this paper simply means a representation of information in a way that describes a group of 
+things, which we will refer to as ``nodes''. A relationship between nodes is called an ``edge''. Graphs have many 
+properties, most relevant of which to us include whether a graph has directionality, As with many things in computer
+science, we are affected by problems of scale. It often makes sense to constrain our scope to a given sub-graph or ``neighborhood''.
+\vspace{2mm}
+
+\justifying
+Most likely when this paper refers to a ``graph'' the reader is safe to assume a reference to an image like figure \ref{digraph}. The nodes are represented as colored circles, the edges are represented by arrows. The use of arrows
+instead of lines means the graph is ``directional'' (rather than ``undirected'') and will be referred to as a ``digraph''
+hereafter.
+\vspace{2mm}
+
+\subsection{\label{sec:DL}About Deep Learning with Graph Neural Networks}
+
+\justifying
+The first item of note is Consider figure \ref{aimldl}.
+\vspace{2mm}
+
+\begin{figure}[H]
+	\includegraphics[width=12cm]{rodrigo1-768x332.png}
+	\caption{From \href{https://www.ibm.com/blogs/systems/ai-machine-learning-and-deep-learning-whats-the-difference/}{AI, machine learning and deep learning: What’s the difference?} by Rodrigo Ceron.}
+	\label{aimldl}
+\end{figure}
+
+\subsection{\label{sec:terraform}About our Source of Data, Terraform}
+
+\justifying
+Some level of familiarity on the reader's part with \href{https://www.terraform.io/intro/index.html}{Terraform} and
+by extension, \href{https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code}{Infrastructure as Code} is
+assumed. 
+\vspace{2mm}
+
+\section{\label{sec:collection}Using Infrastructure as Code as Data}
+
+\justifying
+Terraform is essentially graph structured data. Once a Terraform code base has been initialized, the user has the option to generate
+a directed graph of the infrastructure using Dot. Dot is a language used to describe graphs. Consider the following declaration of a
+Cloud Function for Google Cloud.
 
 \begin{mybox}{\thetcbcounter: Terraform Declaration Example}
     \lstinputlisting{code/main.tf}
 \end{mybox}
 
 \justifying
-\href{https://graphviz.org/}{Graphviz is open source graph visualization software}. Graph visualization is a way of representing
-structural information as diagrams of abstract graphs and networks. DOT is a language used to describe graphs. Conversion of
-Terraform HCL to a directed graph representation is trivial thanks to Graphviz and Dot.
+\href{https://graphviz.org/}{Graphviz is open source graph visualization software}. Graph visualization is a way
+of representing structural information as diagrams of abstract graphs and networks. 
+Conversion of Terraform HCL to a directed graph representation is trivial thanks to Graphviz and Dot. It is possible to reproduce the
+digraph displayed in figure \ref{pygraph} \href{https://github.com/devsecfranklin/model-graph-neural-net/blob/main/paper/code/gen_graph.sh}{using the shell script provided}.
 
 \justifying
 \begin{figure}[H]
@@ -41,14 +119,18 @@ Terraform HCL to a directed graph representation is trivial thanks to Graphviz a
 	\label{pygraph}
 \end{figure}
 
-\justifying
-Once our Terraform files have been output as a directed graph, we need to bring it in to Python so we can
-perform operations on it. To run Terraform commands in an automated fashion, \href{https://pypi.org/project/python-terraform/}{the python-terraform module}
-is used.
+\subsection{\label{sec:conversion}Conversion of a Digraph}
 
 \justifying
-Directed graphs are ingested into Python as an object using the networkx module. Now we are ready to
-perform operations on the digraph, displayed in figure \ref{digraph}.
+Once our Terraform infrastructure has been output as a directed graph, we need to bring it in to Python so we can
+perform operations on it. To run Terraform commands in an automated fashion, 
+the \href{https://pypi.org/project/python-terraform/}{python-terraform module} is used.
+\vspace{2mm}
+
+\justifying
+Directed graphs are ingested into Python as an object using the \href{https://pypi.org/project/networkx/}{networkx module}. Now we are prepared
+to perform computational operations on the digraph.
+\vspace{2mm}
 
 \justifying
 \begin{figure}[H]
@@ -61,18 +143,44 @@ perform operations on the digraph, displayed in figure \ref{digraph}.
 Note that new numerical labels are displayed in place of the original labels. These original labels are
 stored in the node objects in case we need them later. The root node of the adjacency matrix is labeled
 as the 0th element in the graph. Also of note is that the graphs displayed in figure \ref{pygraph} and figure \ref{digraph} can be described as \href{https://en.wikipedia.org/wiki/Graph\_isomorphism}{isomorphic}.
+\vspace{2mm}
+
+\justifying
+Cleaning data using the \href{}{pyjanitor module}.
+\vspace{2mm}
 
 \subsection{\label{sec:adjacency}The Adjacency Matrix}
 
+\justifying
 The adjacency matrix is a mathematical representation of our graph. The nodes are represented in a
 columnar format known as a matrix. Continuing with our previous example, the representation of our
 
+Add the identity matrix to the adjacency matrix using an update rule. 
+The goal is to prevent the central node from being excluded. Doing this without increasing the scale requires something like multiplication by the inverse of the degree matrix, aka ``mean pooling''. The
+most popular graph convolutional layer is the GCN update rule. We will not be able to attach complex features to the edges.
+
 \subsection{\label{sec:embedding}Node Embedding}
 
-Assigning weights and features to the edges of the graph.
+\justifying
+Assigning weights and features to the edges of the graph. Labeling.
 
+Attach feature vectors to nodes.
 
+Compute arbitrary message vectors between neighbor nodes.
 
+\subsection{\label{sec:conv}Convolutional Layers}
+
+\section{\label{sec:reading}Resources}
+
+\justifying
+Here is a quick list of things that I found interesting and relevant.
+
+\begin{raggedright}
+	\begin{enumerate}
+		\item There is an excellent \href{https://www.youtube.com/watch?v=8owQBFAHw7E}{talk on YouTube by Petar Veličković}, a research scientist at \href{https://deepmind.com/about}{DeepMind}.
+        \end{enumerate}
+\end{raggedright}
+\vspace{2mm}
 
 \clearpage
 \begin{versionhistory}
