@@ -47,7 +47,6 @@ folks wishing to have questions answered with artificial intelligence. There is 
 \end{displayquote}
 
 \clearpage
-
 \section{\label{sec:primer}A Very Brief Primer on Graphing and AI}
 
 \justifying
@@ -90,19 +89,22 @@ by extension, \href{https://learn.hashicorp.com/tutorials/terraform/infrastructu
 assumed. 
 \vspace{2mm}
 
-\section{\label{sec:collection}Gathering Data}
+\section{\label{sec:collection}Using Infrastructure as Code as Data}
 
 \justifying
-Once a Terraform code base has been initialized, the user has the option to generate a directed graph of the infrastructure. Consider the following declaration of a Cloud Function for Google Cloud.
+Terraform is essentially graph structured data. Once a Terraform code base has been initialized, the user has the option to generate
+a directed graph of the infrastructure using Dot. Dot is a language used to describe graphs. Consider the following declaration of a
+Cloud Function for Google Cloud.
 
 \begin{mybox}{\thetcbcounter: Terraform Declaration Example}
     \lstinputlisting{code/main.tf}
 \end{mybox}
 
 \justifying
-\href{https://graphviz.org/}{Graphviz is open source graph visualization software}. Graph visualization is a way of representing
-structural information as diagrams of abstract graphs and networks. DOT is a language used to describe graphs. Conversion of
-Terraform HCL to a directed graph representation is trivial thanks to Graphviz and Dot.
+\href{https://graphviz.org/}{Graphviz is open source graph visualization software}. Graph visualization is a way
+of representing structural information as diagrams of abstract graphs and networks. 
+Conversion of Terraform HCL to a directed graph representation is trivial thanks to Graphviz and Dot. It is possible to reproduce the
+digraph displayed in figure \ref{pygraph} \href{https://github.com/devsecfranklin/model-graph-neural-net/blob/main/paper/code/gen_graph.sh}{using the shell script provided}.
 
 \justifying
 \begin{figure}[H]
@@ -111,14 +113,18 @@ Terraform HCL to a directed graph representation is trivial thanks to Graphviz a
 	\label{pygraph}
 \end{figure}
 
-\justifying
-Once our Terraform files have been output as a directed graph, we need to bring it in to Python so we can
-perform operations on it. To run Terraform commands in an automated fashion, \href{https://pypi.org/project/python-terraform/}{the python-terraform module}
-is used.
+\subsection{\label{sec:conversion}Conversion of a Digraph}
 
 \justifying
-Directed graphs are ingested into Python as an object using the networkx module. Now we are ready to
-perform operations on the digraph, displayed in figure \ref{digraph}.
+Once our Terraform infrastructure has been output as a directed graph, we need to bring it in to Python so we can
+perform operations on it. To run Terraform commands in an automated fashion, 
+the \href{https://pypi.org/project/python-terraform/}{python-terraform module} is used.
+\vspace{2mm}
+
+\justifying
+Directed graphs are ingested into Python as an object using the \href{https://pypi.org/project/networkx/}{networkx module}. Now we are prepared
+to perform computational operations on the digraph.
+\vspace{2mm}
 
 \justifying
 \begin{figure}[H]
@@ -139,10 +145,19 @@ columnar format known as a matrix. Continuing with our previous example, the rep
 
 \subsection{\label{sec:embedding}Node Embedding}
 
-Assigning weights and features to the edges of the graph.
+Assigning weights and features to the edges of the graph. Labeling.
 
+\section{\label{sec:reading}Resources}
 
+\justifying
+Here is a quick list of things that I found interesting and relevant.
 
+\begin{raggedright}
+	\begin{enumerate}
+		\item There is an excellent \href{https://www.youtube.com/watch?v=8owQBFAHw7E}{talk on YouTube by Petar Veličković}, a research scientist at \href{https://deepmind.com/about}{DeepMind}.
+        \end{enumerate}
+\end{raggedright}
+\vspace{2mm}
 
 \clearpage
 \begin{versionhistory}
