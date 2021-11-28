@@ -1,3 +1,4 @@
+% !TeX document-id = {ca5670f8-72da-4ebb-a93c-3dafd3d2591c}
 % !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
 
 \include{preamble}
@@ -7,18 +8,58 @@
 \include{title}
 \vspace{2mm}
 
-\section{\label{sec:Graph}About Deep Learning/Graph Neural Networks}
+\section{\label{sec:intro}Introduction}
+
+\justifying
+A cursory consideration of the technology we are using to define and deploy network infrastructure
+reveals a declarative use of graphing as a descriptive language and in a definitive manner. Given this inherent
+use of graphs, and a seemingly meteoric rise in the availability of Artificial Intelligence research and tooling, it feels
+like a logical next step to transform these designs into a computationally suitable format. The use of Python, open 
+source modules, and the proliferation of scholarly papers and tutorials is a powerful combination indeed. As the common
+refrain goes, gathering and making data suitable for analysis may be the largest challenge facing the would-be data
+scientist.
+\vspace{2mm}
+
+\justifying
+With these ideas in mind, this paper describes attempts to realize improvements in security and efficiency related to 
+automated deployment of network infrastructure. That is to say, capturing attempts to understand what's possible and find
+the edges of the problem space while learning new things is the true goal. Usable, useful or even interesting results are
+a happy accident
+\vspace{2mm}
+
+\justifying
+Where possible, code samples and screenshots of resultant execution are provided in an attempt to make the material
+accessible to a greater number of readers. Studying and working in what is considered a sub-field of artificial
+intelligence reveals a limited number of folks engaging in these methodologies.
+\vspace{2mm}
+
+\section{\label{sec:primer}A Very Brief Primer on Graphing and AI}
 
 \justifying
 While an in depth explanation of graph theory is beyond the scope of this paper, some background
 will be provided here to make the paper accessible to a wider audience. A collection of related references
 will be included at the end of this paper for those who may be interested.
 
+\subsection{\label{sec:Graph}About Graphs}
+
+\justifying
+Use of the term graph in this paper simply means a representation of information in a way that describes a group of 
+things, which we will refer to as ``nodes''. A relationship between nodes is called an ``edge''. Graphs have many 
+properties, most relevant of which to us include whether a graph has directionality, As with many things in computer
+science, we are affected by problems of scale. It often makes sense to constrain our scope to a given sub-graph or ``neighborhood''.
+
+\subsection{\label{sec:DL}About Deep Learning with Graph Neural Networks}
+
+\justifying
+The first item of note is Consider figure \ref{aimldl}.
+\vspace{2mm}
+
 \begin{figure}[H]
-    \includegraphics[width=12cm]{rodrigo1-768x332.png}
-    \caption{From \href{https://www.ibm.com/blogs/systems/ai-machine-learning-and-deep-learning-whats-the-difference/}{AI, machine learning and deep learning: What’s the difference?} by Rodrigo Ceron.}
-    \label{aimldl}
+	\includegraphics[width=12cm]{rodrigo1-768x332.png}
+	\caption{From \href{https://www.ibm.com/blogs/systems/ai-machine-learning-and-deep-learning-whats-the-difference/}{AI, machine learning and deep learning: What’s the difference?} by Rodrigo Ceron.}
+	\label{aimldl}
 \end{figure}
+
 
 \section{\label{sec:collection}Gathering Data}
 
