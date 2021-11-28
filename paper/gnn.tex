@@ -22,16 +22,31 @@ scientist.
 
 \justifying
 With these ideas in mind, this paper describes attempts to realize improvements in security and efficiency related to 
-automated deployment of network infrastructure. That is to say, capturing attempts to understand what's possible and find
-the edges of the problem space while learning new things is the true goal. Usable, useful or even interesting results are
-a happy accident
+automated deployment of network infrastructure by bringing powerful technology to bear on their source. Capturing attempts
+to understand what's possible and find the edges of the problem space while learning new things is the true goal of this
+work. Usable, useful or even interesting results are a happy accident. Using AI to uncover inferences, and realizing there are more, better questions we can be asking is a mindset we can only cultivate by an undertaking like the one this paper describes.
 \vspace{2mm}
 
 \justifying
 Where possible, code samples and screenshots of resultant execution are provided in an attempt to make the material
 accessible to a greater number of readers. Studying and working in what is considered a sub-field of artificial
-intelligence reveals a limited number of folks engaging in these methodologies.
+intelligence reveals a limited number of folks engaging in these methodologies. Mass market books on the field of 
+artificial intelligence are typically targeted towards helping folks get started in machine learning. While these books
+are very interesting and educational, they don't get us far enough down the path of AI to help us with what seem to be
+niche problems in deep learning (see figure \ref{aimldl}).
 \vspace{2mm}
+
+\justifying
+Finally, the mathematics that underpin this effort, although off-putting for some, must be recognized and understood by
+folks wishing to have questions answered with artificial intelligence. There is elegance and even beauty in this math.
+\vspace{2mm}
+
+\begin{displayquote}
+	\emph{No human investigation can be called real science if it cannot be demonstrated mathematically.}
+	- Leonardo Da Vinci
+\end{displayquote}
+
+\clearpage
 
 \section{\label{sec:primer}A Very Brief Primer on Graphing and AI}
 
@@ -47,6 +62,13 @@ Use of the term graph in this paper simply means a representation of information
 things, which we will refer to as ``nodes''. A relationship between nodes is called an ``edge''. Graphs have many 
 properties, most relevant of which to us include whether a graph has directionality, As with many things in computer
 science, we are affected by problems of scale. It often makes sense to constrain our scope to a given sub-graph or ``neighborhood''.
+\vspace{2mm}
+
+\justifying
+Most likely when this paper refers to a ``graph'' the reader is safe to assume a reference to an image like figure \ref{digraph}. The nodes are represented as colored circles, the edges are represented by arrows. The use of arrows
+instead of lines means the graph is ``directional'' (rather than ``undirected'') and will be referred to as a ``digraph''
+hereafter.
+\vspace{2mm}
 
 \subsection{\label{sec:DL}About Deep Learning with Graph Neural Networks}
 
@@ -60,6 +82,13 @@ The first item of note is Consider figure \ref{aimldl}.
 	\label{aimldl}
 \end{figure}
 
+\subsection{\label{sec:terraform}About our Source of Data, Terraform}
+
+\justifying
+Some level of familiarity on the reader's part with \href{https://www.terraform.io/intro/index.html}{Terraform} and
+by extension, \href{https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code}{Infrastructure as Code} is
+assumed. 
+\vspace{2mm}
 
 \section{\label{sec:collection}Gathering Data}
 
