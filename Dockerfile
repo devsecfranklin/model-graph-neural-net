@@ -10,7 +10,7 @@ ENV MY_DIR /workspace
 ADD . ${MY_DIR}
 
 ENV MAIN_PKGS="\
-        tini curl ca-certificates py3-numpy \
+        tini curl ca-certificates py3-numpy lapack \
         py3-numpy-f2py freetype jpeg libpng libstdc++ \
         libgomp graphviz font-noto openssl gfortran make automake gcc g++ subversion python3-dev"
 
