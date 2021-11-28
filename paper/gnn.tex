@@ -36,6 +36,12 @@ are very interesting and educational, they don't get us far enough down the path
 niche problems in deep learning (see figure \ref{aimldl}).
 \vspace{2mm}
 
+What graph neural network layering can we discover that will lead to useful features of the nodes?
+  Node classification for making predictions about the nodes.
+  Predictions on edges and their features.
+  Learning shared functions about nodes and edges to make predictions. 
+Is the regularity of security infrastructure (or perhaps certain sub-graphs) enough to realize solutions to inductive problems?
+
 \justifying
 Finally, the mathematics that underpin this effort, although off-putting for some, must be recognized and understood by
 folks wishing to have questions answered with artificial intelligence. There is elegance and even beauty in this math.
@@ -137,15 +143,32 @@ to perform computational operations on the digraph.
 Note that new numerical labels are displayed in place of the original labels. These original labels are
 stored in the node objects in case we need them later. The root node of the adjacency matrix is labeled
 as the 0th element in the graph. Also of note is that the graphs displayed in figure \ref{pygraph} and figure \ref{digraph} can be described as \href{https://en.wikipedia.org/wiki/Graph\_isomorphism}{isomorphic}.
+\vspace{2mm}
+
+\justifying
+Cleaning data using the \href{}{pyjanitor module}.
+\vspace{2mm}
 
 \subsection{\label{sec:adjacency}The Adjacency Matrix}
 
+\justifying
 The adjacency matrix is a mathematical representation of our graph. The nodes are represented in a
 columnar format known as a matrix. Continuing with our previous example, the representation of our
 
+Add the identity matrix to the adjacency matrix using an update rule. 
+The goal is to prevent the central node from being excluded. Doing this without increasing the scale requires something like multiplication by the inverse of the degree matrix, aka ``mean pooling''. The
+most popular graph convolutional layer is the GCN update rule. We will not be able to attach complex features to the edges.
+
 \subsection{\label{sec:embedding}Node Embedding}
 
+\justifying
 Assigning weights and features to the edges of the graph. Labeling.
+
+Attach feature vectors to nodes.
+
+Compute arbitrary message vectors between neighbor nodes.
+
+\subsection{\label{sec:conv}Convolutional Layers}
 
 \section{\label{sec:reading}Resources}
 
