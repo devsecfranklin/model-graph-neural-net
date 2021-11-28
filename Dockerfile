@@ -3,12 +3,16 @@
 FROM alpine:3.15
 
 LABEL maintainer="Franklin <2730246+devsecfranklin@users.noreply.github.com>" \
-      org.opencontainers.image.source="https://github.com/devsecfranklin/model-html"
+      org.opencontainers.image.source="https://github.com/devsecfranklin/model-graph-neural-net"
+
+WORKDIR /workspace
+ENV MY_DIR /workspace
+ADD . ${MY_DIR}
 
 ENV MAIN_PKGS="\
-        tini curl ca-certificates python3 py3-numpy \
+        tini curl ca-certificates py3-numpy \
         py3-numpy-f2py freetype jpeg libpng libstdc++ \
-        libgomp graphviz font-noto openssl"
+        libgomp graphviz font-noto openssl gfortran make automake gcc g++ subversion python3-dev"
 
 RUN set -ex; \
     apk update; \
