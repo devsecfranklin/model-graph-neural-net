@@ -1,3 +1,5 @@
+wheel
+graphviz
 pygraphviz
 python-terraform
 #tensorflow
