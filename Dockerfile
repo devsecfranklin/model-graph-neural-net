@@ -23,6 +23,6 @@ RUN set -ex; \
     apk add --no-cache ${MAIN_PKGS}; \
     python3 -m ensurepip; \
     rm -r /usr/lib/python*/ensurepip; \
-    pip3 --no-cache-dir install --upgrade pip setuptools wheel; \
-    python3 -m pip install -r requirements.txt
+    pip3 --no-cache-dir install --upgrade pip setuptools wheel # ; \
+    #python3 -m pip install -r requirements.txt
    

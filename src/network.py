@@ -72,7 +72,7 @@ def main():
     plt.savefig("graph3.png")
     # plt.show() # use this in Jupyter
 
-    # Adjacency Matrix
+    """Adjacency Matrix."""
     A = nx.adjacency_matrix(DG)  # requires scipy module
     # print(am)
     #print(A.todense())
@@ -85,7 +85,10 @@ def main():
     print("+++++ Incidence Matrix +++++\n", I)
     print("+++++ Dense Incidence Matrix +++++\n", I.todense())
 
-    # Degree Matrix
+    """ Degree Matrix 
+    
+	Adding the inverse of the degree matrix ensures inclusion of root node.
+    """
 
     # Laplacian Matrix (L = D - A)
     # L = nx.laplacian_matrix(DG)
