@@ -33,7 +33,7 @@ build: ## build a container
 	$(MAKE) print-status MSG="Building container"
 	docker build -t frank378:model-dl-test \
 			--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') . | tee .buildlog
-	@$(MAKE) print-status MSG="Here is what you built..."
+	$(MAKE) print-status MSG="Here is what you built..."
 	@echo "$(LBLUE)" && docker image ls | grep "model-graph-neural-net" && echo "$(NC)"
 
 clean: ## clean up all the things
