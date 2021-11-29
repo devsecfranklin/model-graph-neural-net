@@ -31,8 +31,8 @@ help:
 
 build: ## build a container
 	$(MAKE) print-status MSG="Building container"
-	docker build -t frank378:model-dl-test \
-			--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') . | tee .buildlog
+	docker build -t frank378:model-graph-neural-net \
+		--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') . | tee .buildlog
 
 clean: ## clean up all the things
 	@$(MAKE) print-status MSG="Clean up stale build artifacts"
