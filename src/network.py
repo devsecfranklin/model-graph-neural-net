@@ -6,6 +6,8 @@ import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from python_terraform import Terraform
 import numpy as np
 
+# https://github.com/pyjanitor-devs/pyjanitor
+# import janitor  # upon import, functions are registered as part of pandas.
 
 def collect_digraph_from_terraform():
     """Terraform can output a directed graph.
