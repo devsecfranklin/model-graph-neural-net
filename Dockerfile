@@ -16,7 +16,7 @@ ADD . ${MY_DIR}
 ##########################
 # Get Terraform binaries #
 ##########################
-RUN for MYVER in 1.0.3; \
+RUN for MYVER in 1.0.11; \
     do \
         wget --quiet https://releases.hashicorp.com/terraform/${MYVER}/terraform_${MYVER}_linux_amd64.zip -P /tmp; \
             cd /tmp \
