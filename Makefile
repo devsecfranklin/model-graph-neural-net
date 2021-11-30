@@ -46,6 +46,13 @@ clean: ## clean up all the things
 	@if [ ! -d "/nix" ]; then nix-collect-garbage -d; fi
 	@docker system prune -f
 
+docker: ## do the docker stuff
+	$(MAKE) print-status MSG="Building with docker-compose"
+	@if [ -f /.dockerenv ]; then echo "Don't run make docker inside docker container" && exit 1; fi;
+	@$(MAKE) print-status MSG="Generating dot from TF, hold tight..."
+	@docker-compose build --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') model-gcn
+	@docker-compose run model-gcn
+
 print-error:
 	@:$(call check_defined, MSG, Message to print)
 	@echo -e "$(LRED)$(MSG)$(NC)"
