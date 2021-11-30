@@ -17,7 +17,7 @@ class FranklinHelpers:
         # terraform graph | dot -Tpng > graph.png
         # terraform graph | dot -Tsvg -o graph.svg
         """
-        t = Terraform()
+        t = Terraform(terraform_bin_path='/usr/bin/terraform')
         return_code, stdout, stderr = t.graph(capture_output=True)  # returns str
 
         if stderr:

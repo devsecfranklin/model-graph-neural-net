@@ -4,6 +4,7 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 
+import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from helpers import FranklinHelpers
 
 

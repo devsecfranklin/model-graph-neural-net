@@ -1,0 +1,9 @@
+version: '3'
+services:
+  model-gcn:
+    hostname: model-gcn
+    volumes:
+      - .:/workspace
+    build:
+      context: .
+      dockerfile: Dockerfile

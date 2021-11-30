@@ -1,28 +1,41 @@
 # syntax=docker/dockerfile:1
 
-FROM alpine:3.15
+FROM python:3.10-bullseye
+
+ARG BUILD_DATE
+ARG USER="franklin"
 
 LABEL maintainer="Franklin <2730246+devsecfranklin@users.noreply.github.com>" \
-      org.opencontainers.image.source="https://github.com/devsecfranklin/model-graph-neural-net"
+      org.opencontainers.image.source="https://github.com/devsecfranklin/model-graph-neural-net" \
+      org.label-schema.build-date=$BUILD_DATE
 
 WORKDIR /workspace
 ENV MY_DIR /workspace
 ADD . ${MY_DIR}
 
-ENV MAIN_PKGS="\
-        tini curl ca-certificates py3-numpy lapack \
-        py3-numpy-f2py freetype jpeg libpng libstdc++ \
-        libgomp graphviz-dev font-noto openssl gfortran make automake gcc g++ subversion python3-dev"
+##########################
+# Get Terraform binaries #
+##########################
+RUN for MYVER in 1.0.3; \
+    do \
+        wget --quiet https://releases.hashicorp.com/terraform/${MYVER}/terraform_${MYVER}_linux_amd64.zip -P /tmp; \
+            cd /tmp \
+          && unzip /tmp/terraform_${MYVER}_linux_amd64.zip \
+          && mv /tmp/terraform /usr/bin/terraform`echo ${MYVER}| cut -f2 -d'.'` \
+          && rm /tmp/terraform_${MYVER}_linux_amd64.zip \
+          && ln -s /usr/bin/terraform`echo ${MYVER}| cut -f2 -d'.'` /usr/bin/terraform; \
+    done
 
-RUN set -ex; \
-    apk update; \
-    apk upgrade; \
-    echo http://dl-cdn.alpinelinux.org/alpine/edge/main | tee /etc/apk/repositories; \
-    echo http://dl-cdn.alpinelinux.org/alpine/edge/testing | tee -a /etc/apk/repositories; \
-    echo http://dl-cdn.alpinelinux.org/alpine/edge/community | tee -a /etc/apk/repositories; \
-    apk add --no-cache ${MAIN_PKGS}; \
-    python3 -m ensurepip; \
-    rm -r /usr/lib/python*/ensurepip; \
-    pip3 --no-cache-dir install --upgrade pip setuptools wheel # ; \
-    #python3 -m pip install -r requirements.txt
-   
+#####################
+# Add some packages #
+#####################
+ENV DEBIAN_FRONTEND noninteractive
+RUN \
+    apt-get update; \
+    apt-get install -y debconf apt-utils; \
+    apt-get install -y make automake autoconf graphviz libgraphviz-dev; \
+    /usr/local/bin/python -m pip install --upgrade pip; \
+    pip install -r requirements.txt 
+    #/usr/local/bin/python /workspace/src/main.py
+
+# CMD ["python", "src/main.py" ] 

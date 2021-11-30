@@ -1,8 +1,10 @@
+graphviz
 pygraphviz
 python-terraform
-#tensorflow
+#
+matplotlib
 networkx
-#matplotlib
-python-terraform
-#scipy
 pandas
+scipy
+#tensorflow
+
