@@ -21,9 +21,9 @@ RUN for MYVER in 1.0.11; \
         wget --quiet https://releases.hashicorp.com/terraform/${MYVER}/terraform_${MYVER}_linux_amd64.zip -P /tmp; \
             cd /tmp \
           && unzip /tmp/terraform_${MYVER}_linux_amd64.zip \
-          && mv /tmp/terraform /usr/bin/terraform`echo ${MYVER}| cut -f2 -d'.'` \
+          && mv /tmp/terraform /usr/local/bin/terraform`echo ${MYVER}| cut -f2 -d'.'` \
           && rm /tmp/terraform_${MYVER}_linux_amd64.zip \
-          && ln -s /usr/bin/terraform`echo ${MYVER}| cut -f2 -d'.'` /usr/bin/terraform; \
+          && ln -s /usr/local/bin/terraform`echo ${MYVER}| cut -f2 -d'.'` /usr/bin/terraform; \
     done
 
 #####################
