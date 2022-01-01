@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt  # this is for making the graph
 import networkx as nx
 import numpy as np
 import pandas as pd
-
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
+
 from helpers import FranklinHelpers
 
 
@@ -15,7 +15,7 @@ def main():
     tf_output = my_helper.collect_digraph_from_terraform()  # get digraph from tf plan
 
     gv = my_helper.generate_dot(tf_output)  # write the terraform digraph to a dot file
-    gv.draw("graph.png", format="png", prog="dot")  # optional PNG output
+    gv.draw(my_helper.png_filename, format="png", prog="dot")  # optional PNG output
 
     DG = nx.DiGraph(
         gv, name="Franklin"
@@ -41,7 +41,7 @@ def main():
         DG, first_label=0, ordering="default", label_attribute="orig_label"
     )
     nx.draw(DG, with_labels=True, node_color="#4bbefd")
-    plt.savefig("graph3.png")
+    plt.savefig("graph3.png")  # if this is permanent, fix the filename
     # plt.show() # use this in Jupyter
 
     """Adjacency Matrix."""
@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
 
 """
-__author__     = 'Franklin D.'
+__author__     = 'Franklin Diaz'
 __version__    = '0.1'
-__email__      = 'frank378@gmail.com'
+__email__      = 'fdiaz@paloaltonetworks.com'
 """
