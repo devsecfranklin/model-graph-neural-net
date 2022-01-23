@@ -24,7 +24,8 @@ scientist.
 With these ideas in mind, this paper describes attempts to realize improvements in security and efficiency related to 
 automated deployment of network infrastructure by bringing powerful technology to bear on their source. Capturing attempts
 to understand what's possible and find the edges of the problem space while learning new things is the true goal of this
-work. Usable, useful or even interesting results are a happy accident. Using AI to uncover inferences, and realizing there are more, better questions we can be asking is a mindset we can only cultivate by an undertaking like the one this paper describes.
+work. Usable, useful or even interesting results are a happy accident. Using AI to uncover inferences, and realizing there are more,
+better questions we can be asking is a mindset we can only cultivate by an undertaking like the one this paper describes.
 \vspace{2mm}
 
 \justifying
@@ -95,11 +96,6 @@ by extension, \href{https://learn.hashicorp.com/tutorials/terraform/infrastructu
 assumed. 
 \vspace{2mm}
 
-\subsection{\label{sec:collection}Data Collection and Processing}
-
-\justifying
-Run a small tool to collect data and pass results to a Google Cloud storage bucket.
-
 \section{\label{sec:iacdata}Using Infrastructure as Code as Data}
 
 \justifying
@@ -123,6 +119,11 @@ digraph displayed in figure \ref{pygraph} \href{https://github.com/devsecfrankli
 	\caption{DOT output from Terraform Files as a digraph}
 	\label{pygraph}
 \end{figure}
+
+\section{\label{sec:collection}Data Collection}
+
+\justifying
+Run a small tool to collect data and pass results to a Google Cloud storage bucket.
 
 \subsection{\label{sec:conversion}Conversion of a Digraph}
 
