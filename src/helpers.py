@@ -2,17 +2,28 @@
 import uuid
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from python_terraform import Terraform
+import pathlib
 
 import fnmatch
 import os
+import logging
+import logging.config
+
+logging.config.fileConfig(
+    "logging.conf",
+    defaults={"logfilename": "project.log"},
+    disable_existing_loggers=False,
+)
+logger = logging.getLogger(__name__)
+
 
 class FranklinHelpers:
     """
-
     # https://github.com/pyjanitor-devs/pyjanitor
     # import janitor  # upon import, functions are registered as part of pandas.
     """
-
+    workdir = 'model'
+    current_dir = str(pathlib.Path(__file__).parents[1])
     my_filename = str(uuid.uuid4())  # set a unique filename
     dot_filename = my_filename + ".dot"  # set a unique dot filename
     png_filename = my_filename + ".png"  # set a unique dot filename
@@ -25,20 +36,20 @@ class FranklinHelpers:
         version : {1, 2, 3, 4}
         """
         dot_files = []
-        for file in os.listdir('.'):
+        self.make_directory(self.current_dir + '/' + self.workdir)
+
+        for file in os.listdir(self.current_dir + '/' + self.workdir):
             if fnmatch.fnmatch(file, '*.dot'):
                 dot_files.append(file)
-        for dot in dot_files:
-            
         
-        # check for a dot and png file in current directory.
+        #for item in dot_files: # check for a dot and png file in workdir   
+
         try:
             uuid.UUID(check_uuid, version='4')
         except ValueError as e:
             print("Generating a new UUID: ", e)
 
         # if they exist, write to self.my_filename
-
         pass
 
     def collect_digraph_from_terraform(self):
@@ -62,14 +73,14 @@ class FranklinHelpers:
         Return a pygraphviz object
         """
         try:
-            text_file = open(self.dot_filename, "w")  # could name file based on tf
+            text_file = open(self.current_dir + '/' + self.workdir + '/' + self.dot_filename, "w")  # could name file based on tf
             text_file.write(tf_output)
             text_file.close()
         except Exception as e:
             print("There was some error writing the graph dot file", e)
 
         gv = pgv.AGraph(
-            self.dot_filename, strict=False, directed=True
+            self.current_dir + '/' + self.workdir + '/' + self.dot_filename, strict=False, directed=True
         )  # convert dot file to pygraphviz format
 
         return gv
@@ -78,9 +89,21 @@ class FranklinHelpers:
         """If two graphs (dot files) are isometric, delete one from dataset."""
         pass
 
+    def make_directory(self, my_dir):
+        """Make a directory."""
+        try:
+            os.mkdir(my_dir)
+        except FileNotFoundError as e:
+            logger.error("Unable to create directory %s because: %s", my_dir, e)
+        except FileExistsError as fe:
+            logger.error(
+                "Unable to create directory %s because it already exists.",
+                my_dir,
+            )
+        logger.debug("Created directory: %s", my_dir)
 
 """
-__author__     = 'Franklin Diaz'
+__author__     = 'Franklin'
 __version__    = '0.1'
-__email__      = 'fdiaz@paloaltonetworks.com'
+__email__      = ''
 """

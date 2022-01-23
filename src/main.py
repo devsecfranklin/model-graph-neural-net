@@ -4,8 +4,17 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
+import logging
+import logging.config
 
 from helpers import FranklinHelpers
+
+logging.config.fileConfig(
+    "logging.conf",
+    defaults={"logfilename": "project.log"},
+    disable_existing_loggers=False,
+)
+logger = logging.getLogger("__name__")
 
 
 def main():
@@ -76,7 +85,7 @@ if __name__ == "__main__":
 
 
 """
-__author__     = 'Franklin Diaz'
+__author__     = 'Franklin'
 __version__    = '0.1'
-__email__      = 'fdiaz@paloaltonetworks.com'
+__email__      = ''
 """

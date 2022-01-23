@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
 
 """
-__author__     = 'Franklin Diaz'
+__author__     = 'Franklin'
 __version__    = '0.1'
-__email__      = 'fdiaz@paloaltonetworks.com'
+__email__      = ''
 """
