@@ -55,7 +55,7 @@ class CollectionHelpers:
         return_code, stdout, stderr = t.graph(capture_output=True)  # returns str
 
         if stderr:
-            print(stderr)  # we could automatically run the init at this point?
+            print('franklin error' + stderr)  # we could automatically run the init at this point?
             exit(1)
 
         return stdout
@@ -81,14 +81,15 @@ class CollectionHelpers:
         """Make a directory if it does not already exist."""
         try:
             os.mkdir(my_dir)
+            #logger.debug("Created directory: %s", my_dir)
+            print ("Created directory: " + my_dir)
         except FileNotFoundError as e:
-            logger.error("Unable to create directory %s because: %s", my_dir, e)
+            #logger.error("Unable to create directory %s because: %s", my_dir, e)
+            print("Unable to create directory %s because: %s", my_dir, e)
         except FileExistsError as fe:
-            logger.error(
-                "Unable to create directory %s because it already exists.",
-                my_dir,
-            )
-        logger.debug("Created directory: %s", my_dir)
+            #logger.error("Unable to create directory %s because it already exists.", my_dir)
+            print("Unable to create directory " + my_dir + " because it already exists.")
+
 
     def print_output(self, message):
         """Print a message to the console."""
