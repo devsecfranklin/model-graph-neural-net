@@ -7,7 +7,7 @@ import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 import logging
 import logging.config
 
-from helpers import FranklinHelpers
+from lib.helpers import FranklinHelpers
 
 logging.config.fileConfig(
     "logging.conf",
