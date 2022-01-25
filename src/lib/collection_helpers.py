@@ -55,10 +55,15 @@ class CollectionHelpers:
         return_code, stdout, stderr = t.graph(capture_output=True)  # returns str
 
         if stderr:
-            print('franklin error' + stderr)  # we could automatically run the init at this point?
-            exit(1)
+            #print(stderr)  # we could automatically run the init at this point?
+            return stderr
 
         return stdout
+
+    def process_output(self, file_path):
+        """
+        """
+        pass
 
     def generate_dot(self, tf_output):
         """Write the dot file to local filesystem.
