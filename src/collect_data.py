@@ -22,7 +22,7 @@ def main():
     my_helper.print_output("Collecting digraph...")
     tf_output = my_helper.collect_digraph_from_terraform()  # get digraph from tf plan
     
-    """Capture and write the respone for Terraform. 
+    """Capture and write the response for Terraform. 
      
     Using for troubleshooting but we could read the respone and react appropriately, 
     (do a 'terraform init' for example)
@@ -33,9 +33,9 @@ def main():
     file1.close()
     
     my_helper.print_output("Write the digraph to a dot file...")
-    gv = my_helper.generate_dot(tf_output)  # write the terraform digraph to a dot file
+    gv = my_helper.generate_dot(workdir, tf_output)  # write the terraform digraph to a dot file
     my_helper.print_output("Generating PNG file...")
-    gv.draw(my_helper.png_filename, format="png", prog="dot")  # make a nice picture in PNG format
+    gv.draw(workdir + '/' + my_helper.my_uuid + '.png', format="png", prog="dot")  # make a nice picture in PNG format
 
 
 if __name__ == "__main__":

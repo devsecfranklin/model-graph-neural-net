@@ -19,10 +19,10 @@ class CollectionHelpers:
     current_dir = str(pathlib.Path(__file__).parents[1]) # use this to save a copy of data to repo?
     workdir = './model'
     
-    my_filename = str(uuid.uuid4())  # set a unique filename
-    dot_filename = my_filename + ".dot"  # set a unique dot filename
-    png_filename = my_filename + ".png"  # set a unique dot filename
-    plt_filename = my_filename + "-plt.png" # redraw graph with matplotlib
+    my_uuid = "" # set a unique filename
+    dot_filename = my_uuid + ".dot"  # set a unique dot filename
+    png_filename = my_uuid + ".png"  # set a unique dot filename
+    plt_filename = my_uuid + "-plt.png" # redraw graph with matplotlib
 
     def generate_uuid(self):
         """Generate a UUID for the graph a name.
@@ -30,8 +30,13 @@ class CollectionHelpers:
         check_uuid : str
         version : {1, 2, 3, 4}
         """
-        print("Generating a new UUID", self.my_filename)
+        
+        my_uuid = str(uuid.uuid4())  # set a unique filename
+        #logger.debug("Generated a new UUID: ", my_uuid)
+        self.my_uuid = my_uuid
 
+        return my_uuid
+        
     def update_metadata(self, workdir):
         """Update the JSON file with metadata/labels
 
@@ -42,17 +47,28 @@ class CollectionHelpers:
 
         json_file = workdir + '/.json.metadata'
         path = Path(json_file)
-        data['uuid'] = self.my_filename
-        #json_data = json.dumps(data)
 
-        #if path.is_file():
-        #    print ("Update existing JSON")
-        #    with open(json_file) as json_file: # read in existing first
-        #        data = json.load(json_file)
-        print('Existing JSON: ' + data['uuid']) # update the key value pairs
+        if path.is_file():
+        #    #logger.info("Update existing JSON")
+            try:
+                with open(json_file) as json_file: # read in existing first
+                    data = json.load(json_file)
+                    #logger.debug('Existing JSON: ' + data['uuid']) # update the key value pairs
+                    
+                    self.my_uuid = data['uuid']
+                json_file.close()
+            except json.decoder.JSONDecodeError as e:
+                print ("JSON file is corrupted: ", e)
+                sys.exit(1)
+        else:
+            try:
+                self.generate_uuid()
+                data['uuid'] = self.my_uuid
+                with open(str(json_file), 'w', encoding='utf-8') as f: # write to the JSON file
+                    json.dump(data, f, ensure_ascii=False, indent=4) 
+            except TypeError as e:
+                print ("Caught a TypeError, ", e)
 
-        with open(json_file, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=4)
 
     def graph_generate(self, my_dir):
         """Give the graph a name. Reuse the exisiting name if possible.
@@ -88,19 +104,19 @@ class CollectionHelpers:
 
         return stdout
 
-    def generate_dot(self, tf_output):
+    def generate_dot(self, workdir, tf_output):
         """Write the dot file to local filesystem.
         Return a pygraphviz object
         """
         try:
-            text_file = open(self.current_dir + '/' + self.workdir + '/' + self.dot_filename, "w")  # could name file based on tf
+            text_file = open(workdir + '/' + self.my_uuid + '.dot', "w")  # could name file based on tf
             text_file.write(tf_output)
             text_file.close()
         except Exception as e:
             print("There was some error writing the graph dot file", e)
 
         gv = pgv.AGraph(
-            self.current_dir + '/' + self.workdir + '/' + self.dot_filename, strict=False, directed=True
+            workdir + '/' + self.my_uuid + '.dot', strict=False, directed=True
         )  # convert dot file to pygraphviz format
 
         return gv
@@ -122,7 +138,8 @@ class CollectionHelpers:
             print("Unable to create directory %s because: %s", my_dir, e)
         except FileExistsError as fe:
             #logger.error("Unable to create directory %s because it already exists.", my_dir)
-            print("Unable to create directory " + my_dir + " because it already exists.")
+            #print("Unable to create directory " + my_dir + " because it already exists.")
+            pass # this is OK
         return created
 
     def print_logo(self):
@@ -142,13 +159,6 @@ class CollectionHelpers:
         message = "\033[5;36;40m" + message + "\033[0;0m"
         print(message, end="\r", flush=True)
         time.sleep(1)
-
-    def identify_provider(self):
-        """Check to see which cloud provider this is.
-
-        hashicorp/azurerm
-        """
-        pass
 
     def xmit_data():
         """Phone home with data/metadata.
