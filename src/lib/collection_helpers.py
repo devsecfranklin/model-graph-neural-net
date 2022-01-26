@@ -3,7 +3,8 @@ import uuid
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from python_terraform import Terraform
 import pathlib
-
+from pathlib import Path
+import json
 import fnmatch
 import os
 import sys
@@ -15,14 +16,61 @@ class CollectionHelpers:
     # import janitor  # upon import, functions are registered as part of pandas.
     """
 
-    current_dir = str(pathlib.Path(__file__).parents[1])
-    workdir = current_dir + '/model'
-    my_filename = str(uuid.uuid4())  # set a unique filename
-    dot_filename = my_filename + ".dot"  # set a unique dot filename
-    png_filename = my_filename + ".png"  # set a unique dot filename
-    plt_filename = my_filename + "-plt.png" # redraw graph with matplotlib
+    current_dir = str(pathlib.Path(__file__).parents[1]) # use this to save a copy of data to repo?
+    workdir = './model'
+    
+    my_uuid = "" # set a unique filename
+    dot_filename = my_uuid + ".dot"  # set a unique dot filename
+    png_filename = my_uuid + ".png"  # set a unique dot filename
+    plt_filename = my_uuid + "-plt.png" # redraw graph with matplotlib
 
-    def configure_graph_name(self):
+    def generate_uuid(self):
+        """Generate a UUID for the graph a name.
+
+        check_uuid : str
+        version : {1, 2, 3, 4}
+        """
+        
+        my_uuid = str(uuid.uuid4())  # set a unique filename
+        #logger.debug("Generated a new UUID: ", my_uuid)
+        self.my_uuid = my_uuid
+
+        return my_uuid
+        
+    def update_metadata(self, workdir):
+        """Update the JSON file with metadata/labels
+
+        Args:
+             workdir ([type]): [description]
+        """
+        data = {} #hold the JSON values
+
+        json_file = workdir + '/.json.metadata'
+        path = Path(json_file)
+
+        if path.is_file():
+        #    #logger.info("Update existing JSON")
+            try:
+                with open(json_file) as json_file: # read in existing first
+                    data = json.load(json_file)
+                    #logger.debug('Existing JSON: ' + data['uuid']) # update the key value pairs
+                    
+                    self.my_uuid = data['uuid']
+                json_file.close()
+            except json.decoder.JSONDecodeError as e:
+                print ("JSON file is corrupted: ", e)
+                sys.exit(1)
+        else:
+            try:
+                self.generate_uuid()
+                data['uuid'] = self.my_uuid
+                with open(str(json_file), 'w', encoding='utf-8') as f: # write to the JSON file
+                    json.dump(data, f, ensure_ascii=False, indent=4) 
+            except TypeError as e:
+                print ("Caught a TypeError, ", e)
+
+
+    def graph_generate(self, my_dir):
         """Give the graph a name. Reuse the exisiting name if possible.
 
         check_uuid : str
@@ -30,16 +78,12 @@ class CollectionHelpers:
         """
         dot_files = []
 
-        for file in os.listdir(self.workdir):
+        for file in os.listdir(my_dir):
             if fnmatch.fnmatch(file, '*.dot'):
                 dot_files.append(file)
         
         #for item in dot_files: # check for a dot and png file in workdir   
 
-        try:
-            uuid.UUID(check_uuid, version='4')
-        except ValueError as e:
-            print("Generating a new UUID: ", e)
 
         # if they exist, write to self.my_filename
         pass
@@ -60,41 +104,54 @@ class CollectionHelpers:
 
         return stdout
 
-    def process_output(self, file_path):
-        """
-        """
-        pass
-
-    def generate_dot(self, tf_output):
+    def generate_dot(self, workdir, tf_output):
         """Write the dot file to local filesystem.
         Return a pygraphviz object
         """
         try:
-            text_file = open(self.current_dir + '/' + self.workdir + '/' + self.dot_filename, "w")  # could name file based on tf
+            text_file = open(workdir + '/' + self.my_uuid + '.dot', "w")  # could name file based on tf
             text_file.write(tf_output)
             text_file.close()
         except Exception as e:
             print("There was some error writing the graph dot file", e)
 
         gv = pgv.AGraph(
-            self.current_dir + '/' + self.workdir + '/' + self.dot_filename, strict=False, directed=True
+            workdir + '/' + self.my_uuid + '.dot', strict=False, directed=True
         )  # convert dot file to pygraphviz format
 
         return gv
 
     def make_directory(self, my_dir):
-        """Make a directory if it does not already exist."""
+        """Make a directory if it does not already exist.
+        
+        return a boolean if created
+        """
+        created = False
+
         try:
             os.mkdir(my_dir)
             #logger.debug("Created directory: %s", my_dir)
             print ("Created directory: " + my_dir)
+            created = True
         except FileNotFoundError as e:
             #logger.error("Unable to create directory %s because: %s", my_dir, e)
             print("Unable to create directory %s because: %s", my_dir, e)
         except FileExistsError as fe:
             #logger.error("Unable to create directory %s because it already exists.", my_dir)
-            print("Unable to create directory " + my_dir + " because it already exists.")
+            #print("Unable to create directory " + my_dir + " because it already exists.")
+            pass # this is OK
+        return created
 
+    def print_logo(self):
+        """Display logo."""
+        #logger.debug("Starting print_help().")
+        my_file = open(self.current_dir + "/logo.txt")
+
+        print(" ")
+        print("-" * 80)
+        for line in my_file:
+            print(line.rstrip())
+        print("-" * 80 + "\n\n")
 
     def print_output(self, message):
         """Print a message to the console."""
@@ -102,6 +159,11 @@ class CollectionHelpers:
         message = "\033[5;36;40m" + message + "\033[0;0m"
         print(message, end="\r", flush=True)
         time.sleep(1)
+
+    def xmit_data():
+        """Phone home with data/metadata.
+        """
+        pass
 
 """
 __author__     = 'Franklin'
