@@ -56,7 +56,7 @@ def main():
         my_helper.print_output("Uploading Lock.")
         my_helper.upload_blob(bucket_name, tf_helper.lock_file, my_helper.my_uuid + tf_helper.lock_file) # get TF lock file
         my_helper.print_output("Uploading State.")
-        my_helper.upload_blob(bucket_name, tf_helper.state_file, my_helper.my_uuid + tf_helper.state_file) # get TF state file
+        my_helper.upload_blob(bucket_name, tf_helper.state_file, my_helper.my_uuid + '.terraform.tfstate') # get TF state file
     except Exception as e:
         print ('Problem uploading data: {}', e)
 
