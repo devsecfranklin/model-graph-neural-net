@@ -20,13 +20,16 @@ class CollectionHelpers:
 
     # use this to save a copy of data to repo?
     current_dir = str(pathlib.Path(__file__).parents[1])
-    workdir = './model'
 
-    my_uuid = ""  # set a unique filename
-    json_filename = my_uuid + '.json.metadata'
-    dot_filename = my_uuid + ".dot"  # set a unique dot filename
-    png_filename = my_uuid + ".png"  # set a unique dot filename
-    plt_filename = my_uuid + "-plt.png"  # redraw graph with matplotlib
+    # would a list be faster or better somehow?
+    my_uuid = ''  # set a unique filename
+    json_filename = '.metadata.json'
+    dot_filename = ''  # set a unique dot filename
+    png_filename = ''  # set a unique dot filename
+    plt_filename = ''  # redraw graph with matplotlib
+    tf_out_file = 'tfout.txt'
+
+    data_file_list = []
 
     def generate_uuid(self):
         """Generate a UUID for the graph a name.
@@ -46,10 +49,21 @@ class CollectionHelpers:
 
         Args:
              workdir ([type]): [description]
+
+        .terraform/terraform.tfstate
+        "lineage": "25417e2a-99d8-b344-47df-88f1edfead11",
+        "backend": {
+           "type": "gcs",
+        tf file count
+
+        .terraform.lock.hcl
+        provider "registry.terraform.io/hashicorp/archive" {
+            version = "3.69.0"
+
         """
         data = {}  # hold the JSON values
 
-        json_file = workdir + '/.json.metadata'
+        json_file = workdir + '.metadata.json'
         path = Path(json_file)
 
         if path.is_file():
@@ -58,7 +72,6 @@ class CollectionHelpers:
                 with open(json_file) as json_file:  # read in existing first
                     data = json.load(json_file)
                     # logger.debug('Existing JSON: ' + data['uuid']) # update the key value pairs
-
                     self.my_uuid = data['uuid']
                 json_file.close()
             except json.decoder.JSONDecodeError as e:
@@ -73,7 +86,13 @@ class CollectionHelpers:
             except TypeError as e:
                 print("Caught a TypeError, ", e)
 
-        self.json_filename = self.my_uuid
+        self.json_filename = self.my_uuid + '.metadata.json'
+        self.dot_filename = self.my_uuid + '.dot'
+        self.png_filename = self.my_uuid + '.png'
+        self.plt_filename = self.my_uuid + '-plt.png'
+        self.tf_out_file = self.my_uuid + '.tfout.txt'
+        self.data_file_list = [
+            self.dot_filename, self.png_filename, self.plt_filename, self.tf_out_file]
 
     def graph_generate(self, my_dir):
         """Give the graph a name. Reuse the exisiting name if possible.
@@ -115,14 +134,14 @@ class CollectionHelpers:
         """
         try:
             # could name file based on tf
-            text_file = open(workdir + '/' + self.my_uuid + '.dot', "w")
+            text_file = open(workdir + self.dot_filename, "w")
             text_file.write(tf_output)
             text_file.close()
         except Exception as e:
             print("There was some error writing the graph dot file", e)
 
         gv = pgv.AGraph(
-            workdir + '/' + self.my_uuid + '.dot', strict=False, directed=True
+            workdir + self.dot_filename, strict=False, directed=True
         )  # convert dot file to pygraphviz format
 
         return gv
@@ -167,9 +186,10 @@ class CollectionHelpers:
         time.sleep(1)
 
     def upload_blob(self, bucket_name, source_file_name, destination_blob_name):
-       
+        """Upload files to data store"""
         #storage_client = storage.Client()
-        storage_client = storage.Client.from_service_account_json('/home/franklin/.config/gcloud/franklin-storage-key.json')
+        storage_client = storage.Client.from_service_account_json(
+            '/home/franklin/.config/gcloud/franklin-storage-key.json')
         bucket = storage_client.get_bucket(bucket_name)
         blob = bucket.blob(destination_blob_name)
 
@@ -179,10 +199,20 @@ class CollectionHelpers:
             source_file_name,
             destination_blob_name))
 
+    def remove_workdir_files(self, workdir):
+        """erase the files after upload, except the .json.metadata"""
+        try:
+            for data_file in self.data_file_list:
+                #print('Attempt to remove data_file: {} '.format(data_file))
+                path = Path(workdir + data_file)
+                if path.is_file():
+                    os.remove(path)
+        except Exception as e:
+            print('Unable to remove data_file: {} '.format(e))
+
 
 """
 __author__     = 'Franklin'
 __version__    = '0.1'
 __email__      = ''
 """
-
