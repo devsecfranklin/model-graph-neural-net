@@ -134,14 +134,14 @@ class CollectionHelpers:
         """
         try:
             # could name file based on tf
-            text_file = open(workdir + '/' + self.dot_filename, "w")
+            text_file = open(workdir + self.dot_filename, "w")
             text_file.write(tf_output)
             text_file.close()
         except Exception as e:
             print("There was some error writing the graph dot file", e)
 
         gv = pgv.AGraph(
-            workdir + '/' + self.dot_filename, strict=False, directed=True
+            workdir + self.dot_filename, strict=False, directed=True
         )  # convert dot file to pygraphviz format
 
         return gv
@@ -204,7 +204,7 @@ class CollectionHelpers:
         try:
             for data_file in self.data_file_list:
                 #print('Attempt to remove data_file: {} '.format(data_file))
-                path = Path(workdir + '/' + data_file)
+                path = Path(workdir + data_file)
                 if path.is_file():
                     os.remove(path)
         except Exception as e:
