@@ -37,6 +37,28 @@ def main():
     my_helper.print_output("Generating PNG file...")
     gv.draw(workdir + '/' + my_helper.my_uuid + '.png', format="png", prog="dot")  # make a nice picture in PNG format
 
+    """Write data to GCP storage bucket. 
+
+    We can disable local writes soon, and (continuous) cleaning/training can happen from bucket.
+    """
+    bucket_name = "backend-datastore"
+    source_metadata = workdir + '/.json.metadata'
+    metadata = my_helper.json_filename + '.json.metadata'
+    
+    source_dotfile = workdir + '/' + my_helper.my_uuid + '.dot'
+    dotfile = my_helper.my_uuid + '.dot'
+
+    source_png = workdir + '/' + my_helper.my_uuid + '.png'
+    pngfile = my_helper.my_uuid + '.png'
+    
+    try:
+        #print ('source file {}'.format(source_file_name))
+        my_helper.upload_blob(bucket_name, source_metadata, metadata)
+        my_helper.upload_blob(bucket_name, source_dotfile, dotfile)
+        my_helper.upload_blob(bucket_name, source_png, pngfile)
+    except Exception as e:
+        print ('Problem uploading data: {}', e)
+
 
 if __name__ == "__main__":
     main()
