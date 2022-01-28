@@ -5,7 +5,7 @@ import os
 
 def main():
     my_helper = CollectionHelpers()
-    workdir = os.getcwd() + '/model'
+    workdir = os.getcwd() + '/.model'
 
     my_helper.print_logo()
 
@@ -28,7 +28,7 @@ def main():
     (do a 'terraform init' for example)
     """
     my_helper.print_output("Write the response from Terraform to model dir.")
-    file1 = open(workdir + "/tfout.txt", "w")
+    file1 = open(workdir + '/' + my_helper.tf_out_file, "w")
     file1.write(tf_output)
     file1.close()
     
@@ -38,27 +38,25 @@ def main():
     gv.draw(workdir + '/' + my_helper.my_uuid + '.png', format="png", prog="dot")  # make a nice picture in PNG format
 
     """Write data to GCP storage bucket. 
-
     We can disable local writes soon, and (continuous) cleaning/training can happen from bucket.
     """
     bucket_name = "backend-datastore"
-    source_metadata = workdir + '/.json.metadata'
-    metadata = my_helper.json_filename + '.json.metadata'
-    
-    source_dotfile = workdir + '/' + my_helper.my_uuid + '.dot'
-    dotfile = my_helper.my_uuid + '.dot'
-
-    source_png = workdir + '/' + my_helper.my_uuid + '.png'
-    pngfile = my_helper.my_uuid + '.png'
     
     try:
         #print ('source file {}'.format(source_file_name))
-        my_helper.upload_blob(bucket_name, source_metadata, metadata)
-        my_helper.upload_blob(bucket_name, source_dotfile, dotfile)
-        my_helper.upload_blob(bucket_name, source_png, pngfile)
+        my_helper.print_output("Uploading JSON Metadata")
+        my_helper.upload_blob(bucket_name, workdir + '/'+ '.metadata.json', my_helper.json_filename)
+        my_helper.print_output("Uploading dot file.")
+        my_helper.upload_blob(bucket_name, workdir + '/' + my_helper.dot_filename, my_helper.dot_filename)
+        my_helper.print_output("Uploading PNG.")
+        my_helper.upload_blob(bucket_name, workdir + '/' + my_helper.png_filename, my_helper.png_filename)
     except Exception as e:
         print ('Problem uploading data: {}', e)
 
+    my_helper.print_output("Cleaning up session.")
+    my_helper.remove_workdir_files(workdir) # erase the files after upload, except the .metadata.json
+
+    my_helper.print_output("Success!")
 
 if __name__ == "__main__":
     main()
