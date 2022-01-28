@@ -73,6 +73,8 @@ class CollectionHelpers:
             except TypeError as e:
                 print("Caught a TypeError, ", e)
 
+        self.json_filename = self.my_uuid
+
     def graph_generate(self, my_dir):
         """Give the graph a name. Reuse the exisiting name if possible.
 
