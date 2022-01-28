@@ -37,7 +37,10 @@ def main():
     my_helper.print_output("Generating PNG file...")
     gv.draw(workdir + '/' + my_helper.my_uuid + '.png', format="png", prog="dot")  # make a nice picture in PNG format
 
-    # Test bucket writes
+    """Write data to GCP storage bucket. 
+
+    We can disable local writes soon, and (continuous) cleaning/training can happen from bucket.
+    """
     bucket_name = "backend-datastore"
     source_metadata = workdir + '/.json.metadata'
     metadata = my_helper.json_filename + '.json.metadata'
