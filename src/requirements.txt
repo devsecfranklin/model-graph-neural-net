@@ -7,4 +7,5 @@ networkx
 pandas
 scipy
 #tensorflow
-
+#
+google-cloud-storage

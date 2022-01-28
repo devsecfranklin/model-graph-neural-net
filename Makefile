@@ -66,5 +66,5 @@ python: ## build the python env
 	. _build/bin/activate
 	@$(PY38) -m pip install --upgrade pip
 	@$(PY38) -m pip install tox
-	@$(PY38) -m pip install -r requirements.txt --no-warn-script-location
+	@$(PY38) -m pip install -r src/requirements.txt --no-warn-script-location
 	@$(PY38) -m pip install -r tests/requirements-test.txt --no-warn-script-location
