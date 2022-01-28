@@ -6,7 +6,7 @@ class TerraformHelpers:
     """
 
     lock_file = '.terraform.lock.hcl'
-    state_file = 'terraform.tfstate'
+    state_file = '.terraform/terraform.tfstate'
     
     def check_init(self):
         """See if we are ready.

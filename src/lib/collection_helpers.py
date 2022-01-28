@@ -63,7 +63,7 @@ class CollectionHelpers:
         """
         data = {}  # hold the JSON values
 
-        json_file = workdir + '/.metadata.json'
+        json_file = workdir + '.metadata.json'
         path = Path(json_file)
 
         if path.is_file():
