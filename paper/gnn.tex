@@ -88,18 +88,38 @@ The first item of note is Consider figure \ref{aimldl}.
 	\label{aimldl}
 \end{figure}
 
-\subsection{\label{sec:terraform}About our Source of Data, Terraform}
+\section{\label{sec:terraform}Collecting Infrastructure Code as a Data Source}
 
 \justifying
 Some level of familiarity on the reader's part with \href{https://www.terraform.io/intro/index.html}{Terraform} and
-by extension, \href{https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code}{Infrastructure as Code} is
-assumed.
+by extension, \href{https://learn.hashicorp.com/tutorials/terraform/infrastructure-as-code}{Infrastructure as Code} is assumed.
 \vspace{2mm}
 
-\section{\label{sec:iacdata}Using Infrastructure as Code as Data}
+\justifying
+Terraform users create files that define network infrastructure. When this infrastructure is deployed via Terraform, a state file is created to keep track of the current deployment. This state file is essentially graph structured data. We can export this graph data from the actual (or planned) state and ingest this
+with our deep learning pipeline.
+
+\subsection{\label{sec:collect}The Data Collection Process}
 
 \justifying
-Terraform is essentially graph structured data. Once a Terraform code base has been initialized, the user has the option to generate
+A tool for gathering and uploading from data sources is used to send relevant data
+from various sources to a storage bucket in Google Cloud. Raw data is processed and tagged with a UUID as a unique key to associate data with it's source. The
+source code for this Python tool is \href{https://github.com/devsecfranklin/model-graph-neural-net/tree/main/src}{available in the Github repository for this project}.
+\vspace{2mm}
+
+\justifying
+Identifying and
+versioning data as we would any other code or documentation artifact eases the
+burden of handling our data and allows us to more easily work with larger data sets.
+\vspace{2mm}
+
+\justifying
+While the collection process is relatively straight forward to implement and maintain for this project on a small hobbyist/researcher scale, going forward it would make more sense to use a \href{https://github.com/iterative/dvc}{community supported framework such as dvc} to leverage the efforts of folks doing similar work.
+
+\section{\label{sec:iacdata}Using Infrastructure Code as Data}
+
+\justifying
+Once a Terraform code base has been initialized, the user has the option to generate
 a directed graph of the infrastructure using Dot. Dot is \href{https://graphviz.org/doc/info/lang.html}{a language used to describe graphs}. Consider the following declaration of a
 Cloud Function for Google Cloud.
 
