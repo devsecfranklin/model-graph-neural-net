@@ -1,5 +1,0 @@
-[core]
-    remote = dataset
-['remote "dataset"']
-    url = gs://backend-datastore/
-    verify = true

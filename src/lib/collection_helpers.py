@@ -112,12 +112,6 @@ class CollectionHelpers:
         except Exception as e:
             print("There was some error writing the graph dot file", e)
 
-        gv = pgv.AGraph(
-            workdir + self.dot_filename, strict=False, directed=True
-        )  # convert dot file to pygraphviz format
-
-        return gv
-
     def make_directory(self, my_dir):
         """Make a directory if it does not already exist.
 
