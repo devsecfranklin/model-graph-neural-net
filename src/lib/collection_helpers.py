@@ -1,7 +1,7 @@
 """Deep Learning GNN testing."""
 import uuid
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
-from python_terraform import Terraform
+
 import pathlib
 from pathlib import Path
 import json
@@ -49,17 +49,6 @@ class CollectionHelpers:
 
         Args:
              workdir ([type]): [description]
-
-        .terraform/terraform.tfstate
-        "lineage": "25417e2a-99d8-b344-47df-88f1edfead11",
-        "backend": {
-           "type": "gcs",
-        tf file count
-
-        .terraform.lock.hcl
-        provider "registry.terraform.io/hashicorp/archive" {
-            version = "3.69.0"
-
         """
         data = {}  # hold the JSON values
 
@@ -110,23 +99,6 @@ class CollectionHelpers:
 
         # if they exist, write to self.my_filename
         pass
-
-    def collect_digraph_from_terraform(self):
-        """Terraform can output a directed graph.
-
-        Command line examples for png and svg format
-        # terraform graph | dot -Tpng > graph.png
-        # terraform graph | dot -Tsvg -o graph.svg
-        """
-        t = Terraform(terraform_bin_path='/usr/local/bin/terraform')
-        return_code, stdout, stderr = t.graph(
-            capture_output=True)  # returns str
-
-        if stderr:
-            # print(stderr)  # we could automatically run the init at this point?
-            return stderr
-
-        return stdout
 
     def generate_dot(self, workdir, tf_output):
         """Write the dot file to local filesystem.

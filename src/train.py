@@ -1,11 +1,12 @@
 """Testing Deep Learning with Graph Neural Networks."""
+import logging
+import logging.config
+
 import matplotlib.pyplot as plt  # this is for making the graph
 import networkx as nx
 import numpy as np
 import pandas as pd
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
-import logging
-import logging.config
 
 from lib.helpers import FranklinHelpers
 

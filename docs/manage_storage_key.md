@@ -17,3 +17,7 @@ pass insert franklin-storage-key.json
 pass ls
 pass show franklin-storage-key.json
 ```
+
+```sh
+gcloud alpha storage ls gs://backend-datastore
+```
