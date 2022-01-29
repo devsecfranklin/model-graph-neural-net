@@ -16,6 +16,13 @@ class FranklinHelpers:
     # import janitor  # upon import, functions are registered as part of pandas.
     """
 
+    def create_graph(self, workdir):
+        gv = pgv.AGraph(
+            workdir + self.dot_filename, strict=False, directed=True
+        )  # convert dot file to pygraphviz format
+
+        return gv
+
     def detect_isometry(self):
         """If two graphs (dot files) are isometric, delete one from dataset."""
         pass

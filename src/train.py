@@ -1,30 +1,33 @@
 """Testing Deep Learning with Graph Neural Networks."""
+import logging
+import logging.config
+import os
+
 import matplotlib.pyplot as plt  # this is for making the graph
 import networkx as nx
 import numpy as np
 import pandas as pd
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
-import logging
-import logging.config
 
-from lib.helpers import FranklinHelpers
+from lib.training_helpers import FranklinHelpers
 
+"""
 logging.config.fileConfig(
     "logging.conf",
     defaults={"logfilename": "project.log"},
     disable_existing_loggers=False,
 )
 logger = logging.getLogger("__name__")
+"""
 
 
 def main():
     """Testing Deep Learning with Graph Neural Networks."""
-
     my_helper = FranklinHelpers()
-    tf_output = my_helper.collect_digraph_from_terraform()  # get digraph from tf plan
 
-    gv = my_helper.generate_dot(tf_output)  # write the terraform digraph to a dot file
-    gv.draw(my_helper.png_filename, format="png", prog="dot")  # optional PNG output
+    # load the data files in from datastore
+
+    gv = my_helper.create_graph(workdir)  # write the terraform digraph to a dot file
 
     DG = nx.DiGraph(
         gv, name="Franklin"
