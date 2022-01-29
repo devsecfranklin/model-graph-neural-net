@@ -19,5 +19,9 @@ pass show franklin-storage-key.json
 ```
 
 ```sh
+dvc remote add -d data gs://backend-dataset
+dvc remote list
 gcloud alpha storage ls gs://backend-datastore
+gcloud alpha storage cp gs://backend-datastore/* data
+dvc add -R data/
 ```
