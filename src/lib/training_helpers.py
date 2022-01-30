@@ -1,13 +1,13 @@
 """Deep Learning GNN testing."""
-import uuid
-import pygraphviz as pgv  # sudo apt install libgraphviz-dev
-from python_terraform import Terraform
-import pathlib
-
 import fnmatch
 import os
+import pathlib
 import sys
 import time
+import uuid
+
+import pygraphviz as pgv  # sudo apt install libgraphviz-dev
+from python_terraform import Terraform
 
 
 class FranklinHelpers:
