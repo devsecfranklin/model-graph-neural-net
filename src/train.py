@@ -10,6 +10,7 @@ import pandas as pd
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 
 from lib.training_helpers import FranklinHelpers
+from lib.collection_helpers import CollectionHelpers
 
 """
 logging.config.fileConfig(
@@ -24,24 +25,35 @@ logger = logging.getLogger("__name__")
 def main():
     """Testing Deep Learning with Graph Neural Networks."""
     my_helper = FranklinHelpers()
+    collection_helper = CollectionHelpers()
 
     # load the data files in from datastore
+    workdir = os.getcwd() + "/data/"
+    created = collection_helper.make_directory(
+        workdir
+    )  # create the working directory if needed
 
-    gv = my_helper.create_graph(workdir)  # write the terraform digraph to a dot file
+    # pull the data from datastore
+    # gsutil -m cp -r gs://backend-datastore/* .
+    my_helper.gather_dotfiles(workdir)
 
-    DG = nx.DiGraph(
-        gv, name="Franklin"
-    )  # Networkx can accept the pygraphviz dot format
+    for dot in my_helpers.dot_files:
+        # Make the graph
+        gv = my_helper.create_graph(workdir)  # write the terraform digraph to a dot file
 
-    # Nodes
-    nodelist = list(DG.nodes(data=True))
-    # print(nodelist)
-    print(
-        "+++++ Sorted nodelist +++++\n", sorted(d for n, d in DG.degree())
-    )  # sorted list
-    # print(nx.clustering(DG))  # cluster list
-    print("Number of nodes: ", DG.number_of_nodes())
-    print("Number of edges: ", DG.number_of_edges())
+        DG = nx.DiGraph(
+            gv, name="Franklin"
+        )  # Networkx can accept the pygraphviz dot format
+
+        # Nodes
+        nodelist = list(DG.nodes(data=True))
+        # print(nodelist)
+        print(
+            "+++++ Sorted nodelist +++++\n", sorted(d for n, d in DG.degree())
+        )  # sorted list
+        # print(nx.clustering(DG))  # cluster list
+        print("Number of nodes: ", DG.number_of_nodes())
+        print("Number of edges: ", DG.number_of_edges())
 
     # convert nx digraph to pandas dataframe
     # df = nx.to_pandas_dataframe(DG)

@@ -152,11 +152,15 @@ class CollectionHelpers:
         time.sleep(1)
 
     def upload_blob(self, bucket_name, source_file_name, destination_blob_name):
-        """Upload files to data store"""
-        #storage_client = storage.Client()
+        """Upload files to data store.
+
+        The encryption_key should be a str or bytes with a length of at least 32.
+        """
+        encryption_key = "c7f32af42e45e85b9848a6a14dd2a8f6" # 
         storage_client = storage.Client.from_service_account_json(
             '/home/franklin/.config/gcloud/franklin-storage-key.json')
         bucket = storage_client.get_bucket(bucket_name)
+        # blob = Blob("secure-data", bucket, encryption_key=encryption_key)
         blob = bucket.blob(destination_blob_name)
 
         blob.upload_from_filename(source_file_name)

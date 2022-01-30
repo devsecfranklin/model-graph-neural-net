@@ -15,6 +15,23 @@ class FranklinHelpers:
     # https://github.com/pyjanitor-devs/pyjanitor
     # import janitor  # upon import, functions are registered as part of pandas.
     """
+ 
+    dot_files = []
+    
+    def pull_data_from_bucket(self):
+    	"""
+        gsutil -m cp -r gs://backend-datastore/* .
+        """
+        pass
+
+    def gather_dotfiles(self, workdir):
+        """
+        """
+        for f in os.listdir(workdir):
+            # logger.debug("Found file: %s%s", self.input_path, f)
+            if f.endswith(".dot"): 
+                #logger.info("Found dotfile {}'.format(f))
+                self.dot_files.append(f) # looks like O(n)
 
     def create_graph(self, workdir):
         gv = pgv.AGraph(
