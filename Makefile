@@ -1,8 +1,8 @@
 .PHONY: docs src tests
 
-PY38 := $(shell command -v python3 2> /dev/null)
-ifndef PY38
-    PY38 := $(shell command -v python 2> /dev/null)
+PY39 := $(shell command -v /mnt/clusterfs/usr/bin/python3 2> /dev/null)
+ifndef PY39
+    PY39 := $(shell command -v python 2> /dev/null)
 endif
 
 SHELL:=/bin/bash
@@ -27,7 +27,7 @@ endef
 export PRINT_HELP_PYSCRIPT
 
 help: 
-	@$(PY38) -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+	@$(PY39) -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 build: ## build a container
 	$(MAKE) print-status MSG="Building container"
@@ -62,9 +62,9 @@ print-status:
 	@echo -e "$(BLUE)$(MSG)$(NC)"
 
 python: ## build the python env
-	@$(PY38) -m venv _build 
+	@$(PY39) -m venv _build 
 	. _build/bin/activate
-	@$(PY38) -m pip install --upgrade pip
-	@$(PY38) -m pip install tox
-	@$(PY38) -m pip install -r src/requirements.txt --no-warn-script-location
-	@$(PY38) -m pip install -r tests/requirements-test.txt --no-warn-script-location
+	@$(PY39) -m pip install --upgrade pip
+	@$(PY39) -m pip install tox
+	@$(PY39) -m pip install -r src/requirements.txt --no-warn-script-location
+	@$(PY39) -m pip install -r tests/requirements-test.txt --no-warn-script-location

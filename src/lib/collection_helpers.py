@@ -1,14 +1,14 @@
 """Deep Learning GNN testing."""
-import uuid
-import pygraphviz as pgv  # sudo apt install libgraphviz-dev
-
-import pathlib
-from pathlib import Path
-import json
 import fnmatch
+import json
 import os
+import pathlib
 import sys
 import time
+import uuid
+from pathlib import Path
+
+import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from google.cloud import storage
 
 
@@ -22,12 +22,12 @@ class CollectionHelpers:
     current_dir = str(pathlib.Path(__file__).parents[1])
 
     # would a list be faster or better somehow?
-    my_uuid = ''  # set a unique filename
-    json_filename = '.metadata.json'
-    dot_filename = ''  # set a unique dot filename
-    png_filename = ''  # set a unique dot filename
-    plt_filename = ''  # redraw graph with matplotlib
-    tf_out_file = 'tfout.txt'
+    my_uuid = ""  # set a unique filename
+    json_filename = ".metadata.json"
+    dot_filename = ""  # set a unique dot filename
+    png_filename = ""  # set a unique dot filename
+    plt_filename = ""  # redraw graph with matplotlib
+    tf_out_file = "tfout.txt"
 
     data_file_list = []
 
@@ -39,7 +39,7 @@ class CollectionHelpers:
         """
 
         my_uuid = str(uuid.uuid4())  # set a unique filename
-        #logger.debug("Generated a new UUID: ", my_uuid)
+        # logger.debug("Generated a new UUID: ", my_uuid)
         self.my_uuid = my_uuid
 
         return my_uuid
@@ -52,7 +52,7 @@ class CollectionHelpers:
         """
         data = {}  # hold the JSON values
 
-        json_file = workdir + '.metadata.json'
+        json_file = workdir + ".metadata.json"
         path = Path(json_file)
 
         if path.is_file():
@@ -61,7 +61,7 @@ class CollectionHelpers:
                 with open(json_file) as json_file:  # read in existing first
                     data = json.load(json_file)
                     # logger.debug('Existing JSON: ' + data['uuid']) # update the key value pairs
-                    self.my_uuid = data['uuid']
+                    self.my_uuid = data["uuid"]
                 json_file.close()
             except json.decoder.JSONDecodeError as e:
                 print("JSON file is corrupted: ", e)
@@ -69,19 +69,25 @@ class CollectionHelpers:
         else:
             try:
                 self.generate_uuid()
-                data['uuid'] = self.my_uuid
-                with open(str(json_file), 'w', encoding='utf-8') as f:  # write to the JSON file
+                data["uuid"] = self.my_uuid
+                with open(
+                    str(json_file), "w", encoding="utf-8"
+                ) as f:  # write to the JSON file
                     json.dump(data, f, ensure_ascii=False, indent=4)
             except TypeError as e:
                 print("Caught a TypeError, ", e)
 
-        self.json_filename = self.my_uuid + '.metadata.json'
-        self.dot_filename = self.my_uuid + '.dot'
-        self.png_filename = self.my_uuid + '.png'
-        self.plt_filename = self.my_uuid + '-plt.png'
-        self.tf_out_file = self.my_uuid + '.tfout.txt'
+        self.json_filename = self.my_uuid + ".metadata.json"
+        self.dot_filename = self.my_uuid + ".dot"
+        self.png_filename = self.my_uuid + ".png"
+        self.plt_filename = self.my_uuid + "-plt.png"
+        self.tf_out_file = self.my_uuid + ".tfout.txt"
         self.data_file_list = [
-            self.dot_filename, self.png_filename, self.plt_filename, self.tf_out_file]
+            self.dot_filename,
+            self.png_filename,
+            self.plt_filename,
+            self.tf_out_file,
+        ]
 
     def graph_generate(self, my_dir):
         """Give the graph a name. Reuse the exisiting name if possible.
@@ -92,7 +98,7 @@ class CollectionHelpers:
         dot_files = []
 
         for file in os.listdir(my_dir):
-            if fnmatch.fnmatch(file, '*.dot'):
+            if fnmatch.fnmatch(file, "*.dot"):
                 dot_files.append(file)
 
         # for item in dot_files: # check for a dot and png file in workdir
@@ -112,6 +118,12 @@ class CollectionHelpers:
         except Exception as e:
             print("There was some error writing the graph dot file", e)
 
+        gv = pgv.AGraph(
+            workdir + self.dot_filename, strict=False, directed=True
+        )  # convert dot file to pygraphviz format
+
+        return gv
+
     def make_directory(self, my_dir):
         """Make a directory if it does not already exist.
 
@@ -121,21 +133,21 @@ class CollectionHelpers:
 
         try:
             os.mkdir(my_dir)
-            #logger.debug("Created directory: %s", my_dir)
+            # logger.debug("Created directory: %s", my_dir)
             print("Created directory: " + my_dir)
             created = True
         except FileNotFoundError as e:
-            #logger.error("Unable to create directory %s because: %s", my_dir, e)
+            # logger.error("Unable to create directory %s because: %s", my_dir, e)
             print("Unable to create directory %s because: %s", my_dir, e)
         except FileExistsError as fe:
-            #logger.error("Unable to create directory %s because it already exists.", my_dir)
-            #print("Unable to create directory " + my_dir + " because it already exists.")
+            # logger.error("Unable to create directory %s because it already exists.", my_dir)
+            # print("Unable to create directory " + my_dir + " because it already exists.")
             pass  # this is OK
         return created
 
     def print_logo(self):
         """Display logo."""
-        #logger.debug("Starting print_help().")
+        # logger.debug("Starting print_help().")
         my_file = open(self.current_dir + "/logo.txt")
 
         print(" ")
@@ -152,29 +164,32 @@ class CollectionHelpers:
         time.sleep(1)
 
     def upload_blob(self, bucket_name, source_file_name, destination_blob_name):
-        """Upload files to data store"""
-        #storage_client = storage.Client()
+        """Upload files to data store.
+
+        The encryption_key should be a str or bytes with a length of at least 32.
+        """
+        encryption_key = "c7f32af42e45e85b9848a6a14dd2a8f6"  #
         storage_client = storage.Client.from_service_account_json(
-            '/home/franklin/.config/gcloud/franklin-storage-key.json')
+            "/home/franklin/.config/gcloud/franklin-storage-key.json"
+        )
         bucket = storage_client.get_bucket(bucket_name)
+        # blob = Blob("secure-data", bucket, encryption_key=encryption_key)
         blob = bucket.blob(destination_blob_name)
 
         blob.upload_from_filename(source_file_name)
 
-        print('File {} uploaded to {}.'.format(
-            source_file_name,
-            destination_blob_name))
+        print("File {} uploaded to {}.".format(source_file_name, destination_blob_name))
 
     def remove_workdir_files(self, workdir):
         """erase the files after upload, except the .json.metadata"""
         try:
             for data_file in self.data_file_list:
-                #print('Attempt to remove data_file: {} '.format(data_file))
+                # print('Attempt to remove data_file: {} '.format(data_file))
                 path = Path(workdir + data_file)
                 if path.is_file():
                     os.remove(path)
         except Exception as e:
-            print('Unable to remove data_file: {} '.format(e))
+            print("Unable to remove data_file: {} ".format(e))
 
 
 """
