@@ -45,7 +45,9 @@ def main():
             gv, name="Franklin"
         )  # Networkx can accept the pygraphviz dot format
 
-        # Nodes
+        #########
+        # Nodes #
+        #########
         nodelist = list(DG.nodes(data=True))
         # print(nodelist)
         print(
@@ -55,12 +57,14 @@ def main():
         print("Number of nodes: ", DG.number_of_nodes())
         print("Number of edges: ", DG.number_of_edges())
 
-    	# convert nx digraph to pandas dataframe
+        ##########################################
+    	# convert nx digraph to pandas dataframe #
         # df = nx.to_pandas_dataframe(DG)
         df = pd.DataFrame.from_dict(dict(DG.nodes(data=True)), orient="index")
         print("+++++ Pandas Dataframe Values +++++\n", df.values)
 
-        # Relabel Graph
+        #################
+        # Relabel Graph #
         DG = nx.convert_node_labels_to_integers(
             DG, first_label=0, ordering="default", label_attribute="orig_label"
         )
@@ -68,7 +72,8 @@ def main():
         plt.savefig("graph3.png")  # if this is permanent, fix the filename
         # plt.show() # use this in Jupyter
 
-        """Adjacency Matrix."""
+        ####################
+        # Adjacency Matrix #
         A = nx.adjacency_matrix(DG)  # requires scipy module
         # print(am)
         # print(A.todense())
@@ -76,7 +81,7 @@ def main():
         print("+++++ Adjacency Matrix ++++\n", A)
         print("+++++ Dense Adj Matrix +++++\n", A.todense())
 
-        # Incidence Matrix
+        # Incidence Matrix #
         I = nx.incidence_matrix(DG)
         print("+++++ Incidence Matrix +++++\n", I)
         print("+++++ Dense Incidence Matrix +++++\n", I.todense())
