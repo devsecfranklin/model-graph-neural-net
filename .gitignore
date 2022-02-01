@@ -1,4 +1,6 @@
-data/
+# ignore large data files
+dataset/*.dot
+
 .terraform
 .buildlog
 .vscode
@@ -409,4 +411,3 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
-/dataset
