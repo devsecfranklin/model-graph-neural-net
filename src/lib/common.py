@@ -17,7 +17,6 @@ class CommonHelpers:
     # import janitor  # upon import, functions are registered as part of pandas.
     """
     current_dir = str(pathlib.Path(__file__).parents[1])
-    dot_files = []
 
     def print_logo(self):
         """Display logo."""

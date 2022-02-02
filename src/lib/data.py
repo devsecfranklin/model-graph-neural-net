@@ -25,6 +25,7 @@ class DataHelpers:
     plt_filename = ""  # redraw graph with matplotlib
     tf_out_file = "tfout.txt"
 
+    dot_files = []
     data_file_list = []
 
     def generate_uuid(self):
@@ -139,9 +140,9 @@ class DataHelpers:
                 # logger.info("Found dotfile {}'.format(f))
                 self.dot_files.append(f)  # looks like O(n)
 
-    def create_graph(self, workdir):
+    def create_graph(self, workdir, dot):
         gv = pgv.AGraph(
-            workdir + self.dot_filename, strict=False, directed=True
+            workdir + dot, strict=False, directed=True
         )  # convert dot file to pygraphviz format
 
         return gv
