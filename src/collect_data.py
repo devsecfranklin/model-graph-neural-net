@@ -1,33 +1,35 @@
 """Gather data from Terraform files."""
 import os
 
-from lib.collection_helpers import CollectionHelpers
-from lib.terraform_helpers import TerraformHelpers
+from lib.common import CommonHelpers
+from lib.data import DataHelpers
+from lib.terraform import TerraformHelpers
 
 
 def main():
-    my_helper = CollectionHelpers()
+    common_helper = CommonHelpers()
+    data_helper = DataHelpers()
     tf_helper = TerraformHelpers()
     workdir = os.getcwd() + "/.model/"
 
-    my_helper.print_logo()
+    common_helper.print_logo()
 
-    my_helper.print_output("Checking Terraform readiness...")
+    common_helper.print_output("Checking Terraform readiness...")
     tf_helper.check_init()
 
-    my_helper.print_output("Checking for model directory...")
-    created = my_helper.make_directory(
+    common_helper.print_output("Checking for model directory...")
+    created = common_helper.make_directory(
         workdir
     )  # create the working directory if needed
     if created:
         # we know we need to create a new json file
-        my_helper.print_output("Creating model directory.")
-        my_helper.generate_uuid()  # the value is saved to a var in helper class
+        common_helper.print_output("Creating model directory.")
+        data_helper.generate_uuid()  # the value is saved to a var in helper class
 
-    my_helper.print_output("Create/update metadata...")
-    my_helper.update_metadata(workdir)  # pass working dir
+    common_helper.print_output("Create/update metadata...")
+    data_file_list = data_helper.update_metadata(workdir)  # pass working dir
 
-    my_helper.print_output("Collecting digraph...")
+    common_helper.print_output("Collecting digraph...")
     tf_output = tf_helper.collect_digraph_from_terraform()  # get digraph from tf plan
 
     """Capture and write the response for Terraform. 
@@ -35,18 +37,18 @@ def main():
     Using for troubleshooting but we could read the respone and react appropriately, 
     (do a 'terraform init' for example)
     """
-    my_helper.print_output("Write the response from Terraform to model dir.")
-    file1 = open(workdir + my_helper.tf_out_file, "w")
+    common_helper.print_output("Write the response from Terraform to model dir.")
+    file1 = open(workdir + data_helper.tf_out_file, "w")
     file1.write(tf_output)
     file1.close()
 
-    my_helper.print_output("Write the digraph to a dot file...")
-    gv = my_helper.generate_dot(
+    common_helper.print_output("Write the digraph to a dot file...")
+    gv = data_helper.generate_dot(
         workdir, tf_output
     )  # write the terraform digraph to a dot file
-    my_helper.print_output("Generating PNG file...")
+    common_helper.print_output("Generating PNG file...")
     gv.draw(
-        workdir + my_helper.my_uuid + ".png", format="png", prog="dot"
+        workdir + data_helper.my_uuid + ".png", format="png", prog="dot"
     )  # make a nice picture in PNG format
 
     """Write data to GCP storage bucket. 
@@ -56,35 +58,37 @@ def main():
 
     try:
         # print ('source file {}'.format(source_file_name))
-        my_helper.print_output("Uploading JSON Metadata")
-        my_helper.upload_blob(
-            bucket_name, workdir + ".metadata.json", my_helper.json_filename
+        common_helper.print_output("Uploading JSON Metadata")
+        common_helper.upload_blob(
+            bucket_name, workdir + ".metadata.json", data_helper.json_filename
         )
-        my_helper.print_output("Uploading dot file.")
-        my_helper.upload_blob(
-            bucket_name, workdir + my_helper.dot_filename, my_helper.dot_filename
+        common_helper.print_output("Uploading dot file.")
+        common_helper.upload_blob(
+            bucket_name, workdir + data_helper.dot_filename, data_helper.dot_filename
         )
-        my_helper.print_output("Uploading PNG.")
-        my_helper.upload_blob(
-            bucket_name, workdir + my_helper.png_filename, my_helper.png_filename
+        common_helper.print_output("Uploading PNG.")
+        common_helper.upload_blob(
+            bucket_name, workdir + data_helper.png_filename, data_helper.png_filename
         )
-        my_helper.print_output("Uploading Lock.")
-        my_helper.upload_blob(
-            bucket_name, tf_helper.lock_file, my_helper.my_uuid + tf_helper.lock_file
+        common_helper.print_output("Uploading Lock.")
+        common_helper.upload_blob(
+            bucket_name, tf_helper.lock_file, data_helper.my_uuid + tf_helper.lock_file
         )  # get TF lock file
-        my_helper.print_output("Uploading State.")
-        my_helper.upload_blob(
-            bucket_name, tf_helper.state_file, my_helper.my_uuid + ".terraform.tfstate"
+        common_helper.print_output("Uploading State.")
+        common_helper.upload_blob(
+            bucket_name,
+            tf_helper.state_file,
+            data_helper.my_uuid + ".terraform.tfstate",
         )  # get TF state file
     except Exception as e:
         print("Problem uploading data: {}", e)
 
-    my_helper.print_output("Cleaning up session.")
-    my_helper.remove_workdir_files(
-        workdir
+    common_helper.print_output("Cleaning up session.")
+    common_helper.remove_workdir_files(
+        workdir, data_file_list
     )  # erase the files after upload, except the .metadata.json
 
-    my_helper.print_output("Success!")
+    common_helper.print_output("Success!")
 
 
 if __name__ == "__main__":

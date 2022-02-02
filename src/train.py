@@ -9,8 +9,9 @@ import numpy as np
 import pandas as pd
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 
-from lib.collection_helpers import CollectionHelpers
-from lib.training_helpers import FranklinHelpers
+from lib.common import CommonHelpers
+from lib.data import DataHelpers
+from lib.terraform import TerraformHelpers
 
 """
 logging.config.fileConfig(
@@ -24,22 +25,24 @@ logger = logging.getLogger("__name__")
 
 def main():
     """Testing Deep Learning with Graph Neural Networks."""
-    my_helper = FranklinHelpers()
-    collection_helper = CollectionHelpers()
+    data_helper = DataHelpers()
+    common_helper = CommonHelpers()
 
     # load the data files in from datastore
     workdir = os.getcwd() + "/data/"
-    created = collection_helper.make_directory(
+    created = common_helper.make_directory(
         workdir
     )  # create the working directory if needed
 
     # pull the data from datastore
     # gsutil -m cp -r gs://backend-datastore/* .
-    my_helper.gather_dotfiles(workdir)
+    data_helper.gather_dotfiles(workdir)
 
-    for dot in my_helpers.dot_files:
+    for dot in data_helper.dot_files:
         # Make the graph
-        gv = my_helper.create_graph(workdir)  # write the terraform digraph to a dot file
+        gv = data_helper.create_graph(
+            workdir
+        )  # write the terraform digraph to a dot file
 
         DG = nx.DiGraph(
             gv, name="Franklin"
@@ -58,7 +61,7 @@ def main():
         print("Number of edges: ", DG.number_of_edges())
 
         ##########################################
-    	# convert nx digraph to pandas dataframe #
+        # convert nx digraph to pandas dataframe #
         # df = nx.to_pandas_dataframe(DG)
         df = pd.DataFrame.from_dict(dict(DG.nodes(data=True)), orient="index")
         print("+++++ Pandas Dataframe Values +++++\n", df.values)
@@ -94,7 +97,9 @@ def main():
         # Laplacian Matrix (L = D - A)
         # L = nx.laplacian_matrix(DG)
 
-        numpy_recarray = nx.to_numpy_matrix(DG)  # graph adjacency matrix as a NumPy matrix.
+        numpy_recarray = nx.to_numpy_matrix(
+            DG
+        )  # graph adjacency matrix as a NumPy matrix.
         AA = np.matrix(numpy_recarray)
         X = np.matrix([[i, -i] for i in range(AA.shape[0])], dtype=float)
         print(A * X)  # apply propagation rule
