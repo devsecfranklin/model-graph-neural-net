@@ -12,8 +12,8 @@ from google.cloud import storage
 
 
 class MetaDataObject:
-    """Extricate the single object values from DataHelpers class and move them here
-    """
+    """Extricate the single object values from DataHelpers class and move them here"""
+
     my_uuid = ""  # set a unique filename
     repo_name = "example"  # repo name can help with de-duplication
     json_filename = ".metadata.json"
@@ -26,7 +26,7 @@ class MetaDataObject:
     density = ""
     completeness_score = ""
 
-    data_file_list = [] # an easily iterabile list of files
+    data_file_list = []  # an easily iterabile list of files
 
     """
     def metadata_update(self, metadata_object):
@@ -49,6 +49,7 @@ class MetaDataObject:
                 print("JSON file is corrupted: ", e)
                 sys.exit(1)
     """
+
 
 class DataHelpers:
     """
@@ -137,6 +138,20 @@ class DataHelpers:
 
         return self.data_file_list  # for consumption by common lib
 
+    def create_graph(self, workdir, dot):
+        """Convert the initial Terraform DiGraph to graphviz format"""
+        gv = pgv.AGraph(
+            workdir + dot, strict=False, directed=True
+        )  # convert dot file to pygraphviz format
+
+        # http://www.graphviz.org/doc/info/attrs.html
+        gv.graph_attr.update(
+            landscape="true", ranksep="0.1"
+        )  # Graphviz graph keyword parameters
+        gv.node_attr.update(color="red")
+        gv.edge_attr.update(len="2.0", color="blue")
+
+        return gv
 
     def graph_generate(self, my_dir):
         """Give the graph a name. Reuse the exisiting name if possible.
@@ -180,13 +195,6 @@ class DataHelpers:
             if f.endswith(".dot"):
                 # logger.info("Found dotfile {}'.format(f))
                 self.dot_files.append(f)  # looks like O(n)
-
-    def create_graph(self, workdir, dot):
-        gv = pgv.AGraph(
-            workdir + dot, strict=False, directed=True
-        )  # convert dot file to pygraphviz format
-
-        return gv
 
     def detect_isometry(self):
         """If two graphs (dot files) are isometric, delete one from dataset."""

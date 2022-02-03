@@ -37,7 +37,7 @@ def main():
     data_helper.gather_dotfiles(workdir)
 
     for dot in data_helper.dot_files:
-        # logger.debug('Processing dot file: {}'.format(dot))
+        print("Processing dot file: {}".format(dot))
         this_uuid = dot.split(".")
         meta_obj = MetaDataObject()
         meta_obj.my_uuid = this_uuid[0]
@@ -59,8 +59,8 @@ def main():
             "+++++ Sorted nodelist +++++\n", sorted(d for n, d in DG.degree())
         )  # sorted list
         # print(nx.clustering(DG))  # cluster list
-        #print("Number of nodes: ", DG.number_of_nodes()) # write this into metadata file? 
-        #print("Number of edges: ", DG.number_of_edges())
+        # print("Number of nodes: ", DG.number_of_nodes()) # write this into metadata file?
+        # print("Number of edges: ", DG.number_of_edges())
         meta_obj.density = DG.number_of_edges() / (
             DG.number_of_nodes() * (DG.number_of_nodes() - 1)
         )
@@ -83,8 +83,10 @@ def main():
         DG = nx.convert_node_labels_to_integers(
             DG, first_label=0, ordering="default", label_attribute="orig_label"
         )
+
         nx.draw(DG, with_labels=True, node_color="#4bbefd")
-        nx.nx_pydot.write_dot(DG, workdir + meta_obj.my_uuid + ".test.dot")
+        nx.drawing.nx_pydot.write_dot(DG, workdir + meta_obj.my_uuid + ".test.dot")
+
         plt.savefig(workdir + meta_obj.my_uuid + ".plt.png")
         # plt.show() # use this in Jupyter
 
