@@ -38,11 +38,16 @@ class TerraformHelpers:
         ready = True
 
         if not lock_path.is_file():
-            # print('found lockfile')
+            print('missing lockfile')
             ready = False
         return_code, stdout, stderr = self.t.init()  # missing .terraform.lock.hcl
         if stderr:
+            print(stderr)
             ready = False
+
+        #if not state_path.is_file():
+        #    print('missing statefile')
+        #    ready = False
 
         return_code, stdout, stderr = self.t.validate(capture_output=True)
 

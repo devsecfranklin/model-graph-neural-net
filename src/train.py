@@ -1,25 +1,13 @@
 """Testing Deep Learning with Graph Neural Networks."""
-# import logging
-# import logging.config
 import os
-
 import matplotlib.pyplot as plt  # this is for making the graph
 import networkx as nx
 import numpy as np
 import pandas as pd
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
-
+from networkx.drawing.nx_agraph import write_dot, graphviz_layout
 from lib.common import CommonHelpers
-from lib.data import MetaDataObject, DataHelpers
-
-"""
-logging.config.fileConfig(
-    "logging.conf",
-    defaults={"logfilename": "project.log"},
-    disable_existing_loggers=False,
-)
-logger = logging.getLogger("__name__")
-"""
+from lib.data import DataObject, DataHelpers
 
 
 def main():
@@ -39,16 +27,33 @@ def main():
     for dot in data_helper.dot_files:
         print("Processing dot file: {}".format(dot))
         this_uuid = dot.split(".")
-        meta_obj = MetaDataObject()
+        meta_obj = DataObject()
         meta_obj.my_uuid = this_uuid[0]
 
         gv = data_helper.create_graph(
             workdir, dot
         )  # write the terraform digraph to a dot file
 
+        options = {"edgecolors": "tab:gray", "node_size": 800, "alpha": 0.9}
         DG = nx.DiGraph(
-            gv, name=meta_obj.my_uuid
+            gv, name=meta_obj.my_uuid, node_color="tab:red", **options
         )  # Networkx can accept the pygraphviz dot format
+
+        pos = nx.get_node_attributes(DG, 'pos')
+        print(str(pos))
+        if not pos:
+            pos = graphviz_layout(DG, prog='dot')
+
+        edge_labels = nx.get_edge_attributes(DG, 'label')
+        
+        nx.draw(DG, pos)
+        nx.draw_networkx_edge_labels(DG, pos, edge_labels, font_size=8)
+        nx.draw_networkx_labels(DG, pos, font_size=10)
+        DG = nx.convert_node_labels_to_integers(
+            DG, first_label=0, ordering="default", label_attribute="orig_label"
+        )
+
+        nx.drawing.nx_pydot.write_dot(DG, workdir + meta_obj.my_uuid + ".test.dot")
 
         #########
         # Nodes #
@@ -76,16 +81,6 @@ def main():
         # df = nx.to_pandas_dataframe(DG)
         df = pd.DataFrame.from_dict(dict(DG.nodes(data=True)), orient="index")
         print("+++++ Pandas Dataframe Values +++++\n", df.values)
-
-        #################
-        # Relabel Graph #
-        #################
-        DG = nx.convert_node_labels_to_integers(
-            DG, first_label=0, ordering="default", label_attribute="orig_label"
-        )
-
-        nx.draw(DG, with_labels=True, node_color="#4bbefd")
-        nx.drawing.nx_pydot.write_dot(DG, workdir + meta_obj.my_uuid + ".test.dot")
 
         plt.savefig(workdir + meta_obj.my_uuid + ".plt.png")
         # plt.show() # use this in Jupyter

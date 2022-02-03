@@ -3,4 +3,6 @@ COPY . /train
 
 RUN python -m pip install -r /train/src/requirements.txt
 
+# pull in data from gs://backend-dataset
+
 CMD ["python", "/train/src/train.py"]
