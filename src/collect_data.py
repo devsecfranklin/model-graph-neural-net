@@ -55,30 +55,39 @@ def main():
     We can disable local writes soon, and (continuous) cleaning/training can happen from bucket.
     """
     bucket_name = "backend-datastore"
+    folder_name = "test1/"  # testing with a top level folder in storage bucket
 
     try:
         # print ('source file {}'.format(source_file_name))
         common_helper.print_output("Uploading JSON Metadata")
         common_helper.upload_blob(
-            bucket_name, workdir + ".metadata.json", data_helper.json_filename
+            bucket_name,
+            workdir + ".metadata.json",
+            folder_name + data_helper.json_filename,
         )
         common_helper.print_output("Uploading dot file.")
         common_helper.upload_blob(
-            bucket_name, workdir + data_helper.dot_filename, data_helper.dot_filename
+            bucket_name,
+            workdir + data_helper.dot_filename,
+            folder_name + data_helper.dot_filename,
         )
         common_helper.print_output("Uploading PNG.")
         common_helper.upload_blob(
-            bucket_name, workdir + data_helper.png_filename, data_helper.png_filename
+            bucket_name,
+            workdir + data_helper.png_filename,
+            folder_name + data_helper.png_filename,
         )
         common_helper.print_output("Uploading Lock.")
         common_helper.upload_blob(
-            bucket_name, tf_helper.lock_file, data_helper.my_uuid + tf_helper.lock_file
+            bucket_name,
+            tf_helper.lock_file,
+            folder_name + data_helper.my_uuid + tf_helper.lock_file,
         )  # get TF lock file
         common_helper.print_output("Uploading State.")
         common_helper.upload_blob(
             bucket_name,
             tf_helper.state_file,
-            data_helper.my_uuid + ".terraform.tfstate",
+            folder_name + data_helper.my_uuid + ".terraform.tfstate",
         )  # get TF state file
     except Exception as e:
         print("Problem uploading data: {}", e)

@@ -44,10 +44,6 @@ class TerraformHelpers:
         if stderr:
             ready = False
 
-        if not state_path.is_file():
-            # print('found statefile')
-            ready = False
-
         return_code, stdout, stderr = self.t.validate(capture_output=True)
 
         if stderr:

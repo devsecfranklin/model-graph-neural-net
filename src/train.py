@@ -1,6 +1,6 @@
 """Testing Deep Learning with Graph Neural Networks."""
-#import logging
-#import logging.config
+# import logging
+# import logging.config
 import os
 
 import matplotlib.pyplot as plt  # this is for making the graph
@@ -10,8 +10,7 @@ import pandas as pd
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 
 from lib.common import CommonHelpers
-from lib.data import DataHelpers
-from lib.terraform import TerraformHelpers
+from lib.data import MetaDataObject, DataHelpers
 
 """
 logging.config.fileConfig(
@@ -30,7 +29,7 @@ def main():
 
     # load the data files in from datastore
     workdir = os.getcwd() + "/dataset/"
-    #logger.debug('Using workdir: {}'.format(workdir))
+    # logger.debug('Using workdir: {}'.format(workdir))
     created = common_helper.make_directory(
         workdir
     )  # create the working directory if needed
@@ -38,14 +37,17 @@ def main():
     data_helper.gather_dotfiles(workdir)
 
     for dot in data_helper.dot_files:
-        #logger.debug('Processing dot file: {}'.format(dot))
-        this_uuid = dot.split('.')
+        print("Processing dot file: {}".format(dot))
+        this_uuid = dot.split(".")
+        meta_obj = MetaDataObject()
+        meta_obj.my_uuid = this_uuid[0]
+
         gv = data_helper.create_graph(
             workdir, dot
         )  # write the terraform digraph to a dot file
 
         DG = nx.DiGraph(
-            gv, name=this_uuid[0]
+            gv, name=meta_obj.my_uuid
         )  # Networkx can accept the pygraphviz dot format
 
         #########
@@ -57,13 +59,17 @@ def main():
             "+++++ Sorted nodelist +++++\n", sorted(d for n, d in DG.degree())
         )  # sorted list
         # print(nx.clustering(DG))  # cluster list
-        print("Number of nodes: ", DG.number_of_nodes())
-        print("Number of edges: ", DG.number_of_edges())
-        density = DG.number_of_edges() / (DG.number_of_nodes() * (DG.number_of_nodes( ) - 1 ) ) 
-        print('Graph density: ', density) # d (0 ≤ d ≤ 1 ) tells how close a graph is to being "complete"
+        # print("Number of nodes: ", DG.number_of_nodes()) # write this into metadata file?
+        # print("Number of edges: ", DG.number_of_edges())
+        meta_obj.density = DG.number_of_edges() / (
+            DG.number_of_nodes() * (DG.number_of_nodes() - 1)
+        )
+        print(
+            "Graph density: ", meta_obj.density
+        )  # d (0 ≤ d ≤ 1 ) tells how close a graph is to being "complete"
 
         # diameter D is the largest distance between any two nodes in the graph
-    
+
         ##########################################
         # convert nx digraph to pandas dataframe #
         ##########################################
@@ -77,8 +83,11 @@ def main():
         DG = nx.convert_node_labels_to_integers(
             DG, first_label=0, ordering="default", label_attribute="orig_label"
         )
+
         nx.draw(DG, with_labels=True, node_color="#4bbefd")
-        plt.savefig(workdir + this_uuid[0] + '.plt.png')  # if this is permanent, fix the filename
+        nx.drawing.nx_pydot.write_dot(DG, workdir + meta_obj.my_uuid + ".test.dot")
+
+        plt.savefig(workdir + meta_obj.my_uuid + ".plt.png")
         # plt.show() # use this in Jupyter
 
         ####################
@@ -93,13 +102,14 @@ def main():
 
         ####################
         # Incidence Matrix #
+        ####################
         I = nx.incidence_matrix(DG)
         print("+++++ Incidence Matrix +++++\n", I)
         print("+++++ Dense Incidence Matrix +++++\n", I.todense())
 
         """ Degree Matrix 
     
-	Adding the inverse of the degree matrix ensures inclusion of root node.
+	    Adding the inverse of the degree matrix ensures inclusion of root node.
         """
 
         # Laplacian Matrix (L = D - A)

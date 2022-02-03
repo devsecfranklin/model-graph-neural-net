@@ -11,11 +11,52 @@ import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from google.cloud import storage
 
 
+class MetaDataObject:
+    """Extricate the single object values from DataHelpers class and move them here"""
+
+    my_uuid = ""  # set a unique filename
+    repo_name = "example"  # repo name can help with de-duplication
+    json_filename = ".metadata.json"
+    dot_filename = ""  # set a unique dot filename
+    png_filename = ""  # set a unique dot filename
+    plt_filename = ""  # redraw graph with matplotlib
+    tf_out_file = "tfout.txt"
+    node_count = ""
+    edge_count = ""
+    density = ""
+    completeness_score = ""
+
+    data_file_list = []  # an easily iterabile list of files
+
+    """
+    def metadata_update(self, metadata_object):
+        data = {}  # hold the JSON values
+
+        json_file = workdir + ".metadata.json"
+        path = Path(json_file)
+        if path.is_file():
+            #    #logger.info("Update existing JSON")
+            try:
+
+                data["node_count"] = 
+                data["edge_count"] = 
+                data["density"] = 
+                data["completeness_score"] =
+                with open(
+                    str(json_file), "w", encoding="utf-8"
+                ) as f:  # write to the JSON file
+            except json.decoder.JSONDecodeError as e:
+                print("JSON file is corrupted: ", e)
+                sys.exit(1)
+    """
+
+
 class DataHelpers:
     """
     # https://github.com/pyjanitor-devs/pyjanitor
     # import janitor  # upon import, functions are registered as part of pandas.
     """
+
     my_uuid = ""  # set a unique filename
     repo_name = "example"  # repo name can help with de-duplication
 
@@ -95,7 +136,22 @@ class DataHelpers:
             self.tf_out_file,
         ]
 
-        return self.data_file_list # for consumption by common lib
+        return self.data_file_list  # for consumption by common lib
+
+    def create_graph(self, workdir, dot):
+        """Convert the initial Terraform DiGraph to graphviz format"""
+        gv = pgv.AGraph(
+            workdir + dot, strict=False, directed=True
+        )  # convert dot file to pygraphviz format
+
+        # http://www.graphviz.org/doc/info/attrs.html
+        gv.graph_attr.update(
+            landscape="true", ranksep="0.1"
+        )  # Graphviz graph keyword parameters
+        gv.node_attr.update(color="red")
+        gv.edge_attr.update(len="2.0", color="blue")
+
+        return gv
 
     def graph_generate(self, my_dir):
         """Give the graph a name. Reuse the exisiting name if possible.
@@ -139,13 +195,6 @@ class DataHelpers:
             if f.endswith(".dot"):
                 # logger.info("Found dotfile {}'.format(f))
                 self.dot_files.append(f)  # looks like O(n)
-
-    def create_graph(self, workdir, dot):
-        gv = pgv.AGraph(
-            workdir + dot, strict=False, directed=True
-        )  # convert dot file to pygraphviz format
-
-        return gv
 
     def detect_isometry(self):
         """If two graphs (dot files) are isometric, delete one from dataset."""
