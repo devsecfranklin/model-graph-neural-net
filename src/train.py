@@ -76,7 +76,7 @@ def main():
             DG, first_label=0, ordering="default", label_attribute="orig_label"
         )
         nx.draw(DG, with_labels=True, node_color="#4bbefd")
-        plt.savefig(workdir + this_uuid[0] + '.plt.png')  # if this is permanent, fix the filename
+        plt.savefig(workdir + this_uuid[0] + '.plt.png')
         # plt.show() # use this in Jupyter
 
         ####################
@@ -91,13 +91,14 @@ def main():
 
         ####################
         # Incidence Matrix #
+        ####################
         I = nx.incidence_matrix(DG)
         print("+++++ Incidence Matrix +++++\n", I)
         print("+++++ Dense Incidence Matrix +++++\n", I.todense())
 
         """ Degree Matrix 
     
-	Adding the inverse of the degree matrix ensures inclusion of root node.
+	    Adding the inverse of the degree matrix ensures inclusion of root node.
         """
 
         # Laplacian Matrix (L = D - A)
