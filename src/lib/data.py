@@ -16,6 +16,7 @@ class DataHelpers:
     # https://github.com/pyjanitor-devs/pyjanitor
     # import janitor  # upon import, functions are registered as part of pandas.
     """
+
     my_uuid = ""  # set a unique filename
     repo_name = "example"  # repo name can help with de-duplication
 
@@ -95,7 +96,7 @@ class DataHelpers:
             self.tf_out_file,
         ]
 
-        return self.data_file_list # for consumption by common lib
+        return self.data_file_list  # for consumption by common lib
 
     def graph_generate(self, my_dir):
         """Give the graph a name. Reuse the exisiting name if possible.

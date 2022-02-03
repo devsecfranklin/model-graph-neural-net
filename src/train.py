@@ -1,6 +1,6 @@
 """Testing Deep Learning with Graph Neural Networks."""
-#import logging
-#import logging.config
+# import logging
+# import logging.config
 import os
 
 import matplotlib.pyplot as plt  # this is for making the graph
@@ -30,7 +30,7 @@ def main():
 
     # load the data files in from datastore
     workdir = os.getcwd() + "/dataset/"
-    #logger.debug('Using workdir: {}'.format(workdir))
+    # logger.debug('Using workdir: {}'.format(workdir))
     created = common_helper.make_directory(
         workdir
     )  # create the working directory if needed
@@ -38,8 +38,8 @@ def main():
     data_helper.gather_dotfiles(workdir)
 
     for dot in data_helper.dot_files:
-        #logger.debug('Processing dot file: {}'.format(dot))
-        this_uuid = dot.split('.')
+        # logger.debug('Processing dot file: {}'.format(dot))
+        this_uuid = dot.split(".")
         gv = data_helper.create_graph(
             workdir, dot
         )  # write the terraform digraph to a dot file
@@ -59,11 +59,15 @@ def main():
         # print(nx.clustering(DG))  # cluster list
         print("Number of nodes: ", DG.number_of_nodes())
         print("Number of edges: ", DG.number_of_edges())
-        density = DG.number_of_edges() / (DG.number_of_nodes() * (DG.number_of_nodes( ) - 1 ) ) 
-        print('Graph density: ', density) # d (0 ≤ d ≤ 1 ) tells how close a graph is to being "complete"
+        density = DG.number_of_edges() / (
+            DG.number_of_nodes() * (DG.number_of_nodes() - 1)
+        )
+        print(
+            "Graph density: ", density
+        )  # d (0 ≤ d ≤ 1 ) tells how close a graph is to being "complete"
 
         # diameter D is the largest distance between any two nodes in the graph
-    
+
         ##########################################
         # convert nx digraph to pandas dataframe #
         ##########################################
@@ -78,7 +82,7 @@ def main():
             DG, first_label=0, ordering="default", label_attribute="orig_label"
         )
         nx.draw(DG, with_labels=True, node_color="#4bbefd")
-        plt.savefig(workdir + this_uuid[0] + '.plt.png')
+        plt.savefig(workdir + this_uuid[0] + ".plt.png")
         # plt.show() # use this in Jupyter
 
         ####################
