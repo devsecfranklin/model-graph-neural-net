@@ -1,6 +1,6 @@
 """Testing Deep Learning with Graph Neural Networks."""
-import logging
-import logging.config
+#import logging
+#import logging.config
 import os
 
 import matplotlib.pyplot as plt  # this is for making the graph
@@ -13,12 +13,14 @@ from lib.common import CommonHelpers
 from lib.data import DataHelpers
 from lib.terraform import TerraformHelpers
 
+"""
 logging.config.fileConfig(
     "logging.conf",
     defaults={"logfilename": "project.log"},
     disable_existing_loggers=False,
 )
 logger = logging.getLogger("__name__")
+"""
 
 
 def main():
@@ -28,7 +30,7 @@ def main():
 
     # load the data files in from datastore
     workdir = os.getcwd() + "/dataset/"
-    logger.debug('Using workdir: {}'.format(workdir))
+    #logger.debug('Using workdir: {}'.format(workdir))
     created = common_helper.make_directory(
         workdir
     )  # create the working directory if needed
@@ -36,7 +38,7 @@ def main():
     data_helper.gather_dotfiles(workdir)
 
     for dot in data_helper.dot_files:
-        logger.debug('Processing dot file: {}'.format(dot))
+        #logger.debug('Processing dot file: {}'.format(dot))
         this_uuid = dot.split('.')
         gv = data_helper.create_graph(
             workdir, dot

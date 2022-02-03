@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gke-training-pod
+spec:
+  containers:
+  - name: franklin-deep-learning
+    image: gcr.io/gcp-gcs-pso/franklin-deep-learning
+    resources:
+      limits:
+        nvidia.com/gpu: 1
