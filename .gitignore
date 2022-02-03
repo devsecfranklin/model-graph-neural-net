@@ -1,5 +1,6 @@
 # ignore large data files
 dataset/*.dot
+dataset/*.png
 
 .terraform
 .buildlog
