@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+    "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg contentScriptType="text/ecmascript" width="782.0"
+     xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="magnify"
+     contentStyleType="text/css"
+     viewBox="-352.000000 -473.000000 782.000000 800.000000" height="800.0"
+     preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+     version="1.1">
+    <g id="edges">
+        <path fill="none" stroke-width="1.0"
+              d="M -314.388519,-40.329563 L 161.582886,3.486273"
+              class="id_[root]_data.google_client_config.default_(expand) id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]"
+              stroke-opacity="1.0" stroke="#339768"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 374.483124,-110.586975 L 186.713470,-2.032984"
+              class="id_[root]_data.google_container_engine_versions.gke_version_(expand) id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]"
+              stroke-opacity="1.0" stroke="#54a57d"/>
+        <path fill="none" stroke-width="1.0"
+              d="M -24.327894,99.016930 L 162.822327,10.496072"
+              class="id_[root]_google_compute_network.vpc_(expand) id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]"
+              stroke-opacity="1.0" stroke="#19824a"/>
+        <path fill="none" stroke-width="1.0"
+              d="M -27.002169,95.520775 L -19.672218,86.934807"
+              class="id_[root]_google_compute_network.vpc_(expand) id_[root]_var.name"
+              stroke-opacity="1.0" stroke="#6eba9b"/>
+        <path fill="none" stroke-width="1.0"
+              d="M -73.770203,5.832335 L -38.930443,91.011284"
+              class="id_[root]_google_compute_route.egress_internet_(expand) id_[root]_google_compute_network.vpc_(expand)"
+              stroke-opacity="1.0" stroke="#4cac86"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 278.636108,72.380684 L -20.386164,102.168282"
+              class="id_[root]_google_compute_router.router_(expand) id_[root]_google_compute_network.vpc_(expand)"
+              stroke-opacity="1.0" stroke="#4cac86"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 120.642548,-452.549744 L -30.206436,90.499008"
+              class="id_[root]_google_compute_subnetwork.gke-subnet_(expand) id_[root]_google_compute_network.vpc_(expand)"
+              stroke-opacity="1.0" stroke="#6eba9b"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 132.520462,295.360260 L 376.538605,-104.319984"
+              class="id_[root]_google_container_cluster.lab_cluster_(expand) id_[root]_data.google_container_engine_versions.gke_version_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 126.999779,293.822144 L 123.516136,-449.166840"
+              class="id_[root]_google_container_cluster.lab_cluster_(expand) id_[root]_google_compute_subnetwork.gke-subnet_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 90.562950,-431.065186 L 172.457321,-8.529573"
+              class="id_[root]_google_project_service.service_(expand) id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]"
+              stroke-opacity="1.0" stroke="#339768"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 85.593826,-431.302521 L -44.085575,8.239598"
+              class="id_[root]_google_project_service.service_(expand) id_[root]_var.project_services"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 163.052826,114.838806 L -311.986603,-37.177513"
+              class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_data.google_client_config.default_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 163.610031,113.448219 L -65.603958,2.016309"
+              class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_google_compute_route.egress_internet_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 182.793930,114.118683 L 276.560638,76.380302"
+              class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_google_compute_router.router_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 170.535812,128.232773 L 130.285721,291.215759"
+              class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_google_container_cluster.lab_cluster_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 171.485214,107.656769 L 90.581100,-428.024750"
+              class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_google_project_service.service_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 162.917282,120.779846 L -117.312340,196.555573"
+              class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_var.gke_num_nodes"
+              stroke-opacity="1.0" stroke="#a9ddcf"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 171.072403,107.727562 L 82.388985,-353.921051"
+              class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_var.gke_password"
+              stroke-opacity="1.0" stroke="#a9ddcf"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 162.567810,118.591667 L -154.863205,135.322083"
+              class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_var.gke_username"
+              stroke-opacity="1.0" stroke="#a9ddcf"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 163.590759,122.589981 L -226.662460,310.281036"
+              class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_var.namespace"
+              stroke-opacity="1.0" stroke="#a9ddcf"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 163.209152,114.386124 L -279.335022,-49.831131"
+              class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_var.node_machine_type"
+              stroke-opacity="1.0" stroke="#a9ddcf"/>
+        <path fill="none" stroke-width="1.0"
+              d="M -309.105469,-20.933493 L -316.587402,-30.611561"
+              class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close) id_[root]_data.google_client_config.default_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M -292.191315,-12.218744 L -91.235069,-4.410320"
+              class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close) id_[root]_google_compute_route.egress_internet_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M -292.287537,-11.151352 L 275.718262,69.443329"
+              class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close) id_[root]_google_compute_router.router_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M -294.233185,-6.393971 L 116.184425,296.308868"
+              class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close) id_[root]_google_container_cluster.lab_cluster_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M -295.605713,-20.382473 L 79.465164,-431.401306"
+              class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close) id_[root]_google_project_service.service_(expand)"
+              stroke-opacity="1.0" stroke="#87cfb9"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 167.368713,-2.460591 L -242.725616,-387.225983"
+              class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;] id_[root]_var.project_id"
+              stroke-opacity="1.0" stroke="#54a57d"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 185.465256,5.852073 L 316.131958,19.974701"
+              class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;] id_[root]_var.region"
+              stroke-opacity="1.0" stroke="#54a57d"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 164.865372,2.076020 L -111.906448,-70.047958"
+              class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;] id_[root]_var.service_account_terraform"
+              stroke-opacity="1.0" stroke="#54a57d"/>
+        <path fill="none" stroke-width="1.0"
+              d="M 185.472336,5.784441 L 405.718079,28.146812"
+              class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;] id_[root]_var.zone"
+              stroke-opacity="1.0" stroke="#54a57d"/>
+        <path fill="none" stroke-width="1.0"
+              d="M -78.105217,184.756104 L 160.005737,121.504929"
+              class="id_[root]_root id_[root]_meta.count-boundary_(EachMode_fixup)"
+              stroke-opacity="1.0" stroke="#cbeae5"/>
+        <path fill="none" stroke-width="1.0"
+              d="M -95.930374,180.288559 L -292.812866,-3.416523"
+              class="id_[root]_root id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close)"
+              stroke-opacity="1.0" stroke="#cbeae5"/>
+    </g>
+    <g id="arrows">
+        <polyline fill="#339768" fill-opacity="1.0"
+                  class="id_[root]_data.google_client_config.default_(expand) id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]"
+                  points="164.570251,3.761276 161.445389,4.979957 161.720383,1.992588"
+                  stroke="none"/>
+        <polyline fill="#54a57d" fill-opacity="1.0"
+                  class="id_[root]_data.google_container_engine_versions.gke_version_(expand) id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]"
+                  points="184.116272,-0.531478 185.962723,-3.331587 187.464218,-0.734381"
+                  stroke="none"/>
+        <polyline fill="#19824a" fill-opacity="1.0"
+                  class="id_[root]_google_compute_network.vpc_(expand) id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]"
+                  points="165.534271,9.213343 163.463684,11.852040 162.180969,9.140103"
+                  stroke="none"/>
+        <polyline fill="#6eba9b" fill-opacity="1.0"
+                  class="id_[root]_google_compute_network.vpc_(expand) id_[root]_var.name"
+                  points="-17.724360,84.653175 -18.531403,87.908737 -20.813034,85.960876"
+                  stroke="none"/>
+        <polyline fill="#4cac86" fill-opacity="1.0"
+                  class="id_[root]_google_compute_route.egress_internet_(expand) id_[root]_google_compute_network.vpc_(expand)"
+                  points="-37.794716,93.787994 -40.318798,91.579147 -37.542088,90.443420"
+                  stroke="none"/>
+        <polyline fill="#4cac86" fill-opacity="1.0"
+                  class="id_[root]_google_compute_router.router_(expand) id_[root]_google_compute_network.vpc_(expand)"
+                  points="-23.371387,102.465660 -20.534853,100.675667 -20.237474,103.660896"
+                  stroke="none"/>
+        <polyline fill="#6eba9b" fill-opacity="1.0"
+                  class="id_[root]_google_compute_subnetwork.gke-subnet_(expand) id_[root]_google_compute_network.vpc_(expand)"
+                  points="-31.009378,93.389557 -31.651711,90.097534 -28.761162,90.900482"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_google_container_cluster.lab_cluster_(expand) id_[root]_data.google_container_engine_versions.gke_version_(expand)"
+                  points="378.101868,-106.880486 377.818848,-103.538345 375.258362,-105.101624"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_google_container_cluster.lab_cluster_(expand) id_[root]_google_compute_subnetwork.gke-subnet_(expand)"
+                  points="123.502075,-452.166809 125.016121,-449.173859 122.016151,-449.159821"
+                  stroke="none"/>
+        <polyline fill="#339768" fill-opacity="1.0"
+                  class="id_[root]_google_project_service.service_(expand) id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]"
+                  points="173.028152,-5.584382 170.984726,-8.244160 173.929916,-8.814987"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_google_project_service.service_(expand) id_[root]_var.project_services"
+                  points="-44.934498,11.116982 -45.524265,7.815137 -42.646885,8.664060"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_data.google_client_config.default_(expand)"
+                  points="-314.843872,-38.091862 -311.529419,-38.606148 -312.443787,-35.748878"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_google_compute_route.egress_internet_(expand)"
+                  points="-68.302017,0.704650 -64.948128,0.667277 -66.259789,3.365341"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_google_compute_router.router_(expand)"
+                  points="279.343689,75.260201 277.120697,77.771828 276.000580,74.988777"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_google_container_cluster.lab_cluster_(expand)"
+                  points="129.566452,294.128265 128.829468,290.856140 131.741974,291.575378"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_google_project_service.service_(expand)"
+                  points="90.133087,-430.991089 92.064278,-428.248749 89.097923,-427.800751"
+                  stroke="none"/>
+        <polyline fill="#a9ddcf" fill-opacity="1.0"
+                  class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_var.gke_num_nodes"
+                  points="-120.208328,197.338669 -117.703888,195.107574 -116.920792,198.003571"
+                  stroke="none"/>
+        <polyline fill="#a9ddcf" fill-opacity="1.0"
+                  class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_var.gke_password"
+                  points="81.823029,-356.867188 83.862053,-354.204041 80.915916,-353.638062"
+                  stroke="none"/>
+        <polyline fill="#a9ddcf" fill-opacity="1.0"
+                  class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_var.gke_username"
+                  points="-157.859055,135.479980 -154.942154,133.824158 -154.784256,136.820007"
+                  stroke="none"/>
+        <polyline fill="#a9ddcf" fill-opacity="1.0"
+                  class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_var.namespace"
+                  points="-229.366028,311.581299 -227.312592,308.929260 -226.012329,311.632813"
+                  stroke="none"/>
+        <polyline fill="#a9ddcf" fill-opacity="1.0"
+                  class="id_[root]_meta.count-boundary_(EachMode_fixup) id_[root]_var.node_machine_type"
+                  points="-282.147644,-50.874817 -278.813171,-51.237431 -279.856873,-48.424831"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close) id_[root]_data.google_client_config.default_(expand)"
+                  points="-318.422272,-32.985008 -315.400665,-31.528996 -317.774139,-29.694126"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close) id_[root]_google_compute_route.egress_internet_(expand)"
+                  points="-88.237328,-4.293839 -91.293312,-2.911451 -91.176826,-5.909189"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close) id_[root]_google_compute_router.router_(expand)"
+                  points="278.688507,69.864784 275.507538,70.928452 275.928986,67.958206"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close) id_[root]_google_container_cluster.lab_cluster_(expand)"
+                  points="118.598778,298.089569 115.294075,297.516052 117.074776,295.101685"
+                  stroke="none"/>
+        <polyline fill="#87cfb9" fill-opacity="1.0"
+                  class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close) id_[root]_google_project_service.service_(expand)"
+                  points="81.487358,-433.617310 80.573174,-430.390198 78.357155,-432.412415"
+                  stroke="none"/>
+        <polyline fill="#54a57d" fill-opacity="1.0"
+                  class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;] id_[root]_var.project_id"
+                  points="-244.913422,-389.278656 -241.699280,-388.319885 -243.751953,-386.132080"
+                  stroke="none"/>
+        <polyline fill="#54a57d" fill-opacity="1.0"
+                  class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;] id_[root]_var.region"
+                  points="319.114594,20.297068 315.970764,21.466015 316.293152,18.483387"
+                  stroke="none"/>
+        <polyline fill="#54a57d" fill-opacity="1.0"
+                  class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;] id_[root]_var.service_account_terraform"
+                  points="-114.809502,-70.804459 -111.528198,-71.499481 -112.284698,-68.596436"
+                  stroke="none"/>
+        <polyline fill="#54a57d" fill-opacity="1.0"
+                  class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;] id_[root]_var.zone"
+                  points="408.702728,28.449854 405.566559,29.639139 405.869598,26.654486"
+                  stroke="none"/>
+        <polyline fill="#cbeae5" fill-opacity="1.0"
+                  class="id_[root]_root id_[root]_meta.count-boundary_(EachMode_fixup)"
+                  points="162.905182,120.734726 160.390839,122.954651 159.620636,120.055206"
+                  stroke="none"/>
+        <polyline fill="#cbeae5" fill-opacity="1.0"
+                  class="id_[root]_root id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close)"
+                  points="-295.006317,-5.463169 -291.789551,-4.513250 -293.836182,-2.319796"
+                  stroke="none"/>
+    </g>
+    <g id="nodes">
+        <circle fill-opacity="1.0" fill="#edf8fb" r="10.0" cx="-147.64157"
+                class="id_compound" cy="-256.14594" stroke="#000000"
+                stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#edf8fb" r="10.0" cx="-341.46524"
+                class="id_true" cy="214.4707" stroke="#000000"
+                stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#edf8fb" r="10.0" cx="187.12485"
+                class="id_newrank" cy="272.29605" stroke="#000000"
+                stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#edf8fb" r="10.0" cx="-86.8484"
+                class="id_subgraph" cy="-128.92496" stroke="#000000"
+                stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#edf8fb" r="10.0" cx="293.53635"
+                class="id_root" cy="276.994" stroke="#000000"
+                stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#66c2a4" r="10.0" cx="-324.8443"
+                class="id_[root]_data.google_client_config.default_(expand)"
+                cy="-41.292076" stroke="#000000" stroke-opacity="1.0"
+                stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="383.57333"
+                class="id_[root]_data.google_container_engine_versions.gke_version_(expand)"
+                cy="-115.84225" stroke="#000000" stroke-opacity="1.0"
+                stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#339768" r="10.0" cx="-33.819675"
+                class="id_[root]_google_compute_network.vpc_(expand)"
+                cy="103.506485" stroke="#000000" stroke-opacity="1.0"
+                stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#66c2a4" r="10.0" cx="-77.74525"
+                class="id_[root]_google_compute_route.egress_internet_(expand)"
+                cy="-3.8861547" stroke="#000000" stroke-opacity="1.0"
+                stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#66c2a4" r="10.0" cx="289.08438"
+                class="id_[root]_google_compute_router.router_(expand)"
+                cy="71.33986" stroke="#000000" stroke-opacity="1.0"
+                stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="123.45284"
+                class="id_[root]_google_compute_subnetwork.gke-subnet_(expand)"
+                cy="-462.6667" stroke="#000000" stroke-opacity="1.0"
+                stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#66c2a4" r="10.0" cx="127.04901"
+                class="id_[root]_google_container_cluster.lab_cluster_(expand)"
+                cy="304.32202" stroke="#000000" stroke-opacity="1.0"
+                stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#66c2a4" r="10.0" cx="88.565056"
+                class="id_[root]_google_project_service.service_(expand)"
+                cy="-441.37335" stroke="#000000" stroke-opacity="1.0"
+                stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#006d2c" r="10.0" cx="175.02605"
+                class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]"
+                cy="4.7237906" stroke="#000000" stroke-opacity="1.0"
+                stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="-130.3443"
+                class="id_[root]_var.gke_num_nodes" cy="200.0795"
+                stroke="#000000" stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="79.84218"
+                class="id_[root]_var.gke_password" cy="-367.17865"
+                stroke="#000000" stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="-168.3445"
+                class="id_[root]_var.gke_username" cy="136.03262"
+                stroke="#000000" stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="-10.906853"
+                class="id_[root]_var.name" cy="76.667465" stroke="#000000"
+                stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="-238.82852"
+                class="id_[root]_var.namespace" cy="316.13226" stroke="#000000"
+                stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="-291.99173"
+                class="id_[root]_var.node_machine_type" cy="-54.52772"
+                stroke="#000000" stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="-252.57076"
+                class="id_[root]_var.project_id" cy="-396.46304"
+                stroke="#000000" stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="-47.905727"
+                class="id_[root]_var.project_services" cy="21.18782"
+                stroke="#000000" stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="329.5538"
+                class="id_[root]_var.region" cy="21.42535" stroke="#000000"
+                stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="-124.97018"
+                class="id_[root]_var.service_account_terraform" cy="-73.45223"
+                stroke="#000000" stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="419.14902"
+                class="id_[root]_var.zone" cy="29.510506" stroke="#000000"
+                stroke-opacity="1.0" stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="173.05325"
+                class="id_[root]_meta.count-boundary_(EachMode_fixup)"
+                cy="118.039024" stroke="#000000" stroke-opacity="1.0"
+                stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#a9ddcf" r="10.0" cx="-302.6834"
+                class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close)"
+                cy="-12.626429" stroke="#000000" stroke-opacity="1.0"
+                stroke-width="1.0"/>
+        <circle fill-opacity="1.0" fill="#edf8fb" r="10.0" cx="-88.25328"
+                class="id_[root]_root" cy="187.45181" stroke="#000000"
+                stroke-opacity="1.0" stroke-width="1.0"/>
+    </g>
+    <g id="node-labels">
+        <text font-size="24" x="-147.64157" y="-250.3393" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_compound">
+            compound
+        </text>
+        <text font-size="24" x="-341.46524" y="218.76953" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_true">
+            true
+        </text>
+        <text font-size="24" x="187.12485" y="276.94058" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_newrank">
+            newrank
+        </text>
+        <text font-size="24" x="-86.8484" y="-123.11832" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_subgraph">
+            subgraph
+        </text>
+        <text font-size="24" x="293.53635" y="281.29282" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_root">
+            root
+        </text>
+        <text font-size="24" x="-324.8443" y="-35.317467" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_data.google_client_config.default_(expand)">
+            data.google_client_config.defa...
+        </text>
+        <text font-size="24" x="383.57333" y="-109.86764" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_data.google_container_engine_versions.gke_version_(expand)">
+            data.google_container_engine_v...
+        </text>
+        <text font-size="24" x="-33.819675" y="109.481094" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_google_compute_network.vpc_(expand)">
+            google_compute_network.vpc
+        </text>
+        <text font-size="24" x="-77.74525" y="2.0884547" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_google_compute_route.egress_internet_(expand)">
+            google_compute_route.egress_in...
+        </text>
+        <text font-size="24" x="289.08438" y="77.31447" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_google_compute_router.router_(expand)">
+            google_compute_router.router
+        </text>
+        <text font-size="24" x="123.45284" y="-456.69208" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_google_compute_subnetwork.gke-subnet_(expand)">
+            google_compute_subnetwork.gke-...
+        </text>
+        <text font-size="24" x="127.04901" y="310.29663" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_google_container_cluster.lab_cluster_(expand)">
+            google_container_cluster.lab_c...
+        </text>
+        <text font-size="24" x="88.565056" y="-435.39874" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_google_project_service.service_(expand)">
+            google_project_service.service
+        </text>
+        <text font-size="24" x="175.02605" y="10.530432" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]">
+            provider[&quot;registry.terraform.i...
+        </text>
+        <text font-size="24" x="-130.3443" y="206.05411" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_[root]_var.gke_num_nodes">
+            var.gke_num_nodes
+        </text>
+        <text font-size="24" x="79.84218" y="-361.20404" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_[root]_var.gke_password">
+            var.gke_password
+        </text>
+        <text font-size="24" x="-168.3445" y="142.00723" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_[root]_var.gke_username">
+            var.gke_username
+        </text>
+        <text font-size="24" x="-10.906853" y="80.11473" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_[root]_var.name">
+            var.name
+        </text>
+        <text font-size="24" x="-238.82852" y="320.74164" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_[root]_var.namespace">
+            var.namespace
+        </text>
+        <text font-size="24" x="-291.99173" y="-48.553112" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_[root]_var.node_machine_type">
+            var.node_machine_type
+        </text>
+        <text font-size="24" x="-252.57076" y="-390.48843" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_[root]_var.project_id">
+            var.project_id
+        </text>
+        <text font-size="24" x="-47.905727" y="27.16243" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_[root]_var.project_services">
+            var.project_services
+        </text>
+        <text font-size="24" x="329.5538" y="27.23199" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_[root]_var.region">
+            var.region
+        </text>
+        <text font-size="24" x="-124.97018" y="-67.47762" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_var.service_account_terraform">
+            var.service_account_terraform
+        </text>
+        <text font-size="24" x="419.14902" y="32.95777" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_[root]_var.zone">
+            var.zone
+        </text>
+        <text font-size="24" x="173.05325" y="123.845665" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_meta.count-boundary_(EachMode_fixup)">
+            [root] meta.count-boundary (Ea...
+        </text>
+        <text font-size="24" x="-302.6834" y="-6.819788" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog"
+              class="id_[root]_provider[&quot;registry.terraform.io/hashicorp/google&quot;]_(close)">
+            [root] provider[&quot;registry.terr...
+        </text>
+        <text font-size="24" x="-88.25328" y="192.80142" fill="#000000"
+              style="text-anchor: middle; dominant-baseline: central;"
+              font-family="Dialog" class="id_[root]_root">
+            [root] root
+        </text>
+    </g>
+</svg>

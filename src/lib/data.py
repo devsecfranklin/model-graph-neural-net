@@ -11,7 +11,7 @@ import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from google.cloud import storage
 
 
-class MetaDataObject:
+class DataObject:
     """Extricate the single object values from DataHelpers class and move them here"""
 
     my_uuid = ""  # set a unique filename
@@ -185,7 +185,12 @@ class DataHelpers:
         gv = pgv.AGraph(
             workdir + self.dot_filename, strict=False, directed=True
         )  # convert dot file to pygraphviz format
-
+        # http://www.graphviz.org/doc/info/attrs.html
+        gv.graph_attr.update(
+            landscape="true", ranksep="0.1"
+        )  # Graphviz graph keyword parameters
+        gv.node_attr.update(color="red")
+        gv.edge_attr.update(len="2.0", color="blue")
         return gv
 
     def gather_dotfiles(self, workdir):
