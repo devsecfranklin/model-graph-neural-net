@@ -12,43 +12,33 @@ from google.cloud import storage
 
 
 class DataObject:
-    """Extricate the single object values from DataHelpers class and move them here"""
+    """A single graph from our data set."""
 
-    my_uuid = ""  # set a unique filename
-    repo_name = "example"  # repo name can help with de-duplication
-    json_filename = ".metadata.json"
-    dot_filename = ""  # set a unique dot filename
-    png_filename = ""  # set a unique dot filename
-    plt_filename = ""  # redraw graph with matplotlib
-    tf_out_file = "tfout.txt"
-    node_count = ""
-    edge_count = ""
-    density = ""
-    completeness_score = ""
-
-    data_file_list = []  # an easily iterabile list of files
-
-    """
-    def metadata_update(self, metadata_object):
-        data = {}  # hold the JSON values
-
-        json_file = workdir + ".metadata.json"
-        path = Path(json_file)
-        if path.is_file():
-            #    #logger.info("Update existing JSON")
-            try:
-
-                data["node_count"] = 
-                data["edge_count"] = 
-                data["density"] = 
-                data["completeness_score"] =
-                with open(
-                    str(json_file), "w", encoding="utf-8"
-                ) as f:  # write to the JSON file
-            except json.decoder.JSONDecodeError as e:
-                print("JSON file is corrupted: ", e)
-                sys.exit(1)
-    """
+    def __init__(
+        self,
+        my_uuid=None,
+        repo_name=None,
+        json_filename=None,
+        dot_filename=None,
+        png_filename=None,
+        plt_filename=None,
+        tf_out_file=None,
+        node_count=None,
+        edge_count=None,
+        density=None,
+        completeness_score=None,
+    ):
+        self.my_uuid = my_uuid  # set a unique filename
+        self.repo_name = repo_name  # repo name can help with de-duplication
+        self.json_filename = json_filename  # ".metadata.json"
+        self.dot_filename = dot_filename  # set a unique dot filename
+        self.png_filename = png_filename  # set a unique dot filename
+        self.plt_filename = plt_filename  # redraw graph with matplotlib
+        self.tf_out_file = tf_out_file  # "tfout.txt"
+        self.node_count = node_count
+        self.edge_count = edge_count
+        self.density = density
+        self.completeness_score = completeness_score
 
 
 class DataHelpers:
@@ -57,17 +47,35 @@ class DataHelpers:
     # import janitor  # upon import, functions are registered as part of pandas.
     """
 
+    def __init__(self):
+        self.data_object = None
+
     my_uuid = ""  # set a unique filename
     repo_name = "example"  # repo name can help with de-duplication
 
-    json_filename = ".metadata.json"
-    dot_filename = ""  # set a unique dot filename
-    png_filename = ""  # set a unique dot filename
-    plt_filename = ""  # redraw graph with matplotlib
-    tf_out_file = "tfout.txt"
-
     dot_files = []
-    data_file_list = []
+
+    def data_obj_update(self, workdir, data_object):
+        data = {}  # hold the JSON values
+
+        data_object.json_file = workdir + ".metadata.json"
+
+        path = Path(self.json_file)
+        if path.is_file():
+            #    #logger.info("Update existing JSON")
+            try:
+
+                data["node_count"] = data_object.node_count
+                data["edge_count"] = data_object.edge_count
+                data["density"] = data_object.density
+                data["completeness_score"] = data_object.completeness_score
+                with open(
+                    str(self.json_file), "w", encoding="utf-8"
+                ) as f:  # write to the JSON file
+                    json.dump(data, f, ensure_ascii=False, indent=4)
+            except json.decoder.JSONDecodeError as e:
+                print("JSON file is corrupted: ", e)
+                sys.exit(1)
 
     def generate_uuid(self):
         """Generate a UUID for the graph a name.
@@ -78,7 +86,6 @@ class DataHelpers:
 
         my_uuid = str(uuid.uuid4())  # set a unique filename
         # logger.debug("Generated a new UUID: ", my_uuid)
-        self.my_uuid = my_uuid
 
         return my_uuid
 
@@ -89,7 +96,7 @@ class DataHelpers:
 
         path = Path(json_file)
 
-    def update_metadata(self, workdir):
+    def update_metadata(self, workdir, data_object):
         """Update the JSON file with metadata/labels
 
         Args:
@@ -100,23 +107,25 @@ class DataHelpers:
         json_file = workdir + ".metadata.json"
         path = Path(json_file)
 
+        my_uuid = self.generate_uuid()  # pre-load a new UUID but we may not need it
+
         if path.is_file():
             #    #logger.info("Update existing JSON")
             try:
                 with open(json_file) as json_file:  # read in existing first
                     data = json.load(json_file)
                     # logger.debug('Existing JSON: ' + data['uuid']) # update the key value pairs
-                    self.my_uuid = data["uuid"]
-                    self.repo_name = data["repo_name"]
+                    my_uuid = data["uuid"]
+                    data_object.my_uuid = data["uuid"]
+                    data_object.repo_name = data["repo_name"]
                 json_file.close()
             except json.decoder.JSONDecodeError as e:
                 print("JSON file is corrupted: ", e)
                 sys.exit(1)
         else:
             try:
-                self.generate_uuid()
-                data["uuid"] = self.my_uuid
-                data["repo_name"] = self.repo_name
+                data["uuid"] = my_uuid
+                data["repo_name"] = "repo_name"  # call update_repo_name instead
                 with open(
                     str(json_file), "w", encoding="utf-8"
                 ) as f:  # write to the JSON file
@@ -124,19 +133,14 @@ class DataHelpers:
             except TypeError as e:
                 print("Caught a TypeError, ", e)
 
-        self.json_filename = self.my_uuid + ".metadata.json"
-        self.dot_filename = self.my_uuid + ".dot"
-        self.png_filename = self.my_uuid + ".png"
-        self.plt_filename = self.my_uuid + "-plt.png"
-        self.tf_out_file = self.my_uuid + ".tfout.txt"
-        self.data_file_list = [
-            self.dot_filename,
-            self.png_filename,
-            self.plt_filename,
-            self.tf_out_file,
-        ]
+        data_object.my_uuid = my_uuid
+        data_object.json_filename = my_uuid + ".metadata.json"
+        data_object.dot_filename = my_uuid + ".dot"
+        data_object.png_filename = my_uuid + ".png"
+        data_object.plt_filename = my_uuid + "-plt.png"
+        data_object.tf_out_file = my_uuid + ".tfout.txt"
 
-        return self.data_file_list  # for consumption by common lib
+        return data_object
 
     def create_graph(self, workdir, dot):
         """Convert the initial Terraform DiGraph to graphviz format"""
@@ -170,20 +174,20 @@ class DataHelpers:
         # if they exist, write to self.my_filename
         pass
 
-    def generate_dot(self, workdir, tf_output):
+    def generate_dot(self, workdir, tf_output, dot_filename):
         """Write the dot file to local filesystem.
         Return a pygraphviz object
         """
         try:
             # could name file based on tf
-            text_file = open(workdir + self.dot_filename, "w")
+            text_file = open(workdir + dot_filename, "w")
             text_file.write(tf_output)
             text_file.close()
         except Exception as e:
             print("There was some error writing the graph dot file", e)
 
         gv = pgv.AGraph(
-            workdir + self.dot_filename, strict=False, directed=True
+            workdir + dot_filename, strict=False, directed=True
         )  # convert dot file to pygraphviz format
         # http://www.graphviz.org/doc/info/attrs.html
         gv.graph_attr.update(

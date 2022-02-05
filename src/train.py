@@ -1,18 +1,21 @@
 """Testing Deep Learning with Graph Neural Networks."""
 import os
+
 import matplotlib.pyplot as plt  # this is for making the graph
 import networkx as nx
 import numpy as np
 import pandas as pd
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
-from networkx.drawing.nx_agraph import write_dot, graphviz_layout
+from networkx.drawing.nx_agraph import graphviz_layout, write_dot
+
 from lib.common import CommonHelpers
-from lib.data import DataObject, DataHelpers
+from lib.data import DataHelpers, DataObject
 
 
 def main():
     """Testing Deep Learning with Graph Neural Networks."""
     data_helper = DataHelpers()
+    data_object = DataObject()
     common_helper = CommonHelpers()
 
     # load the data files in from datastore
@@ -39,13 +42,13 @@ def main():
             gv, name=meta_obj.my_uuid, node_color="tab:red", **options
         )  # Networkx can accept the pygraphviz dot format
 
-        pos = nx.get_node_attributes(DG, 'pos')
+        pos = nx.get_node_attributes(DG, "pos")
         print(str(pos))
         if not pos:
-            pos = graphviz_layout(DG, prog='dot')
+            pos = graphviz_layout(DG, prog="dot")
 
-        edge_labels = nx.get_edge_attributes(DG, 'label')
-        
+        edge_labels = nx.get_edge_attributes(DG, "label")
+
         nx.draw(DG, pos)
         nx.draw_networkx_edge_labels(DG, pos, edge_labels, font_size=8)
         nx.draw_networkx_labels(DG, pos, font_size=10)
