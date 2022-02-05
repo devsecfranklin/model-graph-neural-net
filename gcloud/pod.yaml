@@ -4,8 +4,8 @@ metadata:
   name: gke-training-pod
 spec:
   containers:
-  - name: franklin-deep-learning
-    image: gcr.io/gcp-gcs-pso/franklin-deep-learning
-    resources:
-      limits:
-        nvidia.com/gpu: 1
+  - name: model-graph-neural-net
+    image: gcr.io/gcp-gcs-pso/model-graph-neural-net
+  nodeSelector:
+    app: dev-test
+

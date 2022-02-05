@@ -11,7 +11,7 @@ LABEL maintainer="Franklin <2730246+devsecfranklin@users.noreply.github.com>" \
 
 WORKDIR /workspace
 ENV MY_DIR /workspace
-ADD . ${MY_DIR}
+ADD ./* ${MY_DIR}/
 
 #####################
 # Add some packages #
@@ -19,10 +19,10 @@ ADD . ${MY_DIR}
 ENV DEBIAN_FRONTEND noninteractive
 RUN \
     apt-get update; \
-    apt-get install -y debconf apt-utils; \
-    apt-get install -y make automake autoconf graphviz libgraphviz-dev; \
-    /usr/local/bin/python -m pip install --upgrade pip; \
-    pip install -r requirements.txt 
+    apt-get install -y make libgraphviz-dev; \
+    ls -al; pwd ; \
+    python -m pip install --upgrade pip; \
+    python -m pip install -r ${MY_DIR}/src/requirements.txt 
     #/usr/local/bin/python /workspace/src/main.py
 
-# CMD ["python", "src/main.py" ] 
+CMD ["python", "${MY_DIR}/src/train.py" ] 
