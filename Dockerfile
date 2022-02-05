@@ -25,4 +25,4 @@ RUN \
     python -m pip install -r ${MY_DIR}/src/requirements.txt 
     #/usr/local/bin/python /workspace/src/main.py
 
-CMD ["python", "src/train.py" ] 
+CMD ["python", "${MY_DIR}/src/train.py" ] 
