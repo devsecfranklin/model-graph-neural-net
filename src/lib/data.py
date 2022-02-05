@@ -117,7 +117,6 @@ class DataHelpers:
                     # logger.debug('Existing JSON: ' + data['uuid']) # update the key value pairs
                     my_uuid = data["uuid"]
                     data_object.my_uuid = data["uuid"]
-                    data_object.repo_name = data["repo_name"]
                 json_file.close()
             except json.decoder.JSONDecodeError as e:
                 print("JSON file is corrupted: ", e)
