@@ -21,6 +21,7 @@ logging.config.fileConfig(
 logger = logging.getLogger("train")
 """
 
+
 class CommonHelpers:
     """
     # https://github.com/pyjanitor-devs/pyjanitor
@@ -106,14 +107,14 @@ class CommonHelpers:
         )
         bucket = storage_client.get_bucket(bucket_name)
 
-        delimiter = '/'
+        delimiter = "/"
 
         for blob in bucket.list_blobs(max_results=10, prefix=prefix):
-            if(not blob.name.endswith(delimiter)):
+            if not blob.name.endswith(delimiter):
                 name = blob.name.split(delimiter)
-                print("Download {}".format(workdir+name[-1]))
+                print("Download {}".format(workdir + name[-1]))
                 try:
-                    blob.download_to_filename(workdir+name[-1])
+                    blob.download_to_filename(workdir + name[-1])
                 except Exception as e:
                     print(e)
 
@@ -121,7 +122,7 @@ class CommonHelpers:
         """erase the files after upload, except the .json.metadata"""
         try:
             for data_file in data_file_list:
-                #logger.info('Attempt to remove data_file: {} '.format(data_file))
+                # logger.info('Attempt to remove data_file: {} '.format(data_file))
                 path = Path(workdir + data_file)
                 if path.is_file():
                     os.remove(path)

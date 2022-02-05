@@ -1,6 +1,8 @@
 # ignore large data files
 dataset/*.dot
 dataset/*.png
+dataset/*.terraform.lock.hcl
+dataset/*.json
 
 .terraform
 .buildlog

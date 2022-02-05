@@ -1,5 +1,6 @@
 """Testing Deep Learning with Graph Neural Networks."""
 import os
+import sys
 
 import matplotlib.pyplot as plt  # this is for making the graph
 import networkx as nx
@@ -13,12 +14,14 @@ from lib.data import DataHelpers, DataObject
 
 import logging
 import logging.config
+
 logging.config.fileConfig(
     "logging.conf",
     defaults={"logfilename": "training.log"},
-    disable_existing_loggers=False, # this will prevent modules from writing to our logger
+    disable_existing_loggers=True,  # this will prevent modules from writing to our logger
 )
 logger = logging.getLogger("train")
+
 
 def main():
     """Testing Deep Learning with Graph Neural Networks."""
@@ -40,6 +43,10 @@ def main():
 
     data_helper.gather_dotfiles(workdir)
 
+    if data_helper.dot_files is None:
+        logger.info("No data files found.")
+        sys.exit(1)
+
     for dot in data_helper.dot_files:
         logger.info("Processing dot file: {}".format(dot))
         this_uuid = dot.split(".")
@@ -50,7 +57,6 @@ def main():
             workdir, dot
         )  # write the terraform digraph to a dot file
 
-        
         options = {"edgecolors": "tab:gray", "node_size": 800, "alpha": 0.9}
         G = nx.DiGraph(
             gv, name=data_obj.my_uuid, node_color="tab:red", **options
@@ -72,7 +78,7 @@ def main():
         )
 
         nx.drawing.nx_pydot.write_dot(G, workdir + data_obj.my_uuid + ".test.dot")
-        """ 
+        """
 
         #########
         # Nodes #
