@@ -24,4 +24,4 @@ RUN \
     python -m pip install -r requirements.txt 
     #/usr/local/bin/python /workspace/src/main.py
 
-# CMD ["python", "src/main.py" ] 
+CMD ["python", "src/train.py" ] 
