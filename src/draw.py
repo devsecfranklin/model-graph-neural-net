@@ -11,37 +11,25 @@ from networkx.drawing.nx_agraph import graphviz_layout, write_dot
 from lib.common import CommonHelpers
 from lib.data import DataHelpers, DataObject
 
-import logging
-import logging.config
-logging.config.fileConfig(
-    "logging.conf",
-    defaults={"logfilename": "training.log"},
-    disable_existing_loggers=False, # this will prevent modules from writing to our logger
-)
-logger = logging.getLogger("train")
 
 def main():
     """Testing Deep Learning with Graph Neural Networks."""
     data_helper = DataHelpers()
-    data_obj = DataObject()
+    data_object = DataObject()
     common_helper = CommonHelpers()
 
     # load the data files in from datastore
     workdir = os.getcwd() + "/dataset/"
-
-    logger.info("Using workdir: {}".format(workdir))
+    # logger.debug
+    print("Using workdir: {}".format(workdir))
     created = common_helper.make_directory(
         workdir
     )  # create the working directory if needed
 
-    bucket_name = "backend-datastore"
-    prefix = "test1/"  # testing with a top level folder in storage bucket
-    common_helper.download_to_local(workdir, bucket_name, prefix)
-
     data_helper.gather_dotfiles(workdir)
 
     for dot in data_helper.dot_files:
-        logger.info("Processing dot file: {}".format(dot))
+        print("Processing dot file: {}".format(dot))
         this_uuid = dot.split(".")
         data_obj = DataObject()
         data_obj.my_uuid = this_uuid[0]
@@ -50,15 +38,13 @@ def main():
             workdir, dot
         )  # write the terraform digraph to a dot file
 
-        
         options = {"edgecolors": "tab:gray", "node_size": 800, "alpha": 0.9}
         G = nx.DiGraph(
             gv, name=data_obj.my_uuid, node_color="tab:red", **options
         )  # Networkx can accept the pygraphviz dot format
 
-        """ move this to draw.py
         pos = nx.get_node_attributes(G, "pos")
-        logger.info(str(pos))
+        print(str(pos))
         if not pos:
             pos = graphviz_layout(G, prog="dot")
 
@@ -72,7 +58,6 @@ def main():
         )
 
         nx.drawing.nx_pydot.write_dot(G, workdir + data_obj.my_uuid + ".test.dot")
-        """ 
 
         #########
         # Nodes #

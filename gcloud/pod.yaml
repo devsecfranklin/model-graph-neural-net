@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: gke-training-pod
+  name: gke-training-pod-2
 spec:
   containers:
   - name: model-graph-neural-net
