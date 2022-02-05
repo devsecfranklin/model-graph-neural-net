@@ -19,7 +19,7 @@ ADD ./* ${MY_DIR}/
 ENV DEBIAN_FRONTEND noninteractive
 RUN \
     apt-get update; \
-    apt-get install -y make; \
+    apt-get install -y make libgraphviz-dev; \
     ls -al; pwd ; \
     python -m pip install --upgrade pip; \
     python -m pip install -r ${MY_DIR}/src/requirements.txt 
