@@ -11,7 +11,7 @@ LABEL maintainer="Franklin <2730246+devsecfranklin@users.noreply.github.com>" \
 
 WORKDIR /workspace
 ENV MY_DIR /workspace
-COPY . ${MY_DIR}
+ADD ./* ${MY_DIR}
 
 #####################
 # Add some packages #
