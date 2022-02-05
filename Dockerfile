@@ -20,8 +20,9 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN \
     apt-get update; \
     apt-get install -y make; \
+    ls -al; pwd ; \
     python -m pip install --upgrade pip; \
-    python -m pip install -r src/requirements.txt 
+    python -m pip install -r ${MY_DIR}/src/requirements.txt 
     #/usr/local/bin/python /workspace/src/main.py
 
 CMD ["python", "src/train.py" ] 
