@@ -21,7 +21,7 @@ RUN \
     apt-get update; \
     apt-get install -y make; \
     python -m pip install --upgrade pip; \
-    python -m pip install -r requirements.txt 
+    python -m pip install -r src/requirements.txt 
     #/usr/local/bin/python /workspace/src/main.py
 
 CMD ["python", "src/train.py" ] 
