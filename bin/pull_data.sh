@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gcloud alpha storage cp --recursive gs://backend-datastore/dataset/ .
+gcloud alpha storage cp --recursive gs://backend-datastore/dataset/ dataset/
