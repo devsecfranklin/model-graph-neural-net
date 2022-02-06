@@ -1,4 +1,6 @@
 """Testing Deep Learning with Graph Neural Networks."""
+import logging
+import logging.config
 import os
 import sys
 
@@ -11,9 +13,6 @@ from networkx.drawing.nx_agraph import graphviz_layout, write_dot
 
 from lib.common import CommonHelpers
 from lib.data import DataHelpers, DataObject
-
-import logging
-import logging.config
 
 logging.config.fileConfig(
     "logging.conf",
@@ -53,52 +52,44 @@ def main():
         data_obj = DataObject()
         data_obj.my_uuid = this_uuid[0]
 
+        ##############
+        # pygraphviz #
+        ##############
         gv = data_helper.create_graph(
             workdir, dot
         )  # write the terraform digraph to a dot file
 
+        ############
+        # Networkx #
+        ############
         options = {"edgecolors": "tab:gray", "node_size": 800, "alpha": 0.9}
         G = nx.DiGraph(
             gv, name=data_obj.my_uuid, node_color="tab:red", **options
         )  # Networkx can accept the pygraphviz dot format
 
-        """ move this to draw.py
-        pos = nx.get_node_attributes(G, "pos")
-        logger.info(str(pos))
-        if not pos:
-            pos = graphviz_layout(G, prog="dot")
-
-        edge_labels = nx.get_edge_attributes(G, "label")
-
-        nx.draw(G, pos)
-        nx.draw_networkx_edge_labels(G, pos, edge_labels, font_size=8)
-        nx.draw_networkx_labels(G, pos, font_size=10)
-        G = nx.convert_node_labels_to_integers(
-            G, first_label=0, ordering="default", label_attribute="orig_label"
-        )
-
-        nx.drawing.nx_pydot.write_dot(G, workdir + data_obj.my_uuid + ".test.dot")
-        """
-
-        #########
-        # Nodes #
-        #########
         nodelist = list(G.nodes(data=True))
         # print(nodelist)
         print(
             "+++++ Sorted nodelist +++++\n", sorted(d for n, d in G.degree())
         )  # sorted list
-        # print(nx.clustering(DG))  # cluster list
-        # print("Number of nodes: ", DG.number_of_nodes()) # write this into metadata file?
-        # print("Number of edges: ", DG.number_of_edges())
+        # logger.debug(nx.clustering(G))  # cluster list
+        data_obj.node_count = G.number_of_nodes()
+        logger.debug("Node count: {}".format(data_obj.node_count))
+        data_obj.edge_count = G.number_of_edges()
+        logger.debug("Edge count: {}".format(data_obj.edge_count))
+
         data_obj.density = G.number_of_edges() / (
             G.number_of_nodes() * (G.number_of_nodes() - 1)
         )
-        print(
-            "Graph density: ", data_obj.density
+        logger.debug(
+            "Graph density: {}".format(data_obj.density)
         )  # d (0 ≤ d ≤ 1 ) tells how close a graph is to being "complete"
 
         # diameter D is the largest distance between any two nodes in the graph
+
+        data_helper.data_obj_update(
+            workdir, data_obj
+        )  # update the data file for this graph
 
         ##########################################
         # convert nx digraph to pandas dataframe #
@@ -107,7 +98,8 @@ def main():
         df = pd.DataFrame.from_dict(dict(G.nodes(data=True)), orient="index")
         print("+++++ Pandas Dataframe Values +++++\n", df.values)
 
-        plt.savefig(workdir + data_obj.my_uuid + ".plt.png")
+        # move this to the draw function
+        # plt.savefig(workdir + data_obj.my_uuid + ".plt.png")
         # plt.show() # use this in Jupyter
 
         ####################
