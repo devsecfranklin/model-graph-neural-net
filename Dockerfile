@@ -11,7 +11,7 @@ LABEL maintainer="Franklin <2730246+devsecfranklin@users.noreply.github.com>" \
 
 WORKDIR /workspace
 ENV MY_DIR /workspace
-ADD ./* ${MY_DIR}/
+ADD ./* /workspace
 
 #####################
 # Add some packages #
@@ -21,7 +21,8 @@ RUN \
     apt-get update; \
     apt-get install -y make libgraphviz-dev; \
     python -m pip install --upgrade pip; \
-    python -m pip install -r ${MY_DIR}/src/requirements.txt 
+    pwd; ls -la ; \
+    python -m pip install -r /workspace/src/requirements.txt 
     #/usr/local/bin/python /workspace/src/main.py
 
 CMD ["python", "/workspace/src/train.py" ] 
