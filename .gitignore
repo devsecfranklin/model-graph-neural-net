@@ -2,6 +2,7 @@
 dataset/*.dot
 dataset/*.png
 dataset/*.terraform.lock.hcl
+dataset/*.terraform.tfstate
 dataset/*.json
 
 .terraform

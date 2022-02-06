@@ -12,13 +12,14 @@ from pathlib import Path
 import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from google.cloud import storage
 
+"""
 logging.config.fileConfig(
     "logging.conf",
     defaults={"logfilename": "training.log"},
     disable_existing_loggers=True,  # this will prevent modules from writing to our logger
 )
 logger = logging.getLogger(__name__)
-
+"""
 
 class DataObject:
     """A single graph from our data set."""
@@ -78,6 +79,7 @@ class DataHelpers:
             print("Updating JSON file: {}".format(data_object.json_file))
             try:
                 data["my_uuid"] = data_object.my_uuid
+                data["repo_name"] = data_object.repo_name
                 data["node_count"] = data_object.node_count
                 data["edge_count"] = data_object.edge_count
                 data["density"] = data_object.density
@@ -212,7 +214,7 @@ class DataHelpers:
     def gather_dotfiles(self, workdir):
         """ """
         for f in os.listdir(workdir):
-            logger.debug("Found file: {}{}".format(workdir, f))
+            #logger.debug("Found file: {}{}".format(workdir, f))
             if f.endswith(".dot"):
                 # logger.info("Found dotfile {}'.format(f))
                 self.dot_files.append(f)  # looks like O(n)
