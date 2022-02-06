@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATA_FILES=`gcloud alpha storage ls --recursive gs://backend-datastore/test1`
+DATA_FILES=`gcloud alpha storage ls --recursive gs://backend-datastore/dataset`
 
 for MY_FILE in ${DATA_FILES}
 do
