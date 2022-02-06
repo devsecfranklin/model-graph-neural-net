@@ -2,7 +2,7 @@
 import os
 
 from lib.common import CommonHelpers
-from lib.data import DataObject, DataHelpers
+from lib.data import DataHelpers, DataObject
 from lib.terraform import TerraformHelpers
 
 

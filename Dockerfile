@@ -20,9 +20,9 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN \
     apt-get update; \
     apt-get install -y make libgraphviz-dev; \
-    ls -al; pwd ; \
     python -m pip install --upgrade pip; \
     python -m pip install -r ${MY_DIR}/src/requirements.txt 
     #/usr/local/bin/python /workspace/src/main.py
 
-CMD ["python", "${MY_DIR}/src/train.py" ] 
+CMD ["python", "/workspace/src/train.py" ] 
+

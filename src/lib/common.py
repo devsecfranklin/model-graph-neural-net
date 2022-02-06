@@ -10,6 +10,17 @@ import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from google.cloud import storage
 from python_terraform import Terraform
 
+"""
+import logging
+import logging.config
+logging.config.fileConfig(
+    "logging.conf",
+    defaults={"logfilename": "training.log"},
+    disable_existing_loggers=True, # this will prevent modules from writing to our logger
+)
+logger = logging.getLogger("train")
+"""
+
 
 class CommonHelpers:
     """
@@ -81,11 +92,37 @@ class CommonHelpers:
 
         print("File {} uploaded to {}.".format(source_file_name, destination_blob_name))
 
+    def download_to_local(self, workdir, bucket_name, prefix):
+        """[summary]
+
+        Args:
+            workdir ([type]): [description]
+            bucket_name ([type]): [description]
+            remote_folder ([type]): [description]
+        """
+        print("Call to download_to_local() with {}".format(workdir))
+
+        storage_client = storage.Client.from_service_account_json(
+            "/home/franklin/.config/gcloud/franklin-storage-key.json"
+        )
+        bucket = storage_client.get_bucket(bucket_name)
+
+        delimiter = "/"
+
+        for blob in bucket.list_blobs(max_results=10, prefix=prefix):
+            if not blob.name.endswith(delimiter):
+                name = blob.name.split(delimiter)
+                print("Download {}".format(workdir + name[-1]))
+                try:
+                    blob.download_to_filename(workdir + name[-1])
+                except Exception as e:
+                    print(e)
+
     def remove_workdir_files(self, workdir, data_file_list):
         """erase the files after upload, except the .json.metadata"""
         try:
             for data_file in data_file_list:
-                # print('Attempt to remove data_file: {} '.format(data_file))
+                # logger.info('Attempt to remove data_file: {} '.format(data_file))
                 path = Path(workdir + data_file)
                 if path.is_file():
                     os.remove(path)
