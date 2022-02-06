@@ -1,0 +1,11 @@
+graphviz
+pygraphviz
+python-terraform
+#
+matplotlib
+networkx
+pandas
+scipy
+#tensorflow
+#
+google-cloud-storage
