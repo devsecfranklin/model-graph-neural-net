@@ -7,3 +7,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+  gnn-collection:
+    hostname: gnn-colelct
+    volumes:
+      - .:/workspace
+    build:
+      context: gnn/collection 
+      dockerfile: Dockerfile
+
