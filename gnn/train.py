@@ -37,8 +37,8 @@ def main():
     )  # create the working directory if needed
 
     bucket_name = "backend-datastore"
-    prefix = "test1/"  # testing with a top level folder in storage bucket
-    #common_helper.download_to_local(workdir, bucket_name, prefix) # Make a flag for pulling remote data
+    prefix = "dataset/"  # testing with a top level folder in storage bucket
+    common_helper.download_to_local(workdir, bucket_name, prefix)
 
     data_helper.gather_dotfiles(workdir)
 
