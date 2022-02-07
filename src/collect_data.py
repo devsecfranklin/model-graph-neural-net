@@ -64,7 +64,7 @@ def main():
     We can disable local writes soon, and (continuous) cleaning/training can happen from bucket.
     """
     bucket_name = "backend-datastore"
-    folder_name = "test1/"  # testing with a top level folder in storage bucket
+    folder_name = "dataset/"  # testing with a top level folder in storage bucket
 
     try:
         # print ('source file {}'.format(source_file_name))

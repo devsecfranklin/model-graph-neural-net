@@ -21,6 +21,7 @@ logging.config.fileConfig(
 logger = logging.getLogger(__name__)
 """
 
+
 class DataObject:
     """A single graph from our data set."""
 
@@ -214,7 +215,7 @@ class DataHelpers:
     def gather_dotfiles(self, workdir):
         """ """
         for f in os.listdir(workdir):
-            #logger.debug("Found file: {}{}".format(workdir, f))
+            # logger.debug("Found file: {}{}".format(workdir, f))
             if f.endswith(".dot"):
                 # logger.info("Found dotfile {}'.format(f))
                 self.dot_files.append(f)  # looks like O(n)
