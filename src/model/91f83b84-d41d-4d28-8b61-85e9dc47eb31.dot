@@ -1,4 +1,0 @@
-
-Error: Error building ARM Config: Please ensure you have installed Azure CLI version 2.0.79 or newer. Error parsing json result from the Azure CLI: Error launching Azure CLI: exec: "az": executable file not found in $PATH.
-
-

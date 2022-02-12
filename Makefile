@@ -34,6 +34,13 @@ build: ## build a container
 	docker build -t frank378:model-graph-neural-net \
 		--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') . | tee .buildlog
 
+cluster-collect: ## Build collection container for local cluster
+	$(MAKE) print-status MSG="Building collection container"
+	docker buildx use franklin
+	#docker buildx build --platform linux/arm/v7 -t franklin/gnn-collection:latest cluster/
+	docker build -t franklin:gnn-collection \
+		--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') gnn/collection | tee .buildlog
+
 clean: ## clean up all the things
 	@$(MAKE) print-status MSG="Clean up stale build artifacts"
 	@for trash in _build .coverage *.egg-info .pytest_cache htmlcov .tox; do \
@@ -66,5 +73,5 @@ python: ## build the python env
 	. _build/bin/activate
 	@$(PY39) -m pip install --upgrade pip
 	@$(PY39) -m pip install tox
-	@$(PY39) -m pip install -r src/requirements.txt --no-warn-script-location
+	@$(PY39) -m pip install -r gnn/requirements.txt --no-warn-script-location
 	@$(PY39) -m pip install -r tests/requirements-test.txt --no-warn-script-location

@@ -1,0 +1,4 @@
+graphviz
+pygraphviz
+python-terraform
+google-cloud-storage
