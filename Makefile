@@ -1,6 +1,6 @@
 .PHONY: docs src tests
 
-PY39 := $(shell command -v /mnt/clusterfs/usr/bin/python3 2> /dev/null)
+PY39 := $(shell command -v python3 2> /dev/null)
 ifndef PY39
     PY39 := $(shell command -v python 2> /dev/null)
 endif

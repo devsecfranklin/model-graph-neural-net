@@ -415,3 +415,22 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+AUTHORS
+COPYING
+ChangeLog
+INSTALL
+NEWS
+README
+aclocal.m4
+autom4te.cache/
+configure
+install-sh
+missing
+config.status
+config.h.in
+cluster/Makefile
+cluster/ltmain.sh
+cluster/m4/
+config.h
+stamp-h1
