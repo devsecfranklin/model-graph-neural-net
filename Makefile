@@ -43,7 +43,7 @@ cluster-collect: ## Build collection container for local cluster
 
 clean: ## clean up all the things
 	@$(MAKE) print-status MSG="Clean up stale build artifacts"
-	@for trash in _build .coverage *.egg-info .pytest_cache htmlcov .tox; do \
+	@for trash in aclocal.m4 _build .coverage *.egg-info .pytest_cache htmlcov .tox cluster/Makefile.in cluster/compile cluster/config.guess cluster/missing cluster/install-sh cluster/config.sub cluster/_build; do \
 			if [ -f $$trash ] || [ -d $$trash ]; then \
 					rm -rf $$trash ; \
 			fi ; \

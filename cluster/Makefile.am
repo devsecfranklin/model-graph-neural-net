@@ -1,12 +1,14 @@
-#ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS = -I m4
 #SUBDIRS=cluster
 #CCLD = $(CC)
 #LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 
 python: ## build the python env
-	#@$(PY39) -m venv _build 
-	#. _build/bin/activate
-	@$(PY39) -m pip install --upgrade pip
-	#@$(PY39) -m pip install tox
-	#@$(PY39) -m pip install -r gnn/requirements.txt --no-warn-script-location
-	#@$(PY39) -m pip install -r tests/requirements-test.txt --no-warn-script-location
+	$(PYTHON) -m venv _build
+	( \
+		source _build/bin/activate; \
+		pip install --upgrade pip; \
+		pip install tox; \
+		pip install -r ../cluster/requirements.txt --no-warn-script-location; \
+		pip install -r ../tests/requirements-test.txt --no-warn-script-location; \
+	)

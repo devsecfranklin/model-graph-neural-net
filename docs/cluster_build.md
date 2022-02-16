@@ -15,12 +15,16 @@ Find the Python3 binary automagically.
 The Makefile.am file is processed by automake to create Makefile.in, which is in turn processed by configure to create Makefile, which is in turn used by make to build the software.
 
 ```sh
+make clean
 libtoolize
 aclocal
 autoheader
-autoconf
+autoreconf -i # or just autoconf
 automake -a -c
-configure
+./configure
+config.status
+cd cluster
+make python
 ```
 
 ## Docker 
