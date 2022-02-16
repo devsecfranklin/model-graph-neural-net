@@ -1,6 +1,6 @@
-.PHONY: docs src tests
+.PHONY: cluster docs src tests
 
-PY39 := $(shell command -v /mnt/clusterfs/usr/bin/python3 2> /dev/null)
+PY39 := $(shell command -v python3 2> /dev/null)
 ifndef PY39
     PY39 := $(shell command -v python 2> /dev/null)
 endif
@@ -30,12 +30,25 @@ help:
 	@$(PY39) -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 build: ## build a container
-	$(MAKE) print-status MSG="Building container"
+	@$(MAKE) print-status MSG="Building container"
 	docker build -t frank378:model-graph-neural-net \
 		--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') . | tee .buildlog
 
+cluster: ## Set up build env for internal/private k3s cluster
+	@$(MAKE) print-status MSG="Configure cluster dev env"
+	@libtoolize
+	@aclocal
+	@autoreconf -i
+	@automake -a -c
+	@$(MAKE) print-status MSG="Running you configure script"
+	./configure
+	@$(MAKE) print-status MSG="(⊃｡•́‿•̀｡)⊃━⭑･ﾟﾟ･*:༅｡.｡༅:*ﾟ:*:✼✿ Good things are happening! ☽༓･*˚⁺‧͙"
+	./config.status
+	cd cluster && make python
+	@$(MAKE) print-status MSG="Python virtual dev env is ready."	
+
 cluster-collect: ## Build collection container for local cluster
-	$(MAKE) print-status MSG="Building collection container"
+	@$(MAKE) print-status MSG="Building collection container"
 	docker buildx use franklin
 	#docker buildx build --platform linux/arm/v7 -t franklin/gnn-collection:latest cluster/
 	docker build -t franklin:gnn-collection \
@@ -43,7 +56,7 @@ cluster-collect: ## Build collection container for local cluster
 
 clean: ## clean up all the things
 	@$(MAKE) print-status MSG="Clean up stale build artifacts"
-	@for trash in _build .coverage *.egg-info .pytest_cache htmlcov .tox; do \
+	@for trash in aclocal.m4 _build .coverage *.egg-info .pytest_cache htmlcov .tox cluster/Makefile.in cluster/compile cluster/config.guess cluster/missing cluster/install-sh cluster/config.sub cluster/_build; do \
 			if [ -f $$trash ] || [ -d $$trash ]; then \
 					rm -rf $$trash ; \
 			fi ; \
@@ -65,7 +78,7 @@ print-error:
 	@echo -e "$(LRED)$(MSG)$(NC)"
 
 print-status:
-    @:$(call check_defined, MSG, Message to print)
+	@:$(call check_defined, MSG, Message to print)
 	@echo -e "$(BLUE)$(MSG)$(NC)"
 
 python: ## build the python env
