@@ -5,7 +5,7 @@ python-terraform
 matplotlib
 networkx
 pandas
-scipy
+#scipy
 #tensorflow
 #
 google-cloud-storage
