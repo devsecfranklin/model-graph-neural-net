@@ -40,11 +40,11 @@ cluster: ## Set up build env for internal/private k3s cluster
 	@aclocal
 	@autoreconf -i
 	@automake -a -c
-	@$(MAKE) print-status MSG="Running you configure script"
+	@$(MAKE) print-status MSG="Running your configure script"
 	./configure
 	@$(MAKE) print-status MSG="(⊃｡•́‿•̀｡)⊃━⭑･ﾟﾟ･*:༅｡.｡༅:*ﾟ:*:✼✿ Good things are happening! ☽༓･*˚⁺‧͙"
 	./config.status
-	cd cluster && make python
+	cd cluster && make pypi && make python
 	@$(MAKE) print-status MSG="Python virtual dev env is ready."	
 
 cluster-collect: ## Build collection container for local cluster
@@ -53,6 +53,13 @@ cluster-collect: ## Build collection container for local cluster
 	#docker buildx build --platform linux/arm/v7 -t franklin/gnn-collection:latest cluster/
 	docker build -t franklin:gnn-collection \
 		--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') gnn/collection | tee .buildlog
+
+cluster-train: ## Build training container for local cluster
+	@$(MAKE) print-status MSG="Building training container"	
+	docker buildx use franklin
+	#docker buildx build --platform linux/arm/v7 -t franklin/gnn-training:latest cluster/
+	docker build --platform linux/arm/v7 -t franklin:gnn-training \
+		--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') gnn/training | tee .buildlog
 
 clean: ## clean up all the things
 	@$(MAKE) print-status MSG="Clean up stale build artifacts"
@@ -87,4 +94,4 @@ python: ## build the python env
 	@$(PY39) -m pip install --upgrade pip
 	@$(PY39) -m pip install tox
 	@$(PY39) -m pip install -r gnn/requirements.txt --no-warn-script-location
-	@$(PY39) -m pip install -r tests/requirements-test.txt --no-warn-script-location
+	@$(PY39) -m pip install -r tests/requirements.txt --no-warn-script-location

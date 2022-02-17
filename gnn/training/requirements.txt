@@ -1,12 +1,10 @@
 graphviz
 pygraphviz
 python-terraform
-#
-matplotlib
 networkx
-pandas
-scipy
+#pandas
+#matplotlib
+#scipy
 #tensorflow
-#
 google-cloud-storage
 dvc[gs]
