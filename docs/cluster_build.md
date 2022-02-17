@@ -34,5 +34,6 @@ make python
 docker buildx create --name franklin
 docker buildx use franklin
 docker buildx build --platform linux/arm/v7 cluster/
-docker buildx build --platform linux/arm/v7 -t franklin/gnn-collection:latest cluster/
+docker buildx build --platform linux/arm/v7 -t franklin/gnn-collection:latest gnn/collection/
+docker buildx build --platform linux_aarch64 -t franklin/gnn-training:latest gnn/training/
 ```

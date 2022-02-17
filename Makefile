@@ -58,7 +58,7 @@ cluster-train: ## Build training container for local cluster
 	@$(MAKE) print-status MSG="Building training container"	
 	docker buildx use franklin
 	#docker buildx build --platform linux/arm/v7 -t franklin/gnn-training:latest cluster/
-	docker build -t franklin:gnn-training \
+	docker build --platform linux/arm/v7 -t franklin:gnn-training \
 		--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') gnn/training | tee .buildlog
 
 clean: ## clean up all the things
