@@ -7,12 +7,12 @@ import sys
 import matplotlib.pyplot as plt  # this is for making the graph
 import networkx as nx
 import numpy as np
-import pandas as pd
-import pygraphviz as pgv  # sudo apt install libgraphviz-dev
-from networkx.drawing.nx_agraph import graphviz_layout, write_dot
 
+# import pandas as pd
+import pygraphviz as pgv  # sudo apt install libgraphviz-dev
 from gnn.lib.common import CommonHelpers
 from gnn.lib.data import DataHelpers, DataObject
+from networkx.drawing.nx_agraph import graphviz_layout, write_dot
 
 logging.config.fileConfig(
     "logging.conf",
@@ -38,7 +38,7 @@ def main():
 
     bucket_name = "backend-datastore"
     prefix = "test1/"  # testing with a top level folder in storage bucket
-    #common_helper.download_to_local(workdir, bucket_name, prefix) # Make a flag for pulling remote data
+    # common_helper.download_to_local(workdir, bucket_name, prefix) # Make a flag for pulling remote data
 
     data_helper.gather_dotfiles(workdir)
 
@@ -95,8 +95,8 @@ def main():
         # convert nx digraph to pandas dataframe #
         ##########################################
         # df = nx.to_pandas_dataframe(DG)
-        df = pd.DataFrame.from_dict(dict(G.nodes(data=True)), orient="index")
-        print("+++++ Pandas Dataframe Values +++++\n", df.values)
+        # df = pd.DataFrame.from_dict(dict(G.nodes(data=True)), orient="index")
+        # print("+++++ Pandas Dataframe Values +++++\n", df.values)
 
         # move this to the draw function
         # plt.savefig(workdir + data_obj.my_uuid + ".plt.png")

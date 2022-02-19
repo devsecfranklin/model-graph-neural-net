@@ -3,7 +3,7 @@
 Setup
 
 ```sh
-sudo apt install libopenblas-base libatlas3-base
+sudo apt install libopenblas-base libatlas3-base direnv
 /mnt/clusterfs/google-cloud-sdk/bin/gcloud components update # no sudo needed
 pip install -r cluster/requirements.txt
 ```
@@ -15,7 +15,7 @@ Find the Python3 binary automagically.
 The Makefile.am file is processed by automake to create Makefile.in, which is in turn processed by configure to create Makefile, which is in turn used by make to build the software.
 
 ```sh
-sudo apt install libtool autconf automake
+sudo apt install libtool autoconf automake direnv
 make clean
 libtoolize
 aclocal
