@@ -7,4 +7,4 @@ networkx
 #scipy
 #tensorflow
 google-cloud-storage
-dvc[gs]
+#dvc[gs]

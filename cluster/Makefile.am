@@ -6,9 +6,9 @@ ACLOCAL_AMFLAGS = -I m4
 pypi: 
 	( \
 		$(PYTHON) -m pip download -d /mnt/clusterfs/pypi tox; \
-		$(PYTHON) -m pip download -d /mnt/clusterfs/pypi --platform linux_armv7l -r ../gnn/collection/requirements.txt; \
-		$(PYTHON) -m pip download -d /mnt/clusterfs/pypi --platform linux_armv7l -r ../gnn/training/requirements.txt; \
-		$(PYTHON) -m pip download -d /mnt/clusterfs/pypi --platform linux_armv7l -r ../tests/requirements.txt; \
+		$(PYTHON) -m pip download -d /mnt/clusterfs/pypi --no-deps --platform linux_armv7l -r ../gnn/collection/requirements.txt; \
+		$(PYTHON) -m pip download -d /mnt/clusterfs/pypi --no-deps --platform linux_armv7l -r ../gnn/training/requirements.txt; \
+		$(PYTHON) -m pip download -d /mnt/clusterfs/pypi --no-deps --platform linux_armv7l -r ../tests/requirements.txt; \
 	)
 
 python: 
