@@ -1,10 +1,10 @@
 graphviz
-pygraphviz
-python-terraform
+google-cloud-storage
 networkx
 #pandas
-#matplotlib
+matplotlib
 #scipy
 #tensorflow
-google-cloud-storage
-#dvc[gs]
+#dvc[gs] # does not work on local cluster due to py3-git2 issue
+pygraphviz
+python-terraform
