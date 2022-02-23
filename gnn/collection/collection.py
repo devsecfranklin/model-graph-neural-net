@@ -116,5 +116,5 @@ if __name__ == "__main__":
 """
 __author__     = 'Franklin'
 __version__    = '0.1'
-__email__      = ''
+__email__      = 'Franklin <2730246+devsecfranklin@users.noreply.github.com>'
 """
