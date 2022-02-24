@@ -28,7 +28,9 @@ cd cluster
 make python
 ```
 
-## Docker 
+## Docker
+
+Why doesn't the arm64v8 stuff work on raspi nodes yet
 
 ```sh
 docker buildx create --name franklin

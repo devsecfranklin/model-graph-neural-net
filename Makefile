@@ -1,8 +1,8 @@
-.PHONY: cluster docs src tests
+.PHONY: cluster docs tests
 
-PY39 := $(shell command -v python3 2> /dev/null)
-ifndef PY39
-    PY39 := $(shell command -v python 2> /dev/null)
+PYTHON := $(shell command -v python3 2> /dev/null)
+ifndef PYTHON
+    PYTHON := $(shell command -v python 2> /dev/null)
 endif
 
 SHELL:=/bin/bash
@@ -27,11 +27,11 @@ endef
 export PRINT_HELP_PYSCRIPT
 
 help: 
-	@$(PY39) -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+	@$(PYTHON) -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 build: ## build a container
 	@$(MAKE) print-status MSG="Building container"
-	docker build -t frank378:model-graph-neural-net \
+	docker build -t devsecfranklin:model-graph-neural-net \
 		--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') . | tee .buildlog
 
 cluster: ## Set up build env for internal/private k3s cluster
@@ -89,9 +89,16 @@ print-status:
 	@echo -e "$(BLUE)$(MSG)$(NC)"
 
 python: ## build the python env
-	@$(PY39) -m venv _build 
-	. _build/bin/activate
-	@$(PY39) -m pip install --upgrade pip
-	@$(PY39) -m pip install tox
-	@$(PY39) -m pip install -r gnn/requirements.txt --no-warn-script-location
-	@$(PY39) -m pip install -r tests/requirements.txt --no-warn-script-location
+	$(MAKE) print-status MSG="Building Python virtual environment, hold tight."
+	@$(PYTHON) -m venv _build
+	( \
+		source _build/bin/activate; \
+		$(PYTHON) -m pip install --upgrade pip; \
+		$(PYTHON) -m pip install tox; \
+		$(PYTHON) -m pip install --no-index --find-links=/mnt/clusterfs/pypi tox; \
+		$(PYTHON) -m pip install --no-index --find-links=/mnt/clusterfs/pypi -r gnn/collection/requirements.txt --no-warn-script-location; \
+		$(PYTHON) -m pip install --no-index --find-links=/mnt/clusterfs/pypi -r gnn/training/requirements.txt; \
+		$(PYTHON) -m pip install --no-index --find-links=/mnt/clusterfs/pypi -r tests/requirements.txt --no-warn-script-location; \
+	)
+	$(MAKE) print-status MSG="Walk like an egg."
+	@$(PYTHON) -m pip install -e .

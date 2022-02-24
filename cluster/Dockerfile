@@ -29,5 +29,5 @@ RUN \
     python -m pip install --upgrade pip; \
     python -m pip install -r /tmp/requirements.txt 
 
-CMD ["python", "/workspace/src/train.py" ] 
+CMD ["python", "/workspace/gnn/training/train.py" ] 
 
