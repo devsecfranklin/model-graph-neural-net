@@ -8,7 +8,6 @@ dataset/*.json
 .terraform
 .buildlog
 .vscode
-_build
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -416,27 +415,26 @@ TSWLatexianTemp*
 # Makeindex log files
 *.lpz
 
-AUTHORS
-COPYING
-ChangeLog
-INSTALL
-Makefile.in
-NEWS
-README
+# autotools and local build env
+_build
 aclocal.m4
-autom4te.cache/
-config.guess
-config.sub
-configure
+autom4te.cache
 compile
+config.guess
+config.status
+config.sub
+config/
+configure 
 install-sh
 libtool
+ltmain.sh
+Makefile
+Makefile.in
 missing
-config.status
+
 config.h.in
 cluster/Makefile
 cluster/ltmain.sh
-cluster/m4/
 config.h
 config.h.in*
 stamp-h1

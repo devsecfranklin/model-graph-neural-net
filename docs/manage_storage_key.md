@@ -25,3 +25,11 @@ gcloud alpha storage ls gs://backend-datastore
 gcloud alpha storage cp gs://backend-datastore/* data
 dvc add -R data/
 ```
+
+```sh
+kubectl create namespace bucket-namespace
+kubectl create serviceaccount --namespace bucket-namespace bucket-service-account
+gcloud iam service-accounts create google-bucket-service-account
+gcloud iam service-accounts add-iam-policy-binding --role roles/iam.workloadIdentityUser --member "serviceAccount:awesome-project.svc.id.goog[bucket-namespace/bucket-service-account]" google-bucket-service-account@awesome-project.iam.gserviceaccount.com
+kubectl annotate serviceaccount --namespace bucket-namespace bucket-service-account iam.gke.io/gcp-service-account=google-bucket-service-account@awesome-project-ID.iam.gserviceaccount.com
+```
