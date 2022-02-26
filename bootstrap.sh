@@ -4,11 +4,15 @@
 
 # Author:  2730246+devsecfranklin@users.noreply.github.com 
 
-# sudo apt install gnuplot gawk
+# sudo apt install gnuplot gawk libtool psutils
 
-libtoolize
-aclocal -I aclocal/latex-m4/
-autoreconf -I aclocal/latex-m4/
-automake -a -c
-./configure && ./config.status
+if [ ! -f "./config.status" ]; then
+  libtoolize
+  aclocal -I aclocal/latex-m4/
+  autoreconf -I aclocal/latex-m4/
+  automake -a -c --add-missing
+  ./configure
+else
+  ./config.status
+fi
 
