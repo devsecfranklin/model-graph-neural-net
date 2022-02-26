@@ -1,7 +1,8 @@
-ACLOCAL_AMFLAGS = -I m4
-#SUBDIRS=cluster
-#CCLD = $(CC)
-#LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+CLOCAL_AMFLAGS = -I config/m4 -I aclocal
+ACLOCAL_AMFLAGS = -I config/m4 -I aclocal
+
+all:
+	pypi python
 
 pypi: 
 	( \

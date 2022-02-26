@@ -1,8 +1,4 @@
 CLOCAL_AMFLAGS = -I config/m4 -I aclocal
-ACLOCAL_AMFLAGS = -I config/m4 -I aclocal
-
-.PHONY: cluster docs paper presentation tests
-
 clean:
 	rm -rf _build *.egg-info
 	@find . -name '*.pyc' | xargs rm -rf
@@ -13,11 +9,8 @@ clean:
 		fi ; \
 	done
 
-.PHONY: src
-python: 
-	$(PYTHON) -m venv _build
-	(
-		source _build/bin/activate; \
-		$(PYTHON) -m pip install -rrequirements.txt; \
-	)
+paper: 
+	latexmk -pdf -file-line-error -interaction=nonstopmode -synctex=1 -shell-escape gnn
+	bibtex gnn
+	latexmk -pdf -file-line-error -interaction=nonstopmode -synctex=1 -shell-escape gnn 
 

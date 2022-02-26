@@ -34,19 +34,6 @@ build: ## build a container
 	docker build -t devsecfranklin:model-graph-neural-net \
 		--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') . | tee .buildlog
 
-cluster: ## Set up build env for internal/private k3s cluster
-	@$(MAKE) print-status MSG="Configure cluster dev env"
-	@libtoolize
-	@aclocal
-	@autoreconf -i
-	@automake -a -c
-	@$(MAKE) print-status MSG="Running your configure script"
-	./configure
-	@$(MAKE) print-status MSG="(⊃｡•́‿•̀｡)⊃━⭑･ﾟﾟ･*:༅｡.｡༅:*ﾟ:*:✼✿ Good things are happening! ☽༓･*˚⁺‧͙"
-	./config.status
-	cd cluster && make pypi && make python
-	@$(MAKE) print-status MSG="Python virtual dev env is ready."	
-
 cluster-collect: ## Build collection container for local cluster
 	@$(MAKE) print-status MSG="Building collection container"
 	docker buildx use franklin

@@ -1,0 +1,6 @@
+# Paper
+
+```sh
+make paper
+```
+
