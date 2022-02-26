@@ -1,0 +1,99 @@
+% !TeX TXS-program:compile = txs:///pdflatex/[--shell-escape]
+% !TeX root = gnn-pres
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% https://orcid.org/0000-0003-4586-8500
+
+
+%\documentclass[14pt]{beamer}
+\documentclass[aspectratio=169]{beamer} % Other possible values are: 1610, 149, 54, 43 and 32. By default, it is to 128mm by 96mm(4:3)
+
+\include{preamble}
+
+% Table of Contents at Section start
+\AtBeginSection[]
+{
+    \begin{frame}
+        \frametitle{\bfseries\Huge\textcolor{black}{.}}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+\begin{document}
+
+%%% Title Slide %%%
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/landscape.jpg}}
+\begin{frame}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    \begin{textblock}{0.6}(0.05,0.05)
+      \bfseries\Huge\textcolor{cyan}{What I Learned About Deep Learning}
+    \end{textblock}
+    % \begin{textblock}{WIDTH}(XCOORDINATE,YCOORDINATE)
+    \begin{textblock}{0.5}(0.65,0.52)
+        \bfseries\textcolor{green}{Franklin Diaz, Cosmic Voyager}
+    \end{textblock}
+\end{frame}
+
+% Intro Section
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
+\section{Introduction}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{About Me}
+    \end{textblock}
+    % main body bullet points
+    \begin{itemize}
+        \item This is an example of a list.
+        \item Important business information.
+    \end{itemize}
+\end{frame}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{What Have I Gotten Myself Into?}
+    \end{textblock}
+    % main body bullet points
+    \begin{itemize}
+        \item This is an example of a list.
+        \item Important business information.
+    \end{itemize}
+\end{frame}
+
+% Planning
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
+\section{The Journey}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{Yak Shaving, Side Quests, Endless Rabbit Holes}
+    \end{textblock}
+    % main body
+    \begin{itemize}
+        \item Makefiles and GNU Autotools
+        \item NVIDA Jetson Nano as cluster nodes
+        \item SLURM cluster scheduler
+        \item OpenMPI for parallel builds
+        \item Docker and Containers
+        \item k8s and Rancher k3s
+        \item Data Version Control \href{https://dvc.org}{dvc.org}
+        \item Storing/accessing data in GCP buckets
+        \item Continuous Machine Learning \href{https://cml.dev/}{cml.dev}
+        \item Internal Pypi and Debian/Raspbian mirror (used too much bandwidth on home connection)
+    \end{itemize}
+\end{frame}
+
+\end{document}

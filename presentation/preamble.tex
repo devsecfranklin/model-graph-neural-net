@@ -1,0 +1,32 @@
+\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usefonttheme{serif}
+
+% no navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Text positioning
+\usepackage[absolute,overlay]{textpos}
+
+% https://hartwork.org/beamer-theme-matrix/
+\definecolor{bulletcolor}{RGB}{0,0,0} % RGB model is defined with values between 0 and 255
+\setbeamercolor{local structure}{fg=bulletcolor}
+\setbeamertemplate{itemize items}[circle]
+
+\usepackage[]{hyperref}
+\hypersetup{
+    pdftitle={Applying GCN to Security Infrastructure},
+    pdfauthor={Franklin Diaz},
+    pdfsubject={Applying GCN to Security Infrastructure},
+    pdfkeywords={graph, gnn},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=1,
+    colorlinks=true,
+    pdfstartview=Fit,
+    pdfpagemode=UseOutlines,    % this is the option you were lookin for
+    pdfpagelayout=TwoPageRight
+}
+
+\usepackage{physics}
