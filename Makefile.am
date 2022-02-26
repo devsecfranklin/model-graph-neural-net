@@ -1,6 +1,8 @@
 CLOCAL_AMFLAGS = -I config/m4 -I aclocal
 ACLOCAL_AMFLAGS = -I config/m4 -I aclocal
 
+.PHONY: cluster docs paper presentation tests
+
 clean:
 	rm -rf _build *.egg-info
 	@find . -name '*.pyc' | xargs rm -rf

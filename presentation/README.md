@@ -1,2 +1,6 @@
 # Presentation
 
+```sh
+make presentation
+```
+
