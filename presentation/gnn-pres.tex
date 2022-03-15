@@ -112,6 +112,30 @@
     \end{itemize}
 \end{frame}
 
+\defverbatim[colored]\lstI{
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily,keywordstyle=\color{red}]
+
+# Generate a PNG from Terraform
+terraform graph | dot -Tpng > graph.png
+
+# Generate vector graphic from Terraform
+terraform graph | dot -Tsvg -o graph.svg
+    \end{lstlisting}
+}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{Data Collection}
+    \end{textblock}
+    % main body
+    A big barrier to entry was removed by the ability to output a Directed Graph from Terraform.
+\lstI
+\end{frame}
+
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
 \section{Visualizations}
 
@@ -134,9 +158,11 @@
 
 \end{textblock}
 \end{frame}
-\note{Was able to change the color of the nodes.}
-
-
+\note[itemize]{
+    \item This is the first thing I saw when first converting the data.
+    \item Was excited here since I was able to change the color of the nodes.
+    \item Obviously this is not yet a usable result.
+}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
 \section{Sources and Citations}
@@ -155,5 +181,9 @@
         \item Important business information.
     \end{itemize}
 \end{frame}
+\note[itemize]{
+    \item point 1
+    \item point 2
+}
 
 \end{document}
