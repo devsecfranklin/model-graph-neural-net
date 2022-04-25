@@ -27,7 +27,7 @@
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     \begin{textblock}{0.6}(0.05,0.05)
-      \bfseries\Huge\textcolor{cyan}{What I Learned About Deep Learning}
+      \bfseries\Huge\textcolor{cyan}{Learning About Deep Learning, and Maybe a Few Other Things}
     \end{textblock}
     % \begin{textblock}{WIDTH}(XCOORDINATE,YCOORDINATE)
     \begin{textblock}{0.5}(0.65,0.52)
@@ -47,29 +47,71 @@
     \begin{textblock}{0.74}(0.05,0.05)
         \bfseries\large\textcolor{white}{About Me}
     \end{textblock}
-    % main body bullet points
-    \begin{itemize}
-        \item \textcolor{white}This is an example of a list.
-        \item Important business information.
-    \end{itemize}
-\end{frame}
 
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
-\section{The Goal}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item I am a Security Consultant at Palo Alto Networks, cloud and automation for past 2+ years
+                \item Did Data Eng/DevSecOps at Salesforce for 5 years.
+            \item Been going to security conferences for a while.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{center}
+            \includegraphics[width=1.0\linewidth, height=0.7\textheight]{../images/me.jpg}
+            \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
 \begin{frame}{}
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     \begin{textblock}{0.74}(0.05,0.05)
-        \bfseries\large\textcolor{white}{See What I can Do with All These Some Directed Graphs}
+        \bfseries\large\textcolor{white}{The Project}
     \end{textblock}
-    \begin{itemize}
-        \item Adaptive labeling and processing of graph data
-        \item What can we learn from link orientation?
-        \item Try to understand all these cool looking math symbols.
-    \end{itemize}
+
+    \begin{columns} % \flushleft
+        \begin{column}{0.8\textwidth}
+            \begin{itemize}
+                \item Realized that Terraform can output directed graphs.
+                \item Had done a lot of work at Salesforce with DiGraphs, AirFlow, etc. so I was somewhat familiar with this type of data.
+                \item What can we do with these directed graphs?
+                \item Try to understand all these cool looking math symbols.
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{What's a DiGraph?}
+    \end{textblock}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{center}
+                \includegraphics[width=1.0\linewidth,height=0.7\textheight]{../images/digraph-anatomy.png}
+            \end{center}
+         \end{column}
+         \begin{column}{0.5\textwidth}
+             \begin{center}
+                \includegraphics[width=1.0\linewidth,height=0.7\textheight]{../images/strong-components.png}
+             \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\note[itemize]{
+    \item The big takeaway here is the idea of ``edges'' and ``nodes''
+    \item \href{https://algs4.cs.princeton.edu/42digraph/}{Source: Algorithms, 4th Edition, by Robert Sedgewick and Kevin Wayne}
+    \item \href{https://www.youtube.com/watch?v=mXoiHgH4mEE}{Wrath of Math!}
+}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
 \section{What is Deep Learning, Exactly?}
@@ -82,12 +124,20 @@
     \begin{textblock}{0.74}(0.05,0.05)
         \bfseries\large\textcolor{white}{Quick Intro to a Giant Topic}
     \end{textblock}
-    % main body bullet points
-    \begin{itemize}
-        \item This is an example of a list.
-        \item Important business information.
-    \end{itemize}
+
+    \includegraphics[width=1.0\linewidth,height=0.7\textheight]{../images/Diff-ML-DL.jpg}
+
 \end{frame}
+
+\note[itemize]{
+    \item ML feature extraction can be a huge undertaking, up to 80\% of a project.
+    \item DL attempts to automatically learn features that are most useful for a task from raw data.
+    \item The nodes in a digraph are ``neurons'' or ``units'' in the DL/graph theory context.
+    \item The neurons perform two steps. They calculate a ``weighted sum'' and pass the result through an ``activation function'' such as a rectifier activation function.
+    \item These neurons or units that go through the rectifier function are called ``RelUs'' for short. Lot's of descriptive info in this one term!
+    \item Depth of the GNN is measured by the number of connected layers.
+    \item DL needs very large data sets for accurate feature determination. Data sets with lots of features are known as ``high density''.
+}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
 \section{The Journey}
