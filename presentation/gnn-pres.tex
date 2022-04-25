@@ -122,14 +122,33 @@
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
     \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{The Rise of Deep Learning}
+    \end{textblock}
+    \bigskip
+    \includegraphics[width=1.0\linewidth,height=0.7\textheight]{../images/dl_timeline.png}
+
+\end{frame}
+
+\note[itemize]{
+    \item GPUs have made it possible to expand accessibility to DL
+    \item the CUDA toolkit from Nvidia has made things easier for researchers.
+}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
         \bfseries\large\textcolor{white}{Quick Intro to a Giant Topic}
     \end{textblock}
-
+    \bigskip
     \includegraphics[width=1.0\linewidth,height=0.7\textheight]{../images/Diff-ML-DL.jpg}
 
 \end{frame}
 
 \note[itemize]{
+    \item \href{https://www.researchgate.net/publication/338585724_Improved_Approach_for_Identification_of_Real_and_Fake_Smile_using_Chaos_Theory_and_Principal_Component_Analysis}{image source/credit}
     \item ML feature extraction can be a huge undertaking, up to 80\% of a project.
     \item DL attempts to automatically learn features that are most useful for a task from raw data.
     \item The nodes in a digraph are ``neurons'' or ``units'' in the DL/graph theory context.
@@ -137,6 +156,23 @@
     \item These neurons or units that go through the rectifier function are called ``RelUs'' for short. Lot's of descriptive info in this one term!
     \item Depth of the GNN is measured by the number of connected layers.
     \item DL needs very large data sets for accurate feature determination. Data sets with lots of features are known as ``high density''.
+    \item We humans interpret the features and output based on what we are trying to model.
+}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{Amazing Tools Available}
+    \end{textblock}
+\end{frame}
+
+\note[itemize]{
+    \item Google Deep Learning Container Images
+    \item Continuous Machine Learning (CML) Project
+    \item Kaggle and shared Jupyter Notebooks
 }
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
@@ -197,11 +233,51 @@ terraform graph | dot -Tsvg -o graph.svg
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
     \begin{textblock}{0.74}(0.05,0.05)
-        \bfseries\large\textcolor{white}{Data Collection}
+        \bfseries\large\textcolor{white}{Dot Data Collection}
     \end{textblock}
     % main body
-    A big barrier to entry was removed by the ability to output a Directed Graph from Terraform.
-\lstI
+    A big barrier to entry was removed by the ability to output
+    a Directed Graph from Terraform. \href{https://youtu.be/2FytVBJHUKk}{Click for video}
+
+    \lstI
+
+\end{frame}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{Python Data Collection}
+    \end{textblock}
+    This became the basis for collection via Python.
+
+    \href{https://youtu.be/aTE8uZVO248}{Click for video} %  % 2.5x python collection
+\end{frame}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{Data Processing}
+    \end{textblock}
+
+    \begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{center}
+            \includegraphics[width=1.0\linewidth,height=0.7\textheight]{../images/kaggle-cml.png}
+        \end{center}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{center}
+            \includegraphics[width=1.0\linewidth,height=0.7\textheight]{../images/strong-components.png}
+        \end{center}
+    \end{column}
+\end{columns}
+
 \end{frame}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
