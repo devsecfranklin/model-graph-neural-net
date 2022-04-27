@@ -26,25 +26,28 @@
 \begin{frame}
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
-    \begin{textblock}{0.6}(0.05,0.05)
+    \begin{textblock}{0.6} (0.05,0.05)
       \bfseries\Huge\textcolor{cyan}{Learning About Deep Learning, and Maybe a Few Other Things}
     \end{textblock}
     % \begin{textblock}{WIDTH}(XCOORDINATE,YCOORDINATE)
-    \begin{textblock}{0.5}(0.65,0.52)
+    \begin{textblock}{0.5} (0.65,0.52)
         \bfseries\textcolor{green}{Franklin Diaz, Cosmic Voyager}
     \end{textblock}
 \end{frame}
 
+\note{My presentation title is here. This talk is about my on-going journey into theworld of graph theory and neural networks.}
+
 % Intro Section
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
 \section{Introduction}
+\note{This first section is an Introduction to me and my project}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
 \begin{frame}{}
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
+    \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{About Me}
     \end{textblock}
 
@@ -64,32 +67,37 @@
     \end{columns}
 \end{frame}
 
+\note[itemize]{
+    \item Here is a picture of me, but modified by a popular local artist.
+    \item In my current role I get to work with the major cloud providers.
+    \item In the past I was not a Data Scientist, but did some time on the Security Data Engineering team at Salesforce. This gave me a bit of a head start with data pipelines, directed acyclic graphs, and a few other things.
+}
+
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
 \begin{frame}{}
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
-    \begin{textblock}{0.74}(0.05,0.05)
+    \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{The Project}
     \end{textblock}
-
-    \begin{columns} % \flushleft
-        \begin{column}{0.8\textwidth}
-            \begin{itemize}
-                \item Realized that Terraform can output directed graphs.
-                \item Had done a lot of work at Salesforce with DiGraphs, AirFlow, etc. so I was somewhat familiar with this type of data.
-                \item What can we do with these directed graphs?
-                \item Try to understand all these cool looking math symbols.
-            \end{itemize}
-        \end{column}
-    \end{columns}
+    \begin{itemize}
+        \item Realized that Terraform can output directed graphs.
+        \item Had done a lot of work at Salesforce with directed graphs, data pipeline orchestration with AirFlow, etc. so I was somewhat familiar with the output I was seeing.
+        \item The first question I had was, what can I do with these directed graphs?
+        \item My hunch was I could ``do some processing and analysis'' of all this security infrastructure graph data and hoped that could lead to... predictions?
+    \end{itemize}
 \end{frame}
+\note[itemize]{
+    \item In case you are not familiar, Terraform is software that allows you to declare resources like network elements in public cloud providers.
+    \item Had and still have this vague notion that if I had enough data I could find ``outliers''. Maybe like a modernized version of a Pareto analysis?
+}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
 \begin{frame}{}
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
+    \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{What's a DiGraph?}
     \end{textblock}
 
@@ -121,7 +129,7 @@
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
+    \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{The Rise of Deep Learning}
     \end{textblock}
     \bigskip
@@ -139,7 +147,7 @@
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
+    \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{Quick Intro to a Giant Topic}
     \end{textblock}
     \bigskip
@@ -164,7 +172,7 @@
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
+    \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{Amazing Tools Available}
     \end{textblock}
 \end{frame}
@@ -183,7 +191,7 @@
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
+    \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{What Have I Gotten Myself Into?}
     \end{textblock}
     % main body bullet points
@@ -198,7 +206,7 @@
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
+    \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{Yak Shaving, Side Quests, Endless Rabbit Holes}
     \end{textblock}
     % main body
@@ -232,7 +240,7 @@ terraform graph | dot -Tsvg -o graph.svg
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
+    \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{Dot Data Collection}
     \end{textblock}
     % main body
@@ -248,7 +256,7 @@ terraform graph | dot -Tsvg -o graph.svg
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
+    \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{Python Data Collection}
     \end{textblock}
     This became the basis for collection via Python.
@@ -280,6 +288,66 @@ terraform graph | dot -Tsvg -o graph.svg
 
 \end{frame}
 
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74} (0.05,0.05)
+        \bfseries\large\textcolor{white}{Data Collection Container}
+    \end{textblock}
+
+\end{frame}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{Data Storage - Google Cloud}
+    \end{textblock}
+
+Data storage with GCP because it's (relatively) easy.
+\end{frame}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{Data Storage - Kaggle}
+    \end{textblock}
+
+    Data storage and tagging using DVC
+
+\end{frame}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{Data Storage - DVC}
+    \end{textblock}
+
+Data storage and tagging using DVC
+
+\end{frame}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{Data Tagging}
+    \end{textblock}
+
+\end{frame}
+
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
 \section{Visualizations}
 
@@ -291,22 +359,28 @@ terraform graph | dot -Tsvg -o graph.svg
     \begin{textblock}{0.74}(0.05,0.05)
         \bfseries\large\textcolor{white}{Graphviz/Dot output}
     \end{textblock}
+
     \begin{textblock}{0.75}(0.025,0.08)
-
-    \begin{figure}
-        \centering
-        \includegraphics[width=1.0\linewidth, height=0.7\textheight]{../images/graph-dl-test}
-        \caption{}
-        \label{fig:graph-dl-test}
-    \end{figure}
-
-\end{textblock}
+        \bigskip
+        \includegraphics[width=1.0\linewidth,height=0.7\textheight]{../images/graph-dl-test}
+    \end{textblock}
 \end{frame}
 \note[itemize]{
-    \item This is the first thing I saw when first converting the data.
+    \item This is the first thing I saw when I started converting the data.
     \item Was excited here since I was able to change the color of the nodes.
     \item Obviously this is not yet a usable result.
 }
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+\begin{frame}{}
+    \setlength{\TPHorizModule}{\textwidth}
+    \setlength{\TPVertModule}{\textwidth}
+    % Slide title in upper left
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{Gephi}
+    \end{textblock}
+
+\end{frame}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
 \section{Sources and Citations}
