@@ -1,0 +1,16 @@
+digraph setup{
+    size="8,4";
+    node [fontname="Courier New" fontsize=14 shape=ellipse];
+    edge [fontname="Courier New" fontsize=10];
+
+    project [label="project"];
+    collect [label="Data Collection"];
+    validate [label="Data Validation"];
+    clean [label="Data Cleaning"];
+    process [label="Data Processing"];
+
+    project -> collect;
+    collect -> validate;
+    validate -> clean;
+    clean -> process;
+}
