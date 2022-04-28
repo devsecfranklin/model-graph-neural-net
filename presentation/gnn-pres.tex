@@ -35,7 +35,10 @@
     \end{textblock}
 \end{frame}
 
-\note{My presentation title is here. This talk is about my on-going journey into the world of graph theory and neural networks. This is a description of the learning process as well as the project and presenting some results.}
+\note[itemize]{
+    \item My presentation title is here.
+    \item This talk is about my on-going journey into the world of graph theory and neural networks.
+    \item This is a description of the learning process as well as the project and presenting some results.}
 
 % Intro Section
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
@@ -68,8 +71,8 @@
 \end{frame}
 
 \note[itemize]{
-    \item Here is a picture of me, but modified by a popular local artist.
-    \item In my current role I get to work with the major cloud providers.
+    \item Here is a picture of me, modified by a popular local artist.
+    \item In my current role as a consultant, I get to work with the major cloud providers.
     \item In the past I was not a Data Scientist, but did some time on the Security Data Engineering team at Salesforce. This gave me a bit of a head start with data pipelines, directed acyclic graphs, and a few other things.
 }
 
@@ -173,8 +176,15 @@
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
     \begin{textblock}{0.74} (0.05,0.05)
-        \bfseries\large\textcolor{white}{Amazing Tools Available}
+        \bfseries\large\textcolor{white}{Amazing Training and Tools Available}
     \end{textblock}
+
+    \begin{itemize}
+        \item There is a ton of information suddenly. Books, papers, code, etc.
+        \item Folks are very helpful, positioning themselves as experts.
+        \item \href{https://youtu.be/8owQBFAHw7E}{super helpful videos like this one}
+    \end{itemize}
+
 \end{frame}
 
 \note[itemize]{
@@ -185,6 +195,9 @@
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
 \section{The Journey}
+\note[itemize]{
+    \item Now I would like to talk a bit about the shape of the project.
+}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
 \begin{frame}{}
@@ -194,12 +207,26 @@
     \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{What Have I Gotten Myself Into?}
     \end{textblock}
-    % main body bullet points
-    \begin{itemize}
-        \item This is an example of a list.
-        \item Important business information.
-    \end{itemize}
+    \begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{itemize}
+            \item It didn't take long before I realized the magnitutde of the ocean I was wading into.
+            \item Started reading everything I could find even though I didn't understand most of it.
+            \item I came up with the basic framework you see in the image here.
+        \end{itemize}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+        \begin{center}
+            \includegraphics[width=1.0\linewidth, height=0.7\textheight]{../images/project.png}
+        \end{center}
+    \end{column}
+\end{columns}
 \end{frame}
+\note[itemize]{
+    \item Repetition can be a slow and painful way to learn.
+    \item Wasn't even sure what questions to ask. Slow going at first.
+}
+
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
 \begin{frame}{}
@@ -224,14 +251,20 @@
     \end{itemize}
 \end{frame}
 
+\note[itemize]{
+    \item Wasn't sure exactly where to drop this slide in the order.
+    \item Trying to show that there have been a TON of side quests.
+    \item Some of these were useful, some led to spin off projects. A lot of this is bookmarked for later when I get some ``spare time'' haha.
+}
+
 \defverbatim[colored]\lstI{
-\begin{lstlisting}[language=Python,basicstyle=\ttfamily,keywordstyle=\color{red}]
+    \begin{lstlisting}[language=Python,basicstyle=\ttfamily,keywordstyle=\color{red}]
 
-# Generate a PNG from Terraform
-terraform graph | dot -Tpng > graph.png
+        # Generate a PNG from Terraform
+        terraform graph | dot -Tpng > graph.png
 
-# Generate vector graphic from Terraform
-terraform graph | dot -Tsvg -o graph.svg
+        # Generate vector graphic from Terraform
+        terraform graph | dot -Tsvg -o graph.svg
     \end{lstlisting}
 }
 
@@ -243,13 +276,18 @@ terraform graph | dot -Tsvg -o graph.svg
     \begin{textblock}{0.74} (0.05,0.05)
         \bfseries\large\textcolor{white}{Dot Data Collection}
     \end{textblock}
-    % main body
-    A big barrier to entry was removed by the ability to output
-    a Directed Graph from Terraform. \href{https://youtu.be/2FytVBJHUKk}{Click for video}
-
+    \begin{itemize}
+        \item A big barrier to entry was removed by the ability to output a Directed Graph from Terraform.
+        \item \href{https://youtu.be/2FytVBJHUKk}{Click for video}
+    \end{itemize}
     \lstI
 
 \end{frame}
+
+\note[itemize]{
+    \item Was pretty happy I could generate a PNG file. Super easy!
+    \item Then I opened up the file and took a look at the nodes in the graph....
+}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
 \begin{frame}{}
@@ -361,12 +399,12 @@ Data storage and tagging using DVC
     \begin{column}{0.5\textwidth}
         \begin{itemize}
             \item The Data Pipeline is a set of processes that move and transform data from various sources to a destination where new value can be derived.
-            \item THe DP is the foundation of analytics, reporting, and machine learning capabilities.
+            \item The DP is the foundation of analytics, reporting, and machine learning capabilities.
         \end{itemize}
     \end{column}
     \begin{column}{0.45\textwidth}
         \begin{center}
-            \includegraphics[width=1.0\linewidth, height=0.7\textheight]{project.png}
+            \includegraphics[width=1.0\linewidth, height=0.7\textheight]{../images/project.png}
         \end{center}
     \end{column}
 \end{columns}
