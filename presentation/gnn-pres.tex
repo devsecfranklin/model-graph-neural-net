@@ -88,6 +88,7 @@
         \item Had done a lot of work at Salesforce with directed graphs, data pipeline orchestration with AirFlow, etc. so I was somewhat familiar with the output I was seeing.
         \item The first question I had was, what can I do with these directed graphs?
         \item My hunch was I could ``do some processing and analysis'' of all this security infrastructure graph data and hoped that could lead to... predictions?
+        \item \href{https://github.com/devsecfranklin/model-graph-neural-net}{All of the Code for (almost) everything is Here}
     \end{itemize}
 \end{frame}
 \note[itemize]{
@@ -126,6 +127,10 @@
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
 \section{What is Deep Learning, Exactly?}
+
+\note[itemize]{
+    \item You've probably heard this term lately, lets talk about what it means.
+}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
 \begin{frame}{}
@@ -345,8 +350,9 @@
 \note[itemize]{
     \item Spent a week with P0lr where we had a moderate case of machine learning fever.
     \item We had a direction but no destination.
-    \item Watched Alpha Go movie, talked about a bunch of stuff like Kaggle.
+    \item Watched Alpha Go movie, talked about a bunch of stuff, read some books and papers.
     \item wound up writing some code.
+    \item there was a ``HTML model'' in there somewhere too
 }
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
@@ -354,11 +360,16 @@
     \setlength{\TPHorizModule}{\textwidth}
     \setlength{\TPVertModule}{\textwidth}
     % Slide title in upper left
-    \begin{textblock}{0.74} (0.05,0.05)
-        \bfseries\large\textcolor{white}{Data Collection Container}
+    \begin{textblock}{0.74}(0.05,0.05)
+        \bfseries\large\textcolor{white}{Data Storage - Kaggle}
     \end{textblock}
-
+    \begin{itemize}
+    \item What the heck is it?
+    \end{itemize}
 \end{frame}
+\note[itemize]{
+    \item What the heck is it?
+}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
 \begin{frame}{}
@@ -372,18 +383,7 @@
 Data storage with GCP because it's (relatively) easy.
 \end{frame}
 
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
-\begin{frame}{}
-    \setlength{\TPHorizModule}{\textwidth}
-    \setlength{\TPVertModule}{\textwidth}
-    % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
-        \bfseries\large\textcolor{white}{Data Storage - Kaggle}
-    \end{textblock}
 
-    Data storage and tagging using DVC
-
-\end{frame}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
 \begin{frame}{}
@@ -393,21 +393,12 @@ Data storage with GCP because it's (relatively) easy.
     \begin{textblock}{0.74}(0.05,0.05)
         \bfseries\large\textcolor{white}{Data Storage - DVC}
     \end{textblock}
-
-Data storage and tagging using DVC
-
+    \begin{itemize}
+    \item Data storage and tagging using DVC
+    \item \href{https://dvc.org/}{there is a video on this page that explains}
+    \end{itemize}
 \end{frame}
 
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
-\begin{frame}{}
-    \setlength{\TPHorizModule}{\textwidth}
-    \setlength{\TPVertModule}{\textwidth}
-    % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
-        \bfseries\large\textcolor{white}{Data Tagging}
-    \end{textblock}
-
-\end{frame}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
 \begin{frame}{}
@@ -457,19 +448,100 @@ Data storage and tagging using DVC
 \note[itemize]{
     \item This is the first thing I saw when I started converting the data.
     \item Was excited here since I was able to change the color of the nodes.
-    \item Obviously this is not yet a usable result.
+    \item Obviously this is not yet a usable result
+    \item \href{https://youtu.be/mmHBexAHNa4}{some video of data collection}
 }
 
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
-\begin{frame}{}
-    \setlength{\TPHorizModule}{\textwidth}
-    \setlength{\TPVertModule}{\textwidth}
-    % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
-        \bfseries\large\textcolor{white}{Gephi}
-    \end{textblock}
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+%\begin{frame}{}
+%    \setlength{\TPHorizModule}{\textwidth}
+%    \setlength{\TPVertModule}{\textwidth}
+%    % Slide title in upper left
+%    \begin{textblock}{0.74}(0.05,0.05)
+%        \bfseries\large\textcolor{white}{Gephi}
+%    \end{textblock}
+%
+%\end{frame}
 
-\end{frame}
+
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
+%\section{But, I Heard There was Math?}
+%
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+%\begin{frame}{}
+%    \setlength{\TPHorizModule}{\textwidth}
+%    \setlength{\TPVertModule}{\textwidth}
+%    % Slide title in upper left
+%    \begin{textblock}{0.74}(0.05,0.05)
+%        \bfseries\large\textcolor{white}{The training.py Part}
+%    \end{textblock}
+%
+%    \begin{itemize}
+%        \item As the number of nodes and edges in the graph increase, it becomes more difficult to visualize the graph diagrammatically.
+%        \item Graph data in a tabular matrix-style layout is possible.
+%    \end{itemize}
+%\end{frame}
+%
+%\note[itemize]{
+%    \item Created a separate piece of Python where I intend to do some ``training''
+%    \item Does some Linear Algebra operations on some matrices so far.
+%}
+
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+%\begin{frame}{}
+%    \setlength{\TPHorizModule}{\textwidth}
+%    \setlength{\TPVertModule}{\textwidth}
+%    % Slide title in upper left
+%    \begin{textblock}{0.74}(0.05,0.05)
+%        \bfseries\large\textcolor{white}{The Adjacency Matrix}
+%    \end{textblock}
+%
+%    \begin{itemize}
+%    \item Let G be a graph with n vertices that are assumed to be ordered from v_1 to v_n.
+%    \end{itemize}
+%    The n x n matrix A, in which
+%
+%    a_i_j = 1 if there exists a path from v_i to v_j
+%    a_i_j = 0 otherwise
+%
+%    is called an adjacency matrix.
+%
+%    \end{frame}
+
+%\note[itemize]{
+%\item There is an Incidence Matrix, and a dense Incidence matrix.
+%\item Consider the \href{http://ceadserv1.nku.edu/longa//classes/mat385_resources/docs/matrix.html}{information at this link}.
+%
+%    \item The first type of Matrix layout is the Adjacency Matrix.
+%    \item There is an Adjacency Matrix, and also a ``dense'' version of the Adjacency Matrix.
+%}
+%
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+%\begin{frame}{}
+%    \setlength{\TPHorizModule}{\textwidth}
+%    \setlength{\TPVertModule}{\textwidth}
+%    % Slide title in upper left
+%    \begin{textblock}{0.74}(0.05,0.05)
+%        \bfseries\large\textcolor{white}{The Incidence Matrix}
+%    \end{textblock}
+%    \begin{itemize}
+%        \item Let G be a graph with n vertices that are assumed to be ordered from v_1 to v_n.
+%    \end{itemize}
+%\end{frame}
+%\note[itemize]{
+%    \item
+%}
+
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+%\begin{frame}{}
+%    \setlength{\TPHorizModule}{\textwidth}
+%    \setlength{\TPVertModule}{\textwidth}
+%    % Slide title in upper left
+%    \begin{textblock}{0.74}(0.05,0.05)
+%        \bfseries\large\textcolor{white}{The Laplacian Matrix}
+%    \end{textblock}
+%
+%\end{frame}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
 \section{So Now What?}
@@ -486,6 +558,7 @@ Data storage and tagging using DVC
     \begin{itemize}
         \item Standardizing my data collection on JSON.
         \item Made some super cool functions for parsing nested JSON.
+        \item Turned some of this time into money with \href{https://youtu.be/U62scNwsvc0}{cloud tools}
         \item Importing JSON to Pandas dataframes.
     \end{itemize}
 \end{frame}
@@ -504,7 +577,10 @@ Data storage and tagging using DVC
     \end{textblock}
     % main body bullet points
     \begin{itemize}
-        \item See if I can get the training to use my personal GPU/TPU
+        \item The data collection problem (Don't have access to enough data!)
+        \item Maybe have a ``collection container'' with a python/Flask RESTful API for folks to push data to? Or even better, scrape GH for public repos with Terraform? (Lots of data, but not all security infra)
+        \item Maybe back to Kaggle to find some big data to operate on?
+        \item See if I can get the training to use my personal GPU/TPU.
     \end{itemize}
 \end{frame}
 \note[itemize]{
@@ -512,24 +588,39 @@ Data storage and tagging using DVC
     \item Have to spend my days helping people with the cloud.
 }
 
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
-\begin{frame}{}
-    \setlength{\TPHorizModule}{\textwidth}
-    \setlength{\TPVertModule}{\textwidth}
-    % Slide title in upper left
-    \begin{textblock}{0.74}(0.05,0.05)
-        \bfseries\large\textcolor{white}{If Time, Staff, and Money were no Object}
-    \end{textblock}
-    % main body bullet points
-    \begin{itemize}
-        \item Dreams and stretch goals.
-    \end{itemize}
-\end{frame}
-\note[itemize]{
-    \item this is the ``dreams and stretch goals'' slide.
-    \item Most of this work is relegated to my ``free'' time.
-    \item Have to spend my days helping people with the cloud.
-}
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+%\begin{frame}{}
+%    \setlength{\TPHorizModule}{\textwidth}
+%    \setlength{\TPVertModule}{\textwidth}
+%    % Slide title in upper left
+%    \begin{textblock}{0.74}(0.05,0.05)
+%        \bfseries\large\textcolor{white}{If Time, Staff, and Money were no Object}
+%    \end{textblock}
+%    % main body bullet points
+%    \begin{itemize}
+%        \item Dreams and stretch goals.
+%    \end{itemize}
+%\end{frame}
+%\note[itemize]{
+%    \item this is the ``dreams and stretch goals'' slide.
+%    \item Most of this work is relegated to my ``free'' time.
+%    \item Have to spend my days helping people with the cloud.
+%}
+
+%\usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/tree.jpg}}
+%\begin{frame}{}
+%    \setlength{\TPHorizModule}{\textwidth}
+%    \setlength{\TPVertModule}{\textwidth}
+%    % Slide title in upper left
+%    \begin{textblock}{0.74} (0.05,0.05)
+%        \bfseries\large\textcolor{white}{Data Collection Container}
+%    \end{textblock}
+%
+%\end{frame}
+%
+%\note[itemize]{
+%    \item A containerized (web?) app for folks to submit Terraform plans.
+%}
 
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{../images/field.jpg}}
 \section{Sources and Citations}
@@ -544,13 +635,12 @@ Data storage and tagging using DVC
     \end{textblock}
     % main body bullet points
     \begin{itemize}
-        \item This is an example of a list.
-        \item Important business information.
+        \item Generate a bibtex
     \end{itemize}
 \end{frame}
 \note[itemize]{
-    \item point 1
-    \item point 2
+    \item Need to add a reading list on here
+    \item Make a list of all the books and papers
 }
 
 \end{document}
