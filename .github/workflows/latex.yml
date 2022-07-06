@@ -12,11 +12,11 @@ jobs:
         with:
           root_file: gnn.tex
           args: '-pdf -file-line-error -interaction=nonstopmode -shell-escape'
-          working_directory: paper
+          working_directory: docs/paper
       - name: Compile LaTeX slides deck
         uses: xu-cheng/latex-action@v2
         with:
           root_file: gnn-pres.tex
           args: '-pdf -file-line-error -interaction=nonstopmode -shell-escape'
-          working_directory: presentation
+          working_directory: docs/presentation
 

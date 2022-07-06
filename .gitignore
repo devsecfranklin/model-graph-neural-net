@@ -415,8 +415,13 @@ TSWLatexianTemp*
 # Makeindex log files
 *.lpz
 
-# autotools and local build env
 _build
+AUTHORS
+COPYING
+ChangeLog
+INSTALL
+NEWS
+README
 aclocal.m4
 autom4te.cache
 compile
