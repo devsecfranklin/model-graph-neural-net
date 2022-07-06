@@ -13,11 +13,23 @@ clean:
 		fi ; \
 	done
 
-.PHONY: src
-python: 
-	$(PYTHON) -m venv _build
-	(
+cluster-collect: ## Build collection container for local cluster
+	docker buildx use franklin
+	docker build -t franklin:gnn-collection \
+		--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') gnn/collection | tee .buildlog
+
+cluster-train: ## Build training container for local cluster
+	docker buildx use franklin
+	docker build --platform linux/arm/v7 -t franklin:gnn-training \
+		--build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') gnn/training | tee .buildlog
+
+python:
+	@$(PY39) -m venv _build
+	( \
 		source _build/bin/activate; \
-		$(PYTHON) -m pip install -rrequirements.txt; \
+		_build/bin/python -m pip install --no-index --find-links=/mnt/clusterfs/pypi tox; \
+		_build/bin/python -m pip install --upgrade pip; \
+		_build/bin/python -m pip install --find-links=/mnt/clusterfs/pypi -r gnn/collection/requirements.txt; \
+		_build/bin/python -m pip install --find-links=/mnt/clusterfs/pypi -r gnn/training/requirements.txt; \
 	)
 

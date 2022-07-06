@@ -29,9 +29,15 @@ function detect_os() {
     then
         echo -e "${CYAN}Detected MacOS${NC}"
         MY_OS="mac"
+    elif [ -f "/etc/redhat-release" ]
+    then
+        echo -e "${CYAN}Detected Red Hat/CentoOS/RHEL${NC}"
+        MY_OS="rh"
     elif [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]
     then
-        echo -e "${CYAN}Detected Debian/Ubuntu/Mint${NC}"
+        ID="$(grep -Ei '^ID=' /etc/os-release| cut -d"=" -f2)"
+        echo -e "${CYAN}Found Linux: ${ID}${NC}"
+        echo -e "${CYAN}Detected Debian/Ubuntu/Mendel/Mint${NC}"
         MY_OS="deb"
     elif grep -q Microsoft /proc/version
     then
@@ -48,11 +54,11 @@ function macos() {
   brew cleanup
   brew upgrade
   echo -e "${CYAN}Setting up autools for MacOS (this may take a while...)${NC}"
-  brew install libtool
+  # brew install libtool
   brew install gawk
   if [ ! -f "./config.status" ]; then
     echo -e "${CYAN}Running libtool/autoconf/automake...${NC}"
-    glibtoolize
+    # glibtoolize # for building shared libraries
     aclocal -I config
     if [ -d "aclocal" ]; then
       autoreconf
@@ -69,10 +75,10 @@ function macos() {
 }
 
 function debian {
-  # sudo apt install gnuplot gawk libtool psutils
+  # sudo apt install gnuplot gawk libtool psutils make autoconf automake
 
   if [ ! -f "./config.status" ]; then
-    libtoolize
+    # libtoolize
     if [ -d "aclocal" ]; then
       autoreconf
     else
@@ -87,10 +93,29 @@ function debian {
   fi
 }
 
+function redhat() {
+  if [ ! -f "./config.status" ]; then
+    if [ -d "aclocal" ]; then
+      autoreconf
+    else
+      mkdir aclocal
+      aclocal -I config
+      autoreconf -i
+    fi
+    automake -a -c --add-missing
+    ./configure
+  else
+    ./config.status
+  fi    
+}
+
 function main() {
   detect_os
   if [ "${MY_OS}" == "mac" ]; then
     macos
+  fi
+  if [ "${MY_OS}" == "rh" ]; then
+    redhat
   fi
   if [ "${MY_OS}" == "deb" ]; then
     debian
