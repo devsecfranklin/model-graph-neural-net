@@ -12,6 +12,7 @@ AC_CONFIG_COMMANDS([franklin-build],
  [mypkgname=$PACKAGE_NAME])
 AM_PATH_PYTHON(3.7) # minimum version of Python
 AC_CONFIG_FILES(
+  Makefile
   cluster/Makefile
   docs/paper/Makefile
   docs/presentation/Makefile
