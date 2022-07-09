@@ -25,8 +25,8 @@ COPY requirements.txt /tmp/requirements.txt
 RUN \
     apt-get update; \
     apt-get install -y make libgraphviz-dev; \
-    python -m pip install --upgrade pip; \
-    python -m pip install -r /tmp/requirements.txt 
+    python -m pip install --trusted-host storage1.lab.bitsmasher.net --find-links=http://storage1.lab.bitsmasher.net/pypi --upgrade pip; \
+    python -m pip install --trusted-host storage1.lab.bitsmasher.net --find-links=http://storage1.lab.bitsmasher.net/pypi -r /tmp/requirements.txt 
 
 CMD ["python", "/workspace/gnn/collection/collection.py" ] 
 

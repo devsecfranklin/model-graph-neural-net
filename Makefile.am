@@ -27,9 +27,9 @@ python:
 	@$(PY39) -m venv _build
 	( \
 		source _build/bin/activate; \
-		_build/bin/python -m pip install --no-index --find-links=/mnt/clusterfs/pypi tox; \
-		_build/bin/python -m pip install --upgrade pip; \
-		_build/bin/python -m pip install --find-links=/mnt/clusterfs/pypi -r gnn/collection/requirements.txt; \
-		_build/bin/python -m pip install --find-links=/mnt/clusterfs/pypi -r gnn/training/requirements.txt; \
+		_build/bin/python -m pip install --no-index --trusted-host storage1.lab.bitsmasher.net --find-links=http://storage1.lab.bitsmasher.net/pypi tox; \
+		_build/bin/python -m pip install --trusted-host storage1.lab.bitsmasher.net --find-links=http://storage1.lab.bitsmasher.net/pypi --upgrade pip; \
+		_build/bin/python -m pip install --trusted-host storage1.lab.bitsmasher.net --find-links=http://storage1.lab.bitsmasher.net/pypi -r gnn/collection/requirements.txt; \
+		_build/bin/python -m pip install --trusted-host storage1.lab.bitsmasher.net --find-links=http://storage1.lab.bitsmasher.net/pypi -r gnn/training/requirements.txt; \
 	)
 

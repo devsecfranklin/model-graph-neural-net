@@ -27,7 +27,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN \
     apt-get update; \
     apt-get install -y make gcc libgraphviz-dev && apt-get clean; \
-    python -m pip install --upgrade pip; \
+    python -m pip install --find-links=/mnt/clusterfs/pypi --upgrade pip; \
     python -m pip install -r /workspace/gnn/training/requirements.txt; \
     python -m pip install -e .
 

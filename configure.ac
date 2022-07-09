@@ -11,12 +11,12 @@ AC_CONFIG_COMMANDS([franklin-build],
  [echo "(⊃｡•́‿•̀｡)⊃━⭑･ﾟﾟ･*:༅｡.｡༅:*ﾟ:*:✼✿ Configuring for $mypkgname ☽༓･*˚⁺‧͙"],
  [mypkgname=$PACKAGE_NAME])
 AM_PATH_PYTHON(3.7) # minimum version of Python
-AC_CONFIG_FILES(
+AC_CONFIG_FILES([
   Makefile
   cluster/Makefile
   docs/paper/Makefile
   docs/presentation/Makefile
-  ) # Makefiles to generate, one per line
+  ]) # Makefiles to generate, one per line
 PY39="python$PYTHON_VERSION" # define the python interpreter
 dnl LDFLAGS="$LDFLAGS -l$PY39"
 AC_SUBST(PY39, python$PYTHON_VERSION)
