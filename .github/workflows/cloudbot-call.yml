@@ -1,15 +1,16 @@
-name: 'Tekton Trigger'
+---
+name: 'Cloudbot'
 on:
   - pull_request
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
 jobs:
   phone-home:
-    name: 'Tekton Trigger'
+    name: 'shake junt'
     runs-on: ubuntu-latest
     steps:
       - name: Set up Cloud SDK
-        uses: 'google-github-actions/setup-gcloud@v0'
+        uses: google-github-actions/setup-gcloud@v0
         with:
           project_id: ${{ secrets.PROJECT_ID }}
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
