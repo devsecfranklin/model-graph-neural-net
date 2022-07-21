@@ -31,7 +31,7 @@ RUN \
     python -m pip install -r /workspace/gnn/training/requirements.txt; \
     python -m pip install -e .
 
-# need to access the data store somehow (local copt for now)
+# need to access the data store somehow (local copy for now)
 # The files are in a GCP storage bucket
 
 CMD ["/usr/local/bin/python3", "/workspace/gnn/training/train.py" ]
